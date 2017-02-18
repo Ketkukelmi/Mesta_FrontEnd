@@ -1,4 +1,9 @@
-app.src = "//connect.facebook.net/en_US/all.js";
+onSuccess = function (googleUser) {
+    console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+}
+onFailure = function (error) {
+    console.log(error);
+}
 
 app.factory('accountService', function() {
     return {
@@ -25,5 +30,25 @@ app.factory('accountService', function() {
                 version: 'v2.8'
             });
 
+        },
+
+        renderGoogleButton: function () {
+            gapi.signin2.render('my-signin2', {
+                'scope': 'profile email',
+                'width': 240,
+                'height': 50,
+                'longtitle': true,
+                'theme': 'dark',
+                'onsuccess': onSuccess,
+                'onfailure': onFailure
+            });
+        },
+
+        onSuccess: function (googleUser) {
+            console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+        },
+
+        onFailure: function (error) {
+            console.log(error);
         }
     }});
