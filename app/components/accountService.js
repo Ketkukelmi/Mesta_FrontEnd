@@ -1,21 +1,29 @@
-/**
- * Created by Roman on 2/18/2017.
- */
+app.src = "//connect.facebook.net/en_US/all.js";
 
-app.factory('accountService', function($q) {
+app.factory('accountService', function() {
     return {
-        getMyLastName: function() {
-            var deferred = $q.defer();
-            FB.api('/me', {
-                fields: 'last_name'
-            }, function(response) {
-                if (!response || response.error) {
-                    deferred.reject('Error occured');
+
+        fbLogin: function () {
+            FB.login(function (response) {
+                if (response.authResponse) {
+                    console.log('Welcome!  Fetching your information.... ');
+                    FB.api('/me', function (response) {
+                        console.log('Good to see you, ' + response.name + '.');
+                    });
                 } else {
-                    deferred.resolve(response);
+                    console.log('User cancelled login or did not fully authorize.');
                 }
+            })
+        },
+
+        fbInit: function () {
+            FB.init({
+                appId: '1648610375442724',
+                status: true,
+                cookie: true,
+                xfbml: true,
+                version: 'v2.8'
             });
-            return deferred.promise;
+
         }
-    }
-});
+    }});
