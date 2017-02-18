@@ -4,21 +4,20 @@
 
 app.src = "//connect.facebook.net/en_US/sdk.js";
 
-window.fbAsyncInit = function() {
-    FB.init({
-        appId      : '1648610375442724',
-        xfbml      : true,
-        version    : 'v2.8'
-    });
-
-    FB.getLoginStatus(function(response) {
-        if (response.status === 'connected') {
-            document.getElementById('status').innerHTML = 'We are connected.';
-            document.getElementById('login').style.visibility = 'hidden';
-        } else if (response.status === 'not_authorized') {
-            document.getElementById('status').innerHTML = 'We are not logged in.'
-        } else {
-            document.getElementById('status').innerHTML = 'You are not logged into Facebook.';
+app.factory('accountService', function($q) {
+    return {
+        getMyLastName: function() {
+            var deferred = $q.defer();
+            FB.api('/me', {
+                fields: 'last_name'
+            }, function(response) {
+                if (!response || response.error) {
+                    deferred.reject('Error occured');
+                } else {
+                    deferred.resolve(response);
+                }
+            });
+            return deferred.promise;
         }
-    });
-};
+    }
+});
