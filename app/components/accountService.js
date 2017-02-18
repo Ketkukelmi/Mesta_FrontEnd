@@ -2,6 +2,8 @@
  * Created by Roman on 2/18/2017.
  */
 
+app.src = "//connect.facebook.net/en_US/sdk.js";
+
 window.fbAsyncInit = function() {
     FB.init({
         appId      : '1648610375442724',
