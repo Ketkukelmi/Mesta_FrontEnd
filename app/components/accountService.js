@@ -2,8 +2,6 @@
  * Created by Roman on 2/18/2017.
  */
 
-app.src = "//connect.facebook.net/en_US/sdk.js";
-
 app.factory('accountService', function($q) {
     return {
         getMyLastName: function() {
