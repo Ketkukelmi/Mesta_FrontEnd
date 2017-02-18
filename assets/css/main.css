@@ -10,6 +10,7 @@
    Base styles: opinionated defaults
    ========================================================================== */
 
+/* Set up the main view of the application - full screen, no scrolling */
 html, body {
     color: #222;
     font-size: 1em;
@@ -17,17 +18,13 @@ html, body {
     height: 100vh;
     width: 100vw;
     overflow: hidden;
+    position: absolute;
 
 }
 
-sidebar-view {
-    overflow-x: hidden;
-    overflow-y: scroll;
-    height: 100vh;
-}
-
-#map {
-    height: 100%;
+/* Remove the scrollbar */
+::-webkit-scrollbar {
+    display: none;
 }
 
 /*
