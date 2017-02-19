@@ -1,11 +1,26 @@
-onSuccess = function (googleUser) {
-    console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-}
-onFailure = function (error) {
-    console.log(error);
-}
-
 app.factory('accountService', function() {
+
+    function onSuccess(googleUser) {
+        console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+    }
+
+    function onFailure(error) {
+        console.log(error);
+    }
+
+    function renderGoogleButton_log() {
+        gapi.signin2.render('my-signin2', {
+            'scope': 'profile email',
+            'width': 240,
+            'height': 50,
+            'longtitle': true,
+            'theme': 'dark',
+            'onsuccess': onSuccess,
+            'onfailure': onFailure
+        })
+    }
+
+
     return {
 
         fbLogin: function () {
@@ -32,23 +47,5 @@ app.factory('accountService', function() {
 
         },
 
-        renderGoogleButton: function () {
-            gapi.signin2.render('my-signin2', {
-                'scope': 'profile email',
-                'width': 240,
-                'height': 50,
-                'longtitle': true,
-                'theme': 'dark',
-                'onsuccess': onSuccess,
-                'onfailure': onFailure
-            });
-        },
-
-        onSuccess: function (googleUser) {
-            console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-        },
-
-        onFailure: function (error) {
-            console.log(error);
-        }
+        renderGoogleButton: renderGoogleButton_log()
     }});

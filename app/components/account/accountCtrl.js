@@ -2,7 +2,7 @@ app.controller('accountCtrl', function ($scope, $window, accountService) {
 
     $window.fbAsyncInit = function () {
         accountService.fbInit();
-    };
+    }
 
     fbAsyncInit();
 
@@ -10,7 +10,6 @@ app.controller('accountCtrl', function ($scope, $window, accountService) {
         accountService.fbLogin();
     }
 
-    $scope.renderButton = function () {
         accountService.renderGoogleButton();
     }
 });
