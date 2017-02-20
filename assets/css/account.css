@@ -1,0 +1,7 @@
+/* Put the account buttons on top of the map at the right top corne*/
+account-view {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 150;
+}
