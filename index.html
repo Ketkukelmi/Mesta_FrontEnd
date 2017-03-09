@@ -61,6 +61,10 @@
         <script src="app/components/sidebar/sidebarCtrl.js"></script>
         <script src="app/components/sidebar/sidebarDirective.js"></script>
 
+        <!-- Post sources -->
+        <script src="app/components/post/postCtrl.js"></script>
+        <script src="app/components/post/postDirective.js"></script>
+
         <!-- Account sources -->
         <script src="app/components/account/accountDirective.js"></script>
         <script src="app/components/account/accountCtrl.js"></script>
@@ -69,6 +73,7 @@
         <link rel="stylesheet" href="assets/css/account.css">
         <link rel="stylesheet" href="assets/css/map.css">
         <link rel="stylesheet" href="assets/css/sidebar.css">
+        <link rel="stylesheet" href="assets/css/post.css">
 
     </head>
     <body ng-app="app">
@@ -81,9 +86,9 @@
         <map-view ng-controller="mapCtrl"></map-view>
         <sidebar-view  ng-controller="sidebarCtrl"></sidebar-view>
         <account-view ng-controller="accountCtrl"></account-view>
+        <!-- Post View is hidden by default -->
+        <post-view ng-controller="postCtrl" class="transition hidden"></post-view>
 
-        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-        <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
         <script src="assets/js/plugins.js"></script>
         <script src="assets/js/main.js"></script>
 

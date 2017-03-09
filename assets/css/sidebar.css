@@ -8,7 +8,17 @@ sidebar-view {
     top: 0;
     background: white;
     position: fixed;
-    z-index: 10;
+    z-index: 10 !important;
+}
+
+sidebar-view * {
+    z-index: 10 !important;
+}
+
+@media screen and (min-width: 1600px) {
+    sidebar-view {
+        width: 19vw;
+    }
 }
 
 @media screen and (max-width: 1280px) {
@@ -19,34 +29,32 @@ sidebar-view {
 
 @media screen and (max-width: 992px) {
     sidebar-view {
-        width: 60vw;
+        width: 40vw;
     }
 }
 @media screen and (max-width: 768px) {
     sidebar-view {
-        width: 75vw;
+        width: 80vw;
     }
 }
 
 /* Sidebar View CSS Main */
 
-/* Search (upper part) */
+/* Search Bar */
 .search {
-    height: 10vh;
+    height: 60px;
 }
 .search-margin {
     margin: 8px auto 6px auto !important;
 }
-/* Search buttons (middle part) */
+/* Search Type button group */
 .search-type {
-    height: 10vh;
-    margin: 8px auto 6px auto !important;
+    height: 50px;
 }
-/* Search Result (bottom part) */
+/* Search Result  */
 .search-found-places {
     height: 80vh;
     overflow-x: hidden;
     overflow-y: scroll;
     margin: 0 auto;
 }
-
