@@ -4,3 +4,15 @@
 map-view {
     z-index: -1;
 }
+/* Show/Hide Sidebar Button */
+#showHideSidebarButton {
+    z-index: 100;
+    position: absolute;
+    left: calc(80vw + 5px);
+    top: 50%;
+}
+#showHideSidebarButton button {
+    width: 10px;
+    padding-right: 25px;
+    padding-left: 15px;
+}

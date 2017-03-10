@@ -1,15 +1,19 @@
 /* Position Navigation */
 navigation-view {
     position: absolute;
-    top: 0px;
-    left: 25vw;
-    width: 75vw;
-    height: 70px;
-    background-color: rgba(22, 22, 22, 0.1);
+    height: 60px;
 }
 
 navigation-view  * {
-    z-index: 10 !important;
+    z-index: 8 !important;
+}
+
+@media screen and (min-width: 992px) {
+    navigation-view  {
+        top: 0px;
+        left: 25vw;
+        width: 75vw;
+    }
 }
 
 @media screen and (min-width: 1600px) {
@@ -19,7 +23,7 @@ navigation-view  * {
     }
 }
 
-@media screen and (max-width: 1280px) {
+@media screen and (min-width: 992px) and (max-width: 1280px) {
     navigation-view  {
         left: 35vw;
         width: 65vw;
@@ -28,6 +32,9 @@ navigation-view  * {
 
 @media screen and (max-width: 992px) {
     navigation-view  {
-        display: none;
+        right:-49px;
+        width:100px;
+        height:260px;
+        top: 10px;
     }
 }
