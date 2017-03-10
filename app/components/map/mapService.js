@@ -1,9 +1,5 @@
-/**
- * Created by Roman on 2/18/2017.
- */
-
 app.factory('mapService', function() {
-    
+    var markers = [];
     var map;
     var infoWindow;
     function initMap(){
@@ -12,39 +8,63 @@ app.factory('mapService', function() {
             zoom: 15
         });
         infoWindow = new google.maps.InfoWindow({map: map});
+
+        google.maps.event.addListener(map, 'click', function(event) {
+            DeleteMarkers();
+            placeMarker(event.latLng);
+
+        });
+        function placeMarker(location) {
+
+            var marker = new google.maps.Marker({
+                position: location,
+                map: map
+
+            });
+            markers.push(marker);
+        }
+
+        function DeleteMarkers() {
+            //Loop through all the markers and remove
+            for (var i = 0; i < markers.length; i++) {
+                markers[i].setMap(null);
+            }
+            markers = [];
+        };
+
         initLocation();
-        
+
     };
     function initLocation(){
-        
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
 
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('User location');
-            map.setCenter(pos);
-          }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-          });
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+
+                infoWindow.setPosition(pos);
+                infoWindow.setContent('User location');
+                map.setCenter(pos);
+            }, function() {
+                handleLocationError(true, infoWindow, map.getCenter());
+            });
         } else {
-          // Browser doesn't support Geolocation
-          handleLocationError(false, infoWindow, map.getCenter());
+            // Browser doesn't support Geolocation
+            handleLocationError(false, infoWindow, map.getCenter());
         }
     };
     function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         infoWindow.setPosition(pos);
         infoWindow.setContent(browserHasGeolocation ?
-                              'Error: The Geolocation service failed.' :
-                              'Error: Your browser doesn\'t support geolocation.');
-      };
-    
-    
+            'Error: The Geolocation service failed.' :
+            'Error: Your browser doesn\'t support geolocation.');
+    };
+
+
     return {
         initMapReturn: initMap()
     }
-    
+
 });
