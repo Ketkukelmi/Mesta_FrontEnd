@@ -1,0 +1,44 @@
+/* Sidebar View CSS Main */
+add-view {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: 100vh;
+    width: 25vw;
+    left: 0;
+    top: 0;
+    background: white;
+    position: fixed;
+    z-index: 100 !important;
+}
+add-view * {
+    z-index: 100 !important;
+}
+
+@media screen and (min-width: 1600px) {
+    add-view {
+        width: 19vw;
+    }
+}
+
+@media screen and (max-width: 1280px) {
+    add-view {
+        width: 35vw;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    add-view {
+        width: 40vw;
+    }
+}
+@media screen and (max-width: 768px) {
+    add-view {
+        width: 80vw;
+    }
+}
+
+/* Back Button Positioning */
+.back.button {
+    position: relative;
+    top:10px;
+}

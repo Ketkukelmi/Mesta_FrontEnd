@@ -1,0 +1,33 @@
+/* Position Navigation */
+navigation-view {
+    position: absolute;
+    top: 0px;
+    left: 25vw;
+    width: 75vw;
+    height: 70px;
+    background-color: rgba(22, 22, 22, 0.1);
+}
+
+navigation-view  * {
+    z-index: 10 !important;
+}
+
+@media screen and (min-width: 1600px) {
+    navigation-view  {
+        left: 19vw;
+        width: 81vw;
+    }
+}
+
+@media screen and (max-width: 1280px) {
+    navigation-view  {
+        left: 35vw;
+        width: 65vw;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    navigation-view  {
+        display: none;
+    }
+}

@@ -57,6 +57,10 @@
         <script src="app/components/map/mapCtrl.js"></script>
         <script src="app/components/map/mapService.js"></script>
 
+        <!-- Navigation sources -->
+        <script src="app/components/navigation/navigationDirective.js"></script>
+        <script src="app/components/navigation/navigationCtrl.js"></script>
+
         <!-- Sidebar sources -->
         <script src="app/components/sidebar/sidebarCtrl.js"></script>
         <script src="app/components/sidebar/sidebarDirective.js"></script>
@@ -69,11 +73,17 @@
         <script src="app/components/account/accountDirective.js"></script>
         <script src="app/components/account/accountCtrl.js"></script>
 
+        <!-- Add New Location sources -->
+        <script src="app/components/add/addDirective.js"></script>
+        <script src="app/components/add/addCtrl.js"></script>
+
         <!-- CSS sources -->
         <link rel="stylesheet" href="assets/css/account.css">
         <link rel="stylesheet" href="assets/css/map.css">
         <link rel="stylesheet" href="assets/css/sidebar.css">
         <link rel="stylesheet" href="assets/css/post.css">
+        <link rel="stylesheet" href="assets/css/add.css">
+        <link rel="stylesheet" href="assets/css/navigation.css">
 
     </head>
     <body ng-app="app">
@@ -84,10 +94,14 @@
         <!-- Add your site or application content here -->
 
         <map-view ng-controller="mapCtrl"></map-view>
+        <navigation-view ng-controller="navigationCtrl"></navigation-view>
         <sidebar-view  ng-controller="sidebarCtrl"></sidebar-view>
-        <account-view ng-controller="accountCtrl"></account-view>
+        <account-view ng-controller="accountCtrl" class="ui inverted small modal transition hidden"></account-view>
         <!-- Post View is hidden by default -->
         <post-view ng-controller="postCtrl" class="transition hidden"></post-view>
+        <!-- Post View is hidden by default -->
+        <add-view ng-controller="addCtrl" class="transition hidden"></add-view>
+
 
         <script src="assets/js/plugins.js"></script>
         <script src="assets/js/main.js"></script>
