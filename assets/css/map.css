@@ -5,11 +5,14 @@ map-view {
     z-index: -1;
 }
 /* Show/Hide Sidebar Button */
-#showHideSidebarButton {
+#showHideSidebarButton.visible {
     z-index: 100;
     position: absolute;
     left: calc(80vw + 5px);
-    top: 50%;
+    top: 40%;
+}
+#showHideSidebarButton.invisible {
+    left: 15px;
 }
 #showHideSidebarButton button {
     width: 10px;
