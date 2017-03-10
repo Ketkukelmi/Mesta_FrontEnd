@@ -46,11 +46,11 @@ var toggleSideViews = function () {
         .transition('fade right');
     ;
     if($('#showHideSidebarButton').hasClass('visible')) {
-        $('#showHideSidebarButton').addClass('invisible');
+        $('#showHideSidebarButton').addClass('not_shown');
         $('#showHideSidebarButton').removeClass('visible');
     }
     else {
         $('#showHideSidebarButton').addClass('visible');
-        $('#showHideSidebarButton').removeClass('invisible');
+        $('#showHideSidebarButton').removeClass('not_shown');
     }
 };
