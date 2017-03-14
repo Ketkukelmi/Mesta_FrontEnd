@@ -48,9 +48,11 @@ var toggleSideViews = function () {
     if($('#showHideSidebarButton').hasClass('visible')) {
         $('#showHideSidebarButton').addClass('not_shown');
         $('#showHideSidebarButton').removeClass('visible');
+        $('#showHideSidebarButton i.left.icon').removeClass('left').addClass('right');
     }
     else {
         $('#showHideSidebarButton').addClass('visible');
         $('#showHideSidebarButton').removeClass('not_shown');
+        $('#showHideSidebarButton i.right.icon').removeClass('right').addClass('left');
     }
 };

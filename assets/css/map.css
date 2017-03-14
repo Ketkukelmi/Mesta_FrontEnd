@@ -1,10 +1,12 @@
+/* Make map span to the full screen of the app. */
 #map {
     height: 100%;
 }
+/* Put the map at the base layer of the application */
 map-view {
     z-index: -1;
 }
-/* Show/Hide Sidebar Button */
+/* Show/Hide Sidebar Button positioning */
 #showHideSidebarButton {
     z-index: 1001;
     position: absolute;
@@ -14,8 +16,14 @@ map-view {
 #showHideSidebarButton.not_shown {
     left: 15px;
 }
+#showHideSidebarButton.not_shown i.icon.right {
+    margin: 0 0 !important;
+}
 #showHideSidebarButton button {
     width: 10px;
     padding-right: 25px;
-    padding-left: 15px;
+    padding-left: 14px;
+}
+#showHideSidebarButton.not_shown button{
+    padding-left: 11px;
 }
