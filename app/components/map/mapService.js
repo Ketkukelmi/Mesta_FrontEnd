@@ -2,6 +2,9 @@ app.factory('mapService', function() {
     var markers = [];
     var map;
     var infoWindow;
+    var newLat = 0;
+    var newLong = 0;
+
     function initMap(){
         map = new google.maps.Map(document.getElementById('map'), {
             center: {lat: 65.008802, lng: 25.472814},
@@ -22,6 +25,9 @@ app.factory('mapService', function() {
 
             });
             markers.push(marker);
+            
+            newLat = marker.position.lat();
+            newLong = marker.position.lng();
         }
 
         function DeleteMarkers() {
@@ -54,6 +60,30 @@ app.factory('mapService', function() {
             // Browser doesn't support Geolocation
             handleLocationError(false, infoWindow, map.getCenter());
         }
+
+        /*
+        $.getJSON("http://api.the-mesta.com/location/all", function(result) {
+            for (i = 0; i < result.length; i++) {
+                var location = new google.maps.LatLng(result[i]["latitude"], result[i]["longitude"]);
+                var marker = new google.maps.Marker({
+                    map: map,
+                    title: result[i]["name"],
+                    position: location
+                });
+
+				var infowindow = new google.maps.InfoWindow();
+
+                google.maps.event.addListener(marker, 'click', (function(marker, content, infowindow) {
+                    return function() {
+						hideInfoWindows();
+                        infowindow.setContent(content);
+                        infowindow.open(map, marker);
+                    };
+                })(marker, result[i]["description"], infowindow));
+
+				markers.push(infowindow);
+            }
+        })*/
     };
     function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         infoWindow.setPosition(pos);
@@ -64,7 +94,15 @@ app.factory('mapService', function() {
 
 
     return {
-        initMapReturn: initMap()
+        initMapReturn: function(){
+            initMap();
+        },
+        returnLan: function(){
+            return newLat;
+        },
+        returnLng: function(){
+        return newLong;
+    }
     }
 
 });

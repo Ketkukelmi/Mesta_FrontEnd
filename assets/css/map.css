@@ -44,6 +44,11 @@
 map-view {
     z-index: -1;
 }
+/* Remove the top border of the main navigation bar*/
+.mainMenu {
+    border-top: 0 !important;
+}
+
 /* Show/Hide Sidebar Button positioning */
 #showHideSidebarButton {
     z-index: 1001;
