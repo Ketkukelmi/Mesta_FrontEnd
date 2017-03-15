@@ -2,8 +2,8 @@ app.factory('mapService', function() {
     var markers = [];
     var map;
     var infoWindow;
-    var newLat;
-    var newLong
+    var newLat = 0;
+    var newLong = 0;
 
     function initMap(){
         map = new google.maps.Map(document.getElementById('map'), {
@@ -28,7 +28,6 @@ app.factory('mapService', function() {
             
             newLat = marker.position.lat();
             newLong = marker.position.lng();
-            console.log(newLong, newLat);
         }
 
         function DeleteMarkers() {
@@ -62,6 +61,7 @@ app.factory('mapService', function() {
             handleLocationError(false, infoWindow, map.getCenter());
         }
 
+        /*
         $.getJSON("http://api.the-mesta.com/location/all", function(result) {
             for (i = 0; i < result.length; i++) {
                 var location = new google.maps.LatLng(result[i]["latitude"], result[i]["longitude"]);
@@ -83,7 +83,7 @@ app.factory('mapService', function() {
 
 				markers.push(infowindow);
             }
-        })
+        })*/
     };
     function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         infoWindow.setPosition(pos);
@@ -96,7 +96,13 @@ app.factory('mapService', function() {
     return {
         initMapReturn: function(){
             initMap();
-        }
+        },
+        returnLan: function(){
+            return newLat;
+        },
+        returnLng: function(){
+        return newLong;
+    }
     }
 
 });
