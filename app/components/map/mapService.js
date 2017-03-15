@@ -64,7 +64,9 @@ app.factory('mapService', function() {
 
 
     return {
-        initMapReturn: initMap()
+        initMapReturn: function(){
+            initMap();
+        }
     }
 
 });
