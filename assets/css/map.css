@@ -1,6 +1,44 @@
 /* Make map span to the full screen of the app. */
 #map {
-    height: 100%;
+    position: relative;
+    top: 75px;
+    height: calc(100% - 75px);
+    width: 75vw;
+    left: 25vw;
+}
+@media screen and (min-width: 1600px) {
+    #map {
+        left: 19vw;
+        width: 81vw;
+    }
+}
+
+@media screen and (max-width: 1280px) {
+    #map {
+        left: 35vw;
+        width: 65vw;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    #map {
+        top: 0;
+        height: 100%;
+        left: 40vw;
+        width: 60vw;
+    }
+}
+@media screen and (max-width: 992px) {
+    #map {
+        left: 40vw;
+        width: 60vw;
+    }
+}
+@media screen and (max-width: 768px) {
+    #map {
+        left: 0;
+        width: 100vw;
+    }
 }
 /* Put the map at the base layer of the application */
 map-view {
