@@ -54,6 +54,29 @@ app.factory('mapService', function() {
             // Browser doesn't support Geolocation
             handleLocationError(false, infoWindow, map.getCenter());
         }
+        
+        $.getJSON("http://api.the-mesta.com/location/all", function(result) {
+            for (i = 0; i < result.length; i++) {
+                var location = new google.maps.LatLng(result[i]["latitude"], result[i]["longitude"]);
+                var marker = new google.maps.Marker({
+                    map: map,
+                    title: result[i]["name"],
+                    position: location
+                });
+				
+				var infowindow = new google.maps.InfoWindow();
+
+                google.maps.event.addListener(marker, 'click', (function(marker, content, infowindow) {
+                    return function() {
+						hideInfoWindows();
+                        infowindow.setContent(content);
+                        infowindow.open(map, marker);
+                    };
+                })(marker, result[i]["description"], infowindow));
+				
+				markers.push(infowindow);
+            }
+        })
     };
     function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         infoWindow.setPosition(pos);
