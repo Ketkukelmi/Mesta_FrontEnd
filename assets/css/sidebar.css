@@ -41,7 +41,8 @@ sidebar-view * {
 /* Sidebar View CSS Main */
 
 /* Search Bar */
-.search {
+.top-row {
+    margin-top:14px;
     height: 60px;
 }
 .search-margin {
@@ -50,6 +51,7 @@ sidebar-view * {
 /* Search Type button group */
 .search-type {
     height: 50px;
+    margin-bottom:10px;
 }
 /* Search Result  */
 .search-found-places {

@@ -1,11 +1,62 @@
-<div class="ui grid">
+<div class="ui grid container">
     <!-- Back Button -->
-    <div class="centered row">
+    <div class="centered top-row row">
         <div class="fifteen wide column">
             <button class="ui labeled icon back button" onclick="toggleAddView()">
                 <i class="left chevron icon"></i>
                 Back
             </button>
+        </div>
+    </div>
+    <!-- Add Form -->
+    <div class="centered row">
+        <div class="fifteen wide column">
+            <form class="ui form">
+                <div class="centered row">
+                    <div class="fourteen wide column">
+                        <h2 class="ui header">New Location</h2>
+                    </div>
+                </div>
+                <div class="centered row">
+                    <div class="seven wide column">
+                        <img class="ui centered image" src="http://semantic-ui.com/images/wireframe/image.png">
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Location name</label>
+                    <input type="text" name="name">
+                </div>
+                <div class="field">
+                    <label>Tell us what is there!</label>
+                    <textarea type="text" name="description"></textarea>
+                </div>
+                <div class="ui fields">
+                    <div class="field">
+                        <label for="longitude">Longitude</label><input type="hidden" name="longitude" id="longitude">
+                        <span ng-bind="longitude"></span>
+                    </div>
+                    <div class="field">
+                        <label for="latitude">Latitude</label><input type="hidden" name="latitude" id="latitude">
+                        <span ng-bind="latitude"></span>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Wanna add tags?</label>
+                    <input type="text" name="tags" placeholder="#beautiful #sunny">
+                </div>
+                <div class="field">
+                    <label>Categories</label>
+                    <select name="categories" class="ui dropdown">
+                        <option value="Nature">Nature</option>
+                        <option value="Urban">Urban</option>
+                        <option value="Technology">View</option>
+                        <option value="Architecture">Architecture</option>
+                        <option value="Picnic">Picnic</option>
+                        <option value="View">View</option>
+                    </select>
+                </div>
+                <button class="ui button" ng-click="addLocation()">Add</button>
+            </form>
         </div>
     </div>
 </div>

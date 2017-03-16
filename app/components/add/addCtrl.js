@@ -1,12 +1,15 @@
 app.controller('addCtrl', function ($scope, $rootScope) {
-    var langitude, longitude;
-    $scope.returnLangitude= function(){
-        langitude = $rootScope.returnLan();
-        return langitude;
+    $scope.latitude = 0;
+    $scope.longitude = 0;
+    $scope.returnLatitude = function(){
+        $scope.latitude = $rootScope.returnLan();
     }
-    $scope.returnLongitude= function(){
-        longitude = $rootScope.returnLng();
-        return longitude;
+    $scope.returnLongitude = function(){
+        $scope.longitude = $rootScope.returnLng();
     }
-    
+
+    $('map-view').on('click', function(){
+        $scope.latitude = $rootScope.returnLan();
+        $scope.longitude = $rootScope.returnLng();
+    })
 });

@@ -25,7 +25,7 @@ app.factory('mapService', function() {
 
             });
             markers.push(marker);
-            
+
             newLat = marker.position.lat();
             newLong = marker.position.lng();
         }

@@ -38,6 +38,10 @@ html, body {
     overflow-y: scroll;
     overflow-x: hidden;
 }
+/* Shadow for the Side Views */
+sidebar-view, post-view, add-view {
+    box-shadow: 1px 0 5px 2px #21ba45;
+}
 
 /*
  * Remove text-shadow in selection highlight:
