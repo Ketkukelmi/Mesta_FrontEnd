@@ -1,25 +1,21 @@
 app.factory('accountService', function() {
 
-    function onSuccess(googleUser) {
-        console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-    }
+    function statusChangeCallback(response) {
+        console.log('statusChangeCallback');
+        console.log(response);
 
-    function onFailure(error) {
-        console.log(error);
+        // The response object is returned with a status field that lets the
+        // app know the current login status of the person.
+        // Full docs on the response object can be found in the documentation
+        // for FB.getLoginStatus().
+        if (response.status === 'connected') {
+            console.log('Logged in');
+        } else {
+            // The person is not logged into your app or we are unable to tell.
+            document.getElementById('status').innerHTML = 'Please log ' +
+                'into this app.';
+        }
     }
-
-    function renderGoogleButton_log() {
-        gapi.signin2.render('my-signin2', {
-            'scope': 'profile email',
-            'width': 240,
-            'height': 50,
-            'longtitle': true,
-            'theme': 'dark',
-            'onsuccess': onSuccess,
-            'onfailure': onFailure
-        })
-    }
-
 
     return {
 
@@ -47,5 +43,10 @@ app.factory('accountService', function() {
 
         },
 
-        renderGoogleButton: renderGoogleButton_log()
+        loginState: function () {
+            FB.getLoginStatus(function(response){
+                statusChangeCallback(response);
+            });
+        }
+
     }});

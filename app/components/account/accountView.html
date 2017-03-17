@@ -1,7 +1,8 @@
 <div class="ui centered header">Log In/Sign Up</div>
 <div class="content">
-    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();" data-size="large"
+    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();" ng-click="checkLoginState" data-size="large"
                      data-auto-logout-link="true"></fb:login-button>
-    <div class="g-signin2"></div>
-    <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+
+    <!-- <div class="g-signin2"></div>
+    <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script> -->
 </div>

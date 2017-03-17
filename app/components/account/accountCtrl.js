@@ -10,8 +10,8 @@ app.controller('accountCtrl', function ($scope, $window, accountService) {
         accountService.fbLogin();
     }
 
-    $scope.renderButton = function () {
-        accountService.renderGoogleButton();
+    $scope.checkLoginState = function () {
+        accountService.loginState();
     }
 
 });
