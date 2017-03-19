@@ -10,8 +10,4 @@ app.controller('accountCtrl', function ($scope, $window, accountService) {
         accountService.fbLogin();
     }
 
-    $scope.checkLoginState = function () {
-        accountService.loginState();
-    }
-
 });
