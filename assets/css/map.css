@@ -1,4 +1,12 @@
 /* Make map span to the full screen of the app. */
+#mapid {
+    position: relative;
+    top: 75px;
+    height: calc(100% - 75px);
+    width: 75vw;
+    left: 25vw;
+}
+
 #map {
     position: relative;
     top: 75px;
@@ -7,21 +15,21 @@
     left: 25vw;
 }
 @media screen and (min-width: 1600px) {
-    #map {
+    #mapid {
         left: 19vw;
         width: 81vw;
     }
 }
 
 @media screen and (max-width: 1280px) {
-    #map {
+    #mapid{
         left: 35vw;
         width: 65vw;
     }
 }
 
 @media screen and (max-width: 992px) {
-    #map {
+    #mapid {
         top: 0;
         height: 100%;
         left: 40vw;
@@ -29,13 +37,13 @@
     }
 }
 @media screen and (max-width: 992px) {
-    #map {
+    #mapid {
         left: 40vw;
         width: 60vw;
     }
 }
 @media screen and (max-width: 768px) {
-    #map {
+    #mapid {
         left: 0;
         width: 100vw;
     }
