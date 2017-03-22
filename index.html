@@ -16,6 +16,10 @@
         <link rel="stylesheet" href="assets/css/normalize.css">
         <link rel="stylesheet" href="assets/css/main.css">
 
+        <!-- CSS style for leaflet  and mapbox-->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+        <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.33.1/mapbox-gl.css' rel='stylesheet' />
+
         <!-- JS Support for older browsers -->
         <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
 
@@ -37,6 +41,11 @@
 
         <!-- AngularJS Javascript Framework (requesting, receiving and processing data dynamically) -->
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+
+        <!-- Leaflet -->
+        <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+        <!-- Mapbox for leaflet -->
+        <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.33.1/mapbox-gl.js'></script>
 
         <!-- Facebook Login-->
         <script src="//connect.facebook.net/en_US/all.js"></script>
@@ -96,7 +105,7 @@
 
         <!-- Add your site or application content here -->
         <add-view ng-controller="addCtrl" class="transition hidden"></add-view>
-        {{initMap()}}
+
         <map-view ng-controller="mapCtrl"></map-view>
         <navigation-view ng-controller="navigationCtrl"></navigation-view>
         <sidebar-view  ng-controller="sidebarCtrl" class="transition visible"></sidebar-view>
