@@ -1,3 +1,4 @@
+
 app.controller('addCtrl', function ($scope, $rootScope, mapService, postService) {
     $scope.latitude = 0;
     $scope.longitude = 0;
@@ -17,4 +18,5 @@ app.controller('addCtrl', function ($scope, $rootScope, mapService, postService)
             $scope.longitude = mapService.returnLng();
         });
     });
+
 });
