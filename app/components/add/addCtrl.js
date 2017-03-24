@@ -1,15 +1,20 @@
-app.controller('addCtrl', function ($scope, $rootScope) {
+app.controller('addCtrl', function ($scope, $rootScope, mapService, postService) {
     $scope.latitude = 0;
     $scope.longitude = 0;
-    $scope.returnLatitude = function(){
-        $scope.latitude = $rootScope.returnLan();
-    }
-    $scope.returnLongitude = function(){
-        $scope.longitude = $rootScope.returnLng();
-    }
+    $scope.name = "";
+    $scope.description = "";
+    $scope.tags = "";
+    $scope.categories = "";
 
-    $('map-view').on('click', function(){
-        $scope.latitude = $rootScope.returnLan();
-        $scope.longitude = $rootScope.returnLng();
-    })
+    $scope.addLocation = function () {
+        postService.addLocation($scope.latitude, $scope.longitude, $scope.name, $scope.description, $scope.tags,
+            $scope.categories);
+    };
+
+    $('map-view').on('click', function () {
+        $scope.$apply(function () {
+            $scope.latitude = mapService.returnLan();
+            $scope.longitude = mapService.returnLng();
+        });
+    });
 });

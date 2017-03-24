@@ -101,8 +101,8 @@ app.factory('mapService', function() {
             return newLat;
         },
         returnLng: function(){
-        return newLong;
-    }
+            return newLong;
+        }
     }
 
 });

@@ -1,14 +1,10 @@
 app.controller('mapCtrl', function ($scope, mapService, $rootScope) {
-    $scope.initMap = function(){
-        mapService.initMapReturn();
-    }
+    $scope.mapInitialized = false;
 
-    $rootScope.returnLan = function(){
-        return mapService.returnLan();
+    $scope.initMap = function () {
+        if ($scope.mapInitialized == false) {
+            $scope.mapInitialized = true;
+            mapService.initMapReturn();
+        }
     }
-    $rootScope.returnLng = function(){
-        return mapService.returnLng();
-    }
-
-
 });
