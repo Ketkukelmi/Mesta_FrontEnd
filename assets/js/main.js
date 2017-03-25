@@ -1,7 +1,12 @@
+/* ------------------------------------------------------------------------------------------------------------------ */
+/* Snippet for controlling side views on smaller screens -------------------------------------------------------------*/
+/* ------------------------------------------------------------------------------------------------------------------ */
+
 // Keeps track of views that were opened (when we hide them, but not close (on smaller screens)
 var openedViews = ['sidebar-view'];
 // Keep track of current hide/show button position
 var button_position = "right";
+
 /* Toggling post view (animation) */
 var togglePostView = function () {
     // Remove/Add post view from/to array of opened views
@@ -24,17 +29,15 @@ var toggleAddView = function () {
         else {
             openedViews.splice(openedViews.indexOf('add-view'), 1);
         }
+        // Show/Hide the view
+        $('add-view').transition('fade right');
     }
     else {
-        // Move the button
-        moveSideHideButton();
         if (openedViews.indexOf('add-view') == -1) {
             openedViews.push('add-view');
         }
+        toggleSideViews();
     }
-    // Show/Hide the view
-    $('add-view')
-        .transition('fade right');
 };
 
 var toggleSideViews = function () {
@@ -47,21 +50,21 @@ var toggleSideViews = function () {
         $('post-view')
             .transition('fade right');
     }
-    $('sidebar-view')
-        .transition('fade right');
+    $('sidebar-view').transition('fade right');
     // Move the button
     moveSideHideButton();
 };
+
 /* Function for moving hide/show button on smaller screens */
 var moveSideHideButton = function () {
     if ($('#showHideSidebarButton').hasClass('visible')) {
-        $('#showHideSidebarButton').addClass('not_shown');
+        $('#showHideSidebarButton').addClass('side_hidden');
         $('#showHideSidebarButton').removeClass('visible');
         $('#showHideSidebarButton i.left.icon').removeClass('left').addClass('right');
     }
     else {
         $('#showHideSidebarButton').addClass('visible');
-        $('#showHideSidebarButton').removeClass('not_shown');
+        $('#showHideSidebarButton').removeClass('side_hidden');
         $('#showHideSidebarButton i.right.icon').removeClass('right').addClass('left');
     }
     // Keep track of current button position - change the record
@@ -74,6 +77,10 @@ var moveSideHideButton = function () {
             break;
     }
 };
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------------ */
 
 $(function () {
     //Initialize Dropdown(s)
