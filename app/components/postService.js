@@ -44,20 +44,24 @@ app.factory('postService', ['$http', '$q', function ($http, $q) {
                 method: 'POST',
                 url: 'http://api.the-mesta.com/location/save',
                 headers: {
-                    'Content-Type': 'application/json;charset=UTF-8;'
+                    'Content-Type': 'application/json;',
+                    "Access-Control-Request-Credentials" : "true"
                 },
+                withCredentials: true,
                 data: {
                     latitude: latitude,
                     longitude: longitude,
                     name: name,
                     description: description,
                     tags: tags,
-                    categories: categories
+                    category: categories
                 }
             };
             // Send the crafted request for adding location
             $http(req).then(function succesCallback(response) {
                 resolve(response.data);
+            }, function errorCallback(response) {
+                console.log(response);
             });
         }
     }
