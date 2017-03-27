@@ -27,29 +27,29 @@
                 </div>
                 <div class="field">
                     <label>Location name</label>
-                    <input type="text" name="name">
+                    <input type="text" name="name" ng-model="name">
                 </div>
                 <div class="field">
                     <label>Tell us what is there!</label>
-                    <textarea type="text" name="description"></textarea>
+                    <textarea type="text" name="description" ng-model="description"></textarea>
                 </div>
                 <div class="ui fields">
                     <div class="field">
-                        <label for="longitude">Longitude</label><input type="hidden" name="longitude" id="longitude">
+                        <label>Longitude</label>
                         <span ng-bind="longitude"></span>
                     </div>
                     <div class="field">
-                        <label for="latitude">Latitude</label><input type="hidden" name="latitude" id="latitude">
+                        <label>Latitude</label>
                         <span ng-bind="latitude"></span>
                     </div>
                 </div>
                 <div class="field">
                     <label>Wanna add tags?</label>
-                    <input type="text" name="tags" placeholder="#beautiful #sunny">
+                    <input type="text" name="tags" placeholder="#beautiful #sunny" ng-model="tags">
                 </div>
                 <div class="field">
                     <label>Categories</label>
-                    <select name="categories" class="ui dropdown">
+                    <select name="categories" class="ui dropdown" ng-model="categories">
                         <option value="Nature">Nature</option>
                         <option value="Urban">Urban</option>
                         <option value="Technology">View</option>

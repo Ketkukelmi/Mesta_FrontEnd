@@ -64,10 +64,10 @@ map-view {
     left: calc(80vw + 5px);
     top: 40%;
 }
-#showHideSidebarButton.not_shown {
+#showHideSidebarButton.side_hidden {
     left: 15px;
 }
-#showHideSidebarButton.not_shown i.icon.right {
+#showHideSidebarButton.side_hidden i.icon.right {
     margin: 0 0 !important;
 }
 #showHideSidebarButton button {
@@ -75,6 +75,6 @@ map-view {
     padding-right: 25px;
     padding-left: 14px;
 }
-#showHideSidebarButton.not_shown button{
+#showHideSidebarButton.side_hidden button{
     padding-left: 11px;
 }
