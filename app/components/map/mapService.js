@@ -1,68 +1,4 @@
-app.factory('mapService', function () {
-    var mymap;
-    var marker;
-    var newmarker;
-    var newmarkers = new L.FeatureGroup();
-    var newLat;
-    var newLng;
-
-
-    function initMap2() {
-        mymap = L.map('mapid').setView([65.011, 25.469],15);
-
-        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-            maxZoom: 18,
-            id: 'mapbox.streets',
-            accessToken: 'pk.eyJ1Ijoia2V0a3VrZWxtaSIsImEiOiJjajBpZWk5NTYwMDA3MnFtZm9tbGdnaW5oIn0.Xg0J2fG9OwyYG0MRFsbLUw'
-        }).addTo(mymap);
-
-        marker = L.marker([65.011, 25.469]).addTo(mymap);
-
-
-        function onMapClick(e) {
-
-            DeleteMarkers();
-            newmarker = new L.marker(e.latlng).addTo(mymap);
-            newmarkers.push(newmarker);
-
-            newLat = (e.latlng.lat);
-            newLng = (e.latlng.lng);
-            //console.log(newLat , newLng);
-        }
-
-        function DeleteMarkers() {
-            //Loop through all the markers and remove
-            for (var i = 0; i < newmarkers.length; i++) {
-                mymap.removeLayer(newmarker);
-                //mymap.removeLayer(this.newmarkers[i]);
-            }
-            newmarkers = [];
-        }
-        mymap.on('click', onMapClick);
-    }
-
-    return {
-        initMap2Return: function () {
-            initMap2();
-        },
-        returnLat: function(){
-        return newLat;
-        },
-        returnLng: function(){
-        return newLng;
-        }
-    }
-
-    return{
-
-        onMapClickReturn: function () {
-            onMapClick();
-        }
-    }
-});
-
-/*app.factory('mapService', function() {
+app.factory('mapService', function() {
     var markers = [];
     var map;
     var infoWindow;
@@ -147,7 +83,7 @@ app.factory('mapService', function () {
 
 				markers.push(infowindow);
             }
-        })
+        })*/
     };
     function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         infoWindow.setPosition(pos);
@@ -170,4 +106,3 @@ app.factory('mapService', function () {
     }
 
 });
-*/
