@@ -8,7 +8,7 @@ app.controller('mapCtrl', function ($scope, mapService, $rootScope) {
         }
     }
     $scope.changeCanAddMarker = function () {
-        //mapService.changeCanAddMarker();
-        console.log("changeCanAddMarker called");
+        mapService.changeCanAddMarker();
+        //console.log("changeCanAddMarker called");
     }
 });

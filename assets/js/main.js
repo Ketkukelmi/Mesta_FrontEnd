@@ -21,7 +21,13 @@ var togglePostView = function () {
 };
 /* Toggling add view (animation) */
 var toggleAddView = function () {
-    console.log("QASDADS");
+
+    var scope = angular.element(document.getElementById("map")).scope();
+    scope.$apply(function () {
+        scope.changeCanAddMarker();
+    });
+
+
 
     // Remove/Add add view from/to array of opened views
     if (button_position == "right") {

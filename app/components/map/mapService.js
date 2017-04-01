@@ -5,6 +5,7 @@ app.factory('mapService', function() {
     var newLat = 0;
     var newLong = 0;
     var canAddMarker = false;
+    var eventtemp;
 
     function initMap(){
         map = new google.maps.Map(document.getElementById('map'), {
@@ -14,6 +15,7 @@ app.factory('mapService', function() {
         infoWindow = new google.maps.InfoWindow({map: map});
 
         google.maps.event.addListener(map, 'click', function(event) {
+            eventtemp = event;
             console.log(canAddMarker);
             if(canAddMarker)
             {
@@ -21,6 +23,8 @@ app.factory('mapService', function() {
                 placeMarker(event.latLng);
             }
         });
+
+
         function placeMarker(location) {
 
             var marker = new google.maps.Marker({
@@ -28,20 +32,14 @@ app.factory('mapService', function() {
                 map: map
 
             });
+
+            markers.splice(markers.length-1, 1);
+            console.log(markers.length);
             markers.push(marker);
 
             newLat = marker.position.lat();
             newLong = marker.position.lng();
         }
-
-        function DeleteOldMarker() {
-            //Loop through all the markers and remove
-
-            /*for (var i = 0; i < markers.length; i++) {
-                markers[i].setMap(null);
-            }
-            markers = [];*/
-        };
 
         initLocation();
 
@@ -88,6 +86,8 @@ app.factory('mapService', function() {
                 })(markers, result[i]["description"], infowindow));
 
 				markers.push(infowindow);
+
+                console.log(markers.length);
             }
         })
     };
@@ -99,12 +99,12 @@ app.factory('mapService', function() {
     };
 
     function clearMarkers() {
-        console.log("asdfg");
         setMapOnAll(null);
     }
 
     // Shows any markers currently in the array.
     function showMarkers() {
+        console.log(markers.length);
         setMapOnAll(map);
     }
     function setMapOnAll(map) {
@@ -133,9 +133,18 @@ app.factory('mapService', function() {
         },
         changeCanAddMarker:function () {
             console.log("ChangeCanAddMarker called");
-            if(!canAddMarker)
+            if(canAddMarker)
+            {
+                clearMarkers();
+                canAddMarker = false;
+                showMarkers()
+            }
+            else
+            {
                 canAddMarker = true;
-            else canAddMarker = false;
+                clearMarkers();
+            }
+
 
         }
     }
