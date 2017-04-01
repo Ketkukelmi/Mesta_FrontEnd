@@ -1,4 +1,4 @@
-app.controller('accountCtrl', function ($scope, accountService) {
+app.controller('accountCtrl', function ($scope, $window, accountService) {
 
     function statusChangeCallback(response)
     {
@@ -11,16 +11,7 @@ app.controller('accountCtrl', function ($scope, accountService) {
         }
     }
 
-    $scope.checkLoginState = function checkLoginState()
-    {
-        FB.getLoginStatus(function(response) {
-            statusChangeCallback(response);
-        });
-
-
-    };
-
-    window.fbAsyncInit = function()
+    $window.fbAsyncInit = function()
     {
         FB.init({
             appId      : '1648610375442724',
@@ -33,7 +24,6 @@ app.controller('accountCtrl', function ($scope, accountService) {
         FB.getLoginStatus(function(response) {
             statusChangeCallback(response);
         });
-
     };
 
     fbAsyncInit();
