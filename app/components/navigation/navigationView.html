@@ -1,12 +1,19 @@
 <div class="ui grid">
     <div class="computer only row">
-        <div class="ui segment mainMenu" style="width: 100%; height: 100%;">
-            <div class="ui secondary pointing huge menu">
-                <a class="active item" onclick="toggleAddView()">
+        <div class="ui segment mainMenu" style="width: 100%; height: 100%;" >
+            <div class="ui secondary pointing huge menu" >
+                <div ng-if = "user === true">
+                <a  class="active item" onclick="toggleAddView()">
                     <i class="plus icon"></i> Add
                 </a>
+                </div>
+                <div ng-if ="user === false">
+                    <a  class="active item" onclick="showAccountView()">
+                        <i class="plus icon"></i> Add
+                    </a>
+                </div>
                 <div class="right menu">
-                    <a class="item" onclick="showAccountView()">
+                    <a  class="item" onclick="showAccountView()">
                         <i class="sign in icon"></i> Log In
                     </a>
                 </div>
