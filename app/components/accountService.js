@@ -8,8 +8,10 @@ app.factory('accountService', function() {
             if (response.status === 'connected')
             {
                 console.log('Welcome!  Fetching your information.... ');
+                FB.api('/me', function(response) {
                     console.log('Successful login for: ' + response.name);
-            };
+                });
+            }
         },
 
         signedIn: function (response) {
