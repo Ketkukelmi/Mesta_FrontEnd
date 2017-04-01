@@ -1,16 +1,5 @@
 app.controller('accountCtrl', function ($scope, $window, accountService) {
 
-    function statusChangeCallback(response)
-    {
-        console.log('statusChangeCallback');
-        console.log(response);
-
-        if (response.status === 'connected')
-        {
-            testAPI();
-        }
-    }
-
     $window.fbAsyncInit = function()
     {
         FB.init({
@@ -22,7 +11,8 @@ app.controller('accountCtrl', function ($scope, $window, accountService) {
         });
 
         FB.getLoginStatus(function(response) {
-            statusChangeCallback(response);
+            accountService.statusChangeCallback(response);
+            console.log(accountService.signedIn(response));
         });
     };
 
@@ -35,13 +25,4 @@ app.controller('accountCtrl', function ($scope, $window, accountService) {
         js.src = "//connect.facebook.net/en_US/sdk.js";
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
-
-    function testAPI()
-    {
-        console.log('Welcome!  Fetching your information.... ');
-        FB.api('/me', function(response) {
-            console.log('Successful login for: ' + response.name);
-        });
-    }
-
 });
