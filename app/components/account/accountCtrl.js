@@ -15,7 +15,6 @@ app.controller('accountCtrl', function ($scope, $window, accountService) {
             console.log(accountService.signedIn(response));
         });
     };
-
     fbAsyncInit();
 
     (function(d, s, id) {
@@ -26,3 +25,5 @@ app.controller('accountCtrl', function ($scope, $window, accountService) {
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 });
+
+
