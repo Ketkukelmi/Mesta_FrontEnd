@@ -8,4 +8,8 @@ app.controller('mapCtrl', function ($scope, mapService, $rootScope) {
             mapService.initMapReturn();
         }
     }
+    $scope.changeCanAddMarker = function () {
+        mapService.changeCanAddMarker();
+        //console.log("changeCanAddMarker called");
+    }
 });
