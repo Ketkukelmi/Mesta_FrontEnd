@@ -1,4 +1,4 @@
-app.controller('mapCtrl', function ($scope, mapService, $rootScope) {
+app.controller('mapCtrl', function ($scope, mapService) {
     $scope.mapInitialized = false;
 
     $scope.initMap = function () {

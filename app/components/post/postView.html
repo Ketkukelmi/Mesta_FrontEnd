@@ -22,12 +22,12 @@
                     <div class="ui items">
                         <div class="item">
                             <div class="content">
-                                <a class="ui header">Silver Snowman</a>
+                                <a class="ui header">{{location.name}}</a>
                                 <div class="description">
-                                    <p>Greatest description to be put here</p>
+                                    <p>{{location.description}}</p>
                                 </div>
                                 <div class="extra">
-                                    <i class="green check icon"></i>
+                                    <i class="thumbs up icon green" aria-hidden="true"></i>
                                     121 Likes
                                 </div>
                             </div>
@@ -111,7 +111,7 @@
                             <div class="field">
                                 <textarea></textarea>
                             </div>
-                            <div class="ui blue labeled submit icon button">
+                            <div class="ui blue labeled submit icon button" ng-click="comment(location_id)">
                                 <i class="icon edit"></i> Add Reply
                             </div>
                         </form>

@@ -1,12 +1,13 @@
 app.factory('postService', ['$http', '$q', function ($http, $q) {
+    serverUrl = "http://api.the-mesta.com";
     return {
         getAllLocations: function () {
             // Set the API endpoint
             var url = serverUrl + '/location/all';
             return $q(function (resolve, reject) {
-                // Send the crafted request for getting photo/post with all of its data
+                // Send the crafted request for getting all posts with all of their data
                 $http.get(url).then(function (response) {
-                    // Attach found post to the response data sent to client
+                    // Attach found posts to the response data sent to client
                     resolve(response.data);
                 });
             });
@@ -15,9 +16,7 @@ app.factory('postService', ['$http', '$q', function ($http, $q) {
             // Set the API endpoint
             var url = serverUrl + '/location/nearby/' + latitude + '/' + longitude + '/' + offset;
             return $q(function (resolve, reject) {
-                // Send the crafted request for getting photo/post with all of its data
                 $http.get(url).then(function (response) {
-                    // Attach found post to the response data sent to client
                     resolve(response.data);
                 });
             });
@@ -26,6 +25,15 @@ app.factory('postService', ['$http', '$q', function ($http, $q) {
         getPopularLocations: function (longitude, latitude, offset) {
             // Set the API endpoint
             var url = serverUrl + '/location/popular/' + latitude + '/' + longitude + '/' + offset;
+            return $q(function (resolve, reject) {
+                $http.get(url).then(function (response) {
+                    resolve(response.data);
+                });
+            });
+        },
+        getLocationById: function (location_id) {
+            // Set the API endpoint
+            var url = serverUrl + '/location/' + location_id;
             return $q(function (resolve, reject) {
                 // Send the crafted request for getting photo/post with all of its data
                 $http.get(url).then(function (response) {

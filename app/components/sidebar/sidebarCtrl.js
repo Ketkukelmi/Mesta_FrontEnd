@@ -1,4 +1,4 @@
-app.controller('sidebarCtrl', function ($scope) {
+app.controller('sidebarCtrl', function ($scope, $rootScope) {
     $scope.searchType = "popular";
 
     $scope.toggleSearchType = function () {
@@ -19,4 +19,9 @@ app.controller('sidebarCtrl', function ($scope) {
             console.log($scope.locations);
         });
     });
+
+    $scope.togglePostView = function(id) {
+        $rootScope.$broadcast('location_id', id);
+        togglePostView();
+    }
 });
