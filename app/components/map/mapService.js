@@ -16,7 +16,6 @@ app.factory('mapService', function($rootScope) {
 
         google.maps.event.addListener(map, 'click', function(event) {
             eventtemp = event;
-            console.log(canAddMarker);
             if(canAddMarker)
             {
                 clearMarkers();
@@ -34,7 +33,6 @@ app.factory('mapService', function($rootScope) {
             });
 
             markers.splice(markers.length-1, 1);
-            console.log(markers.length);
             markers.push(marker);
 
             newLat = marker.position.lat();
@@ -86,10 +84,8 @@ app.factory('mapService', function($rootScope) {
                 })(markers, result[i]["description"], infowindow));
 
 				markers.push(infowindow);
-
-                console.log(markers.length);
             }
-            // Send the locations to the sideview
+            // Broadcast locations to all views (sideview uses it)
             $rootScope.$broadcast('locations', result);
         })
     };
@@ -106,7 +102,6 @@ app.factory('mapService', function($rootScope) {
 
     // Shows any markers currently in the array.
     function showMarkers() {
-        console.log(markers.length);
         setMapOnAll(map);
     }
     function setMapOnAll(map) {
@@ -134,7 +129,6 @@ app.factory('mapService', function($rootScope) {
             showMarkers();
         },
         changeCanAddMarker:function () {
-            console.log("ChangeCanAddMarker called");
             if(canAddMarker)
             {
                 clearMarkers();

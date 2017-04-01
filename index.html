@@ -48,6 +48,10 @@
         <script src="app/app.module.js"></script>
         <script src="app/app.routes.js"></script>
 
+        <!-- Selectize (Tag Input) -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/js/standalone/selectize.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/css/selectize.default.css" />
+
         <!-- Add New Location sources -->
         <script src="app/components/add/addDirective.js"></script>
         <script src="app/components/add/addCtrl.js"></script>
@@ -55,7 +59,6 @@
         <!-- Services -->
         <script src="app/components/accountService.js"></script>
         <script src="app/components/postService.js"></script>
-
 
 
         <!-- Map sources -->
@@ -98,7 +101,7 @@
         <add-view ng-controller="addCtrl" class="transition hidden"></add-view>
         <map-view ng-controller="mapCtrl"></map-view>
         <sidebar-view  ng-controller="sidebarCtrl" class="transition visible"></sidebar-view>
-        <account-view ng-controller="accountCtrl" class="ui modal transition hidden"></account-view>
+        <account-view ng-controller="accountCtrl" class="ui modal"></account-view>
         <!-- Post View is hidden by default -->
         <post-view ng-controller="postCtrl" class="transition hidden"></post-view>
         <!-- Add View is hidden by default -->
