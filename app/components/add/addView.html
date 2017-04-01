@@ -44,7 +44,7 @@
                 </div>
                 <div class="field">
                     <label>Wanna add tags?</label>
-                    <input type="text" name="tags" placeholder="#beautiful #sunny" ng-model="tags">
+                    <input type="text" id="input-tags" name="tags" placeholder="#beautiful #sunny" ng-model="tags">
                 </div>
                 <div class="field">
                     <label>Categories</label>
@@ -57,7 +57,7 @@
                         <option value="View">View</option>
                     </select>
                 </div>
-                <button class="ui button" ng-click="addLocation()">Add</button>
+                <button type="button" class="ui button" ng-click="addLocation()" role="button">Add</button>
             </form>
         </div>
     </div>

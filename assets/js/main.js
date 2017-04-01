@@ -94,6 +94,20 @@ var moveSideHideButton = function () {
 $(function () {
     //Initialize Dropdown(s)
     $('select.dropdown').dropdown();
+    //Initialize Tag Field(s)
+    // Does not work without timeout - workaround (probably timing issues)
+    setTimeout(function(){
+        $('#input-tags').selectize({
+            delimiter: ',',
+            persist: false,
+            create: function(input) {
+                return {
+                    value: input,
+                    text: input
+                }
+            }
+        });
+    }, 1000)
 });
 
 /* Showing account view (animation) */
