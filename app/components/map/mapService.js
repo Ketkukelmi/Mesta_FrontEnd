@@ -4,6 +4,8 @@ app.factory('mapService', function() {
     var infoWindow;
     var newLat = 0;
     var newLong = 0;
+    var canAddMarker = false;
+    var eventtemp;
 
     function initMap(){
         map = new google.maps.Map(document.getElementById('map'), {
@@ -13,10 +15,16 @@ app.factory('mapService', function() {
         infoWindow = new google.maps.InfoWindow({map: map});
 
         google.maps.event.addListener(map, 'click', function(event) {
-            DeleteMarkers();
-            placeMarker(event.latLng);
-
+            eventtemp = event;
+            console.log(canAddMarker);
+            if(canAddMarker)
+            {
+                clearMarkers();
+                placeMarker(event.latLng);
+            }
         });
+
+
         function placeMarker(location) {
 
             var marker = new google.maps.Marker({
@@ -24,24 +32,20 @@ app.factory('mapService', function() {
                 map: map
 
             });
+
+            markers.splice(markers.length-1, 1);
+            console.log(markers.length);
             markers.push(marker);
 
             newLat = marker.position.lat();
             newLong = marker.position.lng();
         }
 
-        function DeleteMarkers() {
-            //Loop through all the markers and remove
-            for (var i = 0; i < markers.length; i++) {
-                markers[i].setMap(null);
-            }
-            markers = [];
-        };
-
         initLocation();
 
     };
     function initLocation(){
+
 
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
@@ -65,7 +69,7 @@ app.factory('mapService', function() {
         $.getJSON("http://api.the-mesta.com/location/all", function(result) {
             for (i = 0; i < result.length; i++) {
                 var location = new google.maps.LatLng(result[i]["latitude"], result[i]["longitude"]);
-                var marker = new google.maps.Marker({
+                markers[i] = new google.maps.Marker({
                     map: map,
                     title: result[i]["name"],
                     position: location
@@ -73,15 +77,17 @@ app.factory('mapService', function() {
 
 				var infowindow = new google.maps.InfoWindow();
 
-                google.maps.event.addListener(marker, 'click', (function(marker, content, infowindow) {
+                google.maps.event.addListener(markers, 'click', (function(markers, content, infowindow) {
                     return function() {
 						hideInfoWindows();
                         infowindow.setContent(content);
                         infowindow.open(map, marker);
                     };
-                })(marker, result[i]["description"], infowindow));
+                })(markers, result[i]["description"], infowindow));
 
 				markers.push(infowindow);
+
+                console.log(markers.length);
             }
         })
     };
@@ -91,6 +97,22 @@ app.factory('mapService', function() {
             'Error: The Geolocation service failed.' :
             'Error: Your browser doesn\'t support geolocation.');
     };
+
+    function clearMarkers() {
+        setMapOnAll(null);
+    }
+
+    // Shows any markers currently in the array.
+    function showMarkers() {
+        console.log(markers.length);
+        setMapOnAll(map);
+    }
+    function setMapOnAll(map) {
+        for (var i = 0; i < markers.length; i++) {
+            markers[i].setMap(map);
+        }
+    }
+
 
 
     return {
@@ -102,6 +124,28 @@ app.factory('mapService', function() {
         },
         returnLng: function(){
             return newLong;
+        },
+        clearMarkers: function () {
+            clearMarkers();
+        },
+        showMarkers:function () {
+            showMarkers();
+        },
+        changeCanAddMarker:function () {
+            console.log("ChangeCanAddMarker called");
+            if(canAddMarker)
+            {
+                clearMarkers();
+                canAddMarker = false;
+                showMarkers()
+            }
+            else
+            {
+                canAddMarker = true;
+                clearMarkers();
+            }
+
+
         }
     }
 

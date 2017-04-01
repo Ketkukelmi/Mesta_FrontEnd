@@ -8,8 +8,7 @@ app.controller('addCtrl', function ($scope, $rootScope, mapService, postService)
     $scope.categories = "";
 
     $scope.addLocation = function () {
-        postService.addLocation($scope.latitude, $scope.longitude, $scope.name, $scope.description, $scope.tags,
-            $scope.categories);
+        postService.addLocation($scope.latitude, $scope.longitude, $scope.name, $scope.description, $scope.tags,$scope.categories);
     };
 
     $('map-view').on('click', function () {
