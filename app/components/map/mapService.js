@@ -61,7 +61,7 @@ app.factory('mapService', function() {
             handleLocationError(false, infoWindow, map.getCenter());
         }
 
-        /*
+
         $.getJSON("http://api.the-mesta.com/location/all", function(result) {
             for (i = 0; i < result.length; i++) {
                 var location = new google.maps.LatLng(result[i]["latitude"], result[i]["longitude"]);
@@ -83,7 +83,7 @@ app.factory('mapService', function() {
 
 				markers.push(infowindow);
             }
-        })*/
+        })
     };
     function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         infoWindow.setPosition(pos);
