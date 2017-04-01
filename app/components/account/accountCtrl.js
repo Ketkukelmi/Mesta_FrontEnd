@@ -1,4 +1,4 @@
-app.controller('accountCtrl', function ($scope, $window, accountService) {
+app.controller('accountCtrl', function ($scope, $rootScope, $window, accountService) {
 
     $window.fbAsyncInit = function()
     {
@@ -13,7 +13,10 @@ app.controller('accountCtrl', function ($scope, $window, accountService) {
         FB.getLoginStatus(function(response) {
             accountService.statusChangeCallback(response);
             console.log(accountService.signedIn(response));
+            $rootScope.FBObj = response;
         });
+
+
     };
     fbAsyncInit();
 
