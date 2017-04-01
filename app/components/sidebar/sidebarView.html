@@ -13,27 +13,32 @@
         <div class="">
             <div class="nine wide column">
                 <div class="ui buttons" style="display:block; margin: 0 auto;">
-                    <button class="ui button ng-class:{active: searchType === 'popular'}" ng-click="toggleSearchType()">Popular</button>
-                    <button class="ui button ng-class:{active: searchType === 'nearby'}" ng-click="toggleSearchType()">Nearby</button>
+                    <button class="ui button ng-class:{active: searchType === 'popular'}" ng-click="toggleSearchType()">
+                        Popular
+                    </button>
+                    <button class="ui button ng-class:{active: searchType === 'nearby'}" ng-click="toggleSearchType()">
+                        Nearby
+                    </button>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Search Result -->
     <div class="centered row">
+        <!-- Search Result -->
         <div class="ui link cards">
+            {{location}}
             <div class="search-found-places">
-                <div class="ui card" onclick="togglePostView()">
+                <div class="ui card" ng-repeat="location in locations" onclick="togglePostView()">
                     <div class="image">
                         <img src="tile-wide.png">
                     </div>
                     <div class="content">
-                        <a class="header">Kristy</a>
+                        <a class="header">{{location.name}}</a>
                         <div class="meta">
-                            <span class="date">Joined in 2013</span>
+                            <span class="date">{{location.category}}</span>
                         </div>
                         <div class="description">
-                            Kristy is an art director living in New York.
+                            {{location.description}}
                         </div>
                     </div>
                     <div class="extra content">

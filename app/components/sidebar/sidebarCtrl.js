@@ -9,4 +9,14 @@ app.controller('sidebarCtrl', function ($scope) {
             $scope.searchType = "popular";
         }
     };
+
+    $scope.locations = [];
+
+    // Get the locations from the service
+    $scope.$on('locations', function (event, locations) {
+        $scope.$apply(function () {
+            $scope.locations = locations;
+            console.log($scope.locations);
+        });
+    });
 });

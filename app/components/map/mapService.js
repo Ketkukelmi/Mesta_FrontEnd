@@ -1,4 +1,4 @@
-app.factory('mapService', function() {
+app.factory('mapService', function($rootScope) {
     var markers = [];
     var map;
     var infoWindow;
@@ -83,6 +83,8 @@ app.factory('mapService', function() {
 
 				markers.push(infowindow);
             }
+            // Send the locations to the sideview
+            $rootScope.$broadcast('locations', result);
         })
     };
     function handleLocationError(browserHasGeolocation, infoWindow, pos) {

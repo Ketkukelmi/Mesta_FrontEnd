@@ -35,9 +35,9 @@ app.factory('postService', ['$http', '$q', function ($http, $q) {
             });
         },
         addLocation: function (latitude, longitude, name, description, tags, categories) {
-            //TODO: install cookies.
-            document.cookie = "fbLoginID=TestMesta;token=iHjQMJc44QUXtN56U3GT2he55wN4mlwucgJ4xxPwpyjUQRRXDWSZcu9IdtXWYf7wPkQSEJYJfkIhEBj2FhGtGiJWg6ZPsRGhwzWNYcyopIZbbfaZbU56WxVwPzdagcBaaRZ5KJXaSUVDMWo7rnDR4pXFJKTFqZcaLmKaQoIhDYYs5paNKBpdNpms18CJ64NcAYVggQ3Fri3jJEQirlkbojcbW8Dz3QSVi9GEaqn24j9wsQUjYmn1nyxq68FcC8";
-            //TODO: check why OPTIONS method is used.
+            // Credentials
+            var fbLoginID = "TestMesta";
+            var token = "iHjQMJc44QUXtN56U3GT2he55wN4mlwucgJ4xxPwpyjUQRRXDWSZcu9IdtXWYf7wPkQSEJYJfkIhEBj2FhGtGiJWg6ZPsRGhwzWNYcyopIZbbfaZbU56WxVwPzdagcBaaRZ5KJXaSUVDMWo7rnDR4pXFJKTFqZcaLmKaQoIhDYYs5paNKBpdNpms18CJ64NcAYVggQ3Fri3jJEQirlkbojcbW8Dz3QSVi9GEaqn24j9wsQUjYmn1nyxq68FcC8";
             var tags = [tags];
             // Request for adding location
             var req = {
@@ -49,6 +49,8 @@ app.factory('postService', ['$http', '$q', function ($http, $q) {
                 },
                 withCredentials: true,
                 data: {
+                    fbLoginID: fbLoginID,
+                    token: token,
                     latitude: latitude,
                     longitude: longitude,
                     name: name,
