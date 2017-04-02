@@ -8,7 +8,7 @@ add-view {
     top: 0;
     background: white;
     position: fixed;
-    z-index: 100 !important;
+    z-index: 1000 !important;
 }
 add-view * {
     z-index: 100 !important;

@@ -46,7 +46,7 @@ app.factory('postService', ['$http', '$q', function ($http, $q) {
             // Credentials
             var fbLoginID = "TestMesta";
             var token = "iHjQMJc44QUXtN56U3GT2he55wN4mlwucgJ4xxPwpyjUQRRXDWSZcu9IdtXWYf7wPkQSEJYJfkIhEBj2FhGtGiJWg6ZPsRGhwzWNYcyopIZbbfaZbU56WxVwPzdagcBaaRZ5KJXaSUVDMWo7rnDR4pXFJKTFqZcaLmKaQoIhDYYs5paNKBpdNpms18CJ64NcAYVggQ3Fri3jJEQirlkbojcbW8Dz3QSVi9GEaqn24j9wsQUjYmn1nyxq68FcC8";
-            var tags = [tags];
+            var tags = tags.split(',');;
             // Request for adding location
             var req = {
                 method: 'POST',
@@ -68,6 +68,33 @@ app.factory('postService', ['$http', '$q', function ($http, $q) {
                 }
             };
             // Send the crafted request for adding location
+            $http(req).then(function succesCallback(response) {
+                resolve(response.data);
+            }, function errorCallback(response) {
+                console.log(response);
+            });
+        },
+        addComment: function (location_id, newComment) {
+            // Credentials
+            var fbLoginID = "TestMesta";
+            var token = "iHjQMJc44QUXtN56U3GT2he55wN4mlwucgJ4xxPwpyjUQRRXDWSZcu9IdtXWYf7wPkQSEJYJfkIhEBj2FhGtGiJWg6ZPsRGhwzWNYcyopIZbbfaZbU56WxVwPzdagcBaaRZ5KJXaSUVDMWo7rnDR4pXFJKTFqZcaLmKaQoIhDYYs5paNKBpdNpms18CJ64NcAYVggQ3Fri3jJEQirlkbojcbW8Dz3QSVi9GEaqn24j9wsQUjYmn1nyxq68FcC8";
+            // Request for adding comment
+            var req = {
+                method: 'POST',
+                url: 'http://api.the-mesta.com/location/comment/save',
+                headers: {
+                    'Content-Type': 'application/json;',
+                    "Access-Control-Request-Credentials" : "true"
+                },
+                withCredentials: true,
+                data: {
+                    fbLoginID: fbLoginID,
+                    token: token,
+                    location_id: location_id,
+                    newComment: newComment
+                }
+            };
+            // Send the crafted request for adding comment
             $http(req).then(function succesCallback(response) {
                 resolve(response.data);
             }, function errorCallback(response) {

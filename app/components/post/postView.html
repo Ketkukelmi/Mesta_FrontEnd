@@ -24,11 +24,12 @@
                             <div class="content">
                                 <a class="ui header">{{location.name}}</a>
                                 <div class="description">
-                                    <p>{{location.description}}</p>
+                                    <p>{{location.description}}</p> <br>
+                                    <p ng-if="location.tags.length > 0">Tags: <span ng-repeat="tag in location.tags"><a ng-click="findByTag(tag)">{{tag}}</a> &nbsp;</span></p>
                                 </div>
                                 <div class="extra">
                                     <i class="thumbs up icon green" aria-hidden="true"></i>
-                                    121 Likes
+                                    {{location.likes}} Likes <span style="float: right">{{location.category}}</span>
                                 </div>
                             </div>
                         </div>
@@ -59,42 +60,6 @@
                                 <img src="">
                             </a>
                             <div class="content">
-                                <a class="author">The Donald</a>
-                                <div class="metadata">
-                                    <span class="date">Yesterday at 12:30AM</span>
-                                </div>
-                                <div class="text">
-                                    <p>Greatest place. Terrific!</p>
-                                </div>
-                                <div class="actions">
-                                    <a class="reply">Reply</a>
-                                </div>
-                            </div>
-                            <div class="comments">
-                                <div class="comment">
-                                    <a class="avatar">
-                                        <img src="">
-                                    </a>
-                                    <div class="content">
-                                        <a class="author">Sauli Niinistö</a>
-                                        <div class="metadata">
-                                            <span class="date">Just now</span>
-                                        </div>
-                                        <div class="text">
-                                            Finland was here.
-                                        </div>
-                                        <div class="actions">
-                                            <a class="reply">Reply</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="comment">
-                            <a class="avatar">
-                                <img src="">
-                            </a>
-                            <div class="content">
                                 <a class="author">The Adolf</a>
                                 <div class="metadata">
                                     <span class="date">5 days ago</span>
@@ -107,9 +72,26 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="comment" ng-repeat="comment in location.comments">
+                            <a class="avatar">
+                                <img src="">
+                            </a>
+                            <div class="content">
+                                <a class="author">The Adolf</a>
+                                <div class="metadata">
+                                    <span class="date">5 days ago</span>
+                                </div>
+                                <div class="text">
+                                    {{comment}}
+                                </div>
+                                <div class="actions">
+                                    <a class="reply">Reply</a>
+                                </div>
+                            </div>
+                        </div>
                         <form class="ui reply form">
                             <div class="field">
-                                <textarea></textarea>
+                                <textarea ng-model="newComment"></textarea>
                             </div>
                             <div class="ui blue labeled submit icon button" ng-click="comment(location_id)">
                                 <i class="icon edit"></i> Add Reply
