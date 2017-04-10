@@ -6,6 +6,7 @@ app.factory('mapService', function($rootScope) {
     var newLong = 0;
     var canAddMarker = false;
     var eventtemp;
+    var serverUrl = "http://api.the-mesta.com";
 
     function initMap(){
         map = new google.maps.Map(document.getElementById('map'), {
@@ -64,7 +65,7 @@ app.factory('mapService', function($rootScope) {
         }
 
 
-        $.getJSON("http://api.the-mesta.com/location/all", function(result) {
+        $.getJSON(serverUrl + "/location/all", function(result) {
             for (i = 0; i < result.length; i++) {
                 var location = new google.maps.LatLng(result[i]["latitude"], result[i]["longitude"]);
                 markers[i] = new google.maps.Marker({

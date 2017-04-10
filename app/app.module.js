@@ -1,2 +1,2 @@
 /* Define AngularJS application and its dependicies */
-var app = angular.module("app", []);
+var app = angular.module("app", ["ngCookies"]);

@@ -29,7 +29,7 @@
                                 </div>
                                 <div class="extra">
                                     <i class="thumbs up icon green" aria-hidden="true"></i>
-                                    {{location.likes}} Likes <span style="float: right">{{location.category}}</span>
+                                    {{location.likes.length}} Like<span ng-if="location.likes.length != 1">s</span> <span style="float: right">{{location.category}}</span>
                                 </div>
                             </div>
                         </div>

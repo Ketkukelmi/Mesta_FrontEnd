@@ -1,4 +1,4 @@
-app.factory('postService', ['$http', '$q', function ($http, $q) {
+app.factory('postService', ['$http', '$q', '$cookies', function ($http, $q, $cookies) {
     serverUrl = "http://api.the-mesta.com";
     return {
         getAllLocations: function () {
@@ -47,18 +47,18 @@ app.factory('postService', ['$http', '$q', function ($http, $q) {
             var fbLoginID = "TestMesta";
             var token = "iHjQMJc44QUXtN56U3GT2he55wN4mlwucgJ4xxPwpyjUQRRXDWSZcu9IdtXWYf7wPkQSEJYJfkIhEBj2FhGtGiJWg6ZPsRGhwzWNYcyopIZbbfaZbU56WxVwPzdagcBaaRZ5KJXaSUVDMWo7rnDR4pXFJKTFqZcaLmKaQoIhDYYs5paNKBpdNpms18CJ64NcAYVggQ3Fri3jJEQirlkbojcbW8Dz3QSVi9GEaqn24j9wsQUjYmn1nyxq68FcC8";
             var tags = tags.split(',');;
+            $cookies.put("fbLoginID", "TestMesta");
+            $cookies.put("token", "iHjQMJc44QUXtN56U3GT2he55wN4mlwucgJ4xxPwpyjUQRRXDWSZcu9IdtXWYf7wPkQSEJYJfkIhEBj2FhGtGiJWg6ZPsRGhwzWNYcyopIZbbfaZbU56WxVwPzdagcBaaRZ5KJXaSUVDMWo7rnDR4pXFJKTFqZcaLmKaQoIhDYYs5paNKBpdNpms18CJ64NcAYVggQ3Fri3jJEQirlkbojcbW8Dz3QSVi9GEaqn24j9wsQUjYmn1nyxq68FcC8");
             // Request for adding location
             var req = {
                 method: 'POST',
-                url: 'http://api.the-mesta.com/location/save',
+                url: serverUrl + '/location/save',
                 headers: {
                     'Content-Type': 'application/json;',
                     "Access-Control-Request-Credentials" : "true"
                 },
                 withCredentials: true,
                 data: {
-                    fbLoginID: fbLoginID,
-                    token: token,
                     latitude: latitude,
                     longitude: longitude,
                     name: name,
@@ -78,18 +78,18 @@ app.factory('postService', ['$http', '$q', function ($http, $q) {
             // Credentials
             var fbLoginID = "TestMesta";
             var token = "iHjQMJc44QUXtN56U3GT2he55wN4mlwucgJ4xxPwpyjUQRRXDWSZcu9IdtXWYf7wPkQSEJYJfkIhEBj2FhGtGiJWg6ZPsRGhwzWNYcyopIZbbfaZbU56WxVwPzdagcBaaRZ5KJXaSUVDMWo7rnDR4pXFJKTFqZcaLmKaQoIhDYYs5paNKBpdNpms18CJ64NcAYVggQ3Fri3jJEQirlkbojcbW8Dz3QSVi9GEaqn24j9wsQUjYmn1nyxq68FcC8";
+            $cookies.put("fbLoginID", "TestMesta");
+            $cookies.put("token", "iHjQMJc44QUXtN56U3GT2he55wN4mlwucgJ4xxPwpyjUQRRXDWSZcu9IdtXWYf7wPkQSEJYJfkIhEBj2FhGtGiJWg6ZPsRGhwzWNYcyopIZbbfaZbU56WxVwPzdagcBaaRZ5KJXaSUVDMWo7rnDR4pXFJKTFqZcaLmKaQoIhDYYs5paNKBpdNpms18CJ64NcAYVggQ3Fri3jJEQirlkbojcbW8Dz3QSVi9GEaqn24j9wsQUjYmn1nyxq68FcC8");
             // Request for adding comment
             var req = {
                 method: 'POST',
-                url: 'http://api.the-mesta.com/location/comment/save',
+                url: serverUrl + '/location/comment/save',
                 headers: {
                     'Content-Type': 'application/json;',
                     "Access-Control-Request-Credentials" : "true"
                 },
                 withCredentials: true,
                 data: {
-                    fbLoginID: fbLoginID,
-                    token: token,
                     location_id: location_id,
                     newComment: newComment
                 }
