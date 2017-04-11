@@ -29,7 +29,7 @@
             <div class="search-found-places">
                 <div class="ui card" ng-repeat="location in locations" id="locationID_{{location.id}}">
                     <div class="image" ng-click="togglePostView(location.id)">
-                        <img src="tile-wide.png">
+                        <img ng-src="{{location.images[0]}}">
                     </div>
                     <div class="content" ng-click="togglePostView(location.id)">
                         <a class="header">{{location.name}}</a>
