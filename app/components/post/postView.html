@@ -20,7 +20,7 @@
             <div class="ui segments">
                 <div class="ui segment">
                     <div class="ui items">
-                        <div class="item" id="locationPost">
+                        <div class="item">
                             <div class="content">
                                 <a class="ui header">{{location.name}}</a>
                                 <div class="description">
@@ -39,51 +39,17 @@
                 <div class="ui secondary segment">
                     <div class="ui minimal comments">
                         <h3 class="ui dividing header">Comments</h3>
-                        <div class="comment">
-                            <a class="avatar">
-                                <img src="">
-                            </a>
-                            <div class="content">
-                                <a class="author">Vladimir Putin</a>
-                                <div class="metadata">
-                                    <span class="date">Today at 5:42PM</span>
-                                </div>
-                                <div class="text">
-                                    It will be our some day.
-                                </div>
-                                <div class="actions">
-                                    <a class="reply">Reply</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="comment">
-                            <a class="avatar">
-                                <img src="">
-                            </a>
-                            <div class="content">
-                                <a class="author">The Adolf</a>
-                                <div class="metadata">
-                                    <span class="date">5 days ago</span>
-                                </div>
-                                <div class="text">
-                                    Unsatisfied!
-                                </div>
-                                <div class="actions">
-                                    <a class="reply">Reply</a>
-                                </div>
-                            </div>
-                        </div>
                         <div class="comment" ng-repeat="comment in location.comments">
                             <a class="avatar">
                                 <img src="">
                             </a>
                             <div class="content">
-                                <a class="author">The Adolf</a>
+                                <a class="author">{{comment.facebookID}}</a>
                                 <div class="metadata">
-                                    <span class="date">5 days ago</span>
+                                    <span class="date">{{comment.date | date}}</span>
                                 </div>
                                 <div class="text">
-                                    {{comment}}
+                                    {{comment.comment}}
                                 </div>
                                 <div class="actions">
                                     <a class="reply">Reply</a>

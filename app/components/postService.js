@@ -86,8 +86,9 @@ app.factory('postService', ['$http', '$q', '$cookies', function ($http, $q, $coo
                 },
                 withCredentials: true,
                 data: {
-                    location_id: location_id,
-                    newComment: newComment
+                    locationID: location_id,
+                    date: Date.now(),
+                    comment: newComment
                 }
             };
             // Send the crafted request for adding comment
@@ -103,7 +104,7 @@ app.factory('postService', ['$http', '$q', '$cookies', function ($http, $q, $coo
             $cookies.put("token", "iHjQMJc44QUXtN56U3GT2he55wN4mlwucgJ4xxPwpyjUQRRXDWSZcu9IdtXWYf7wPkQSEJYJfkIhEBj2FhGtGiJWg6ZPsRGhwzWNYcyopIZbbfaZbU56WxVwPzdagcBaaRZ5KJXaSUVDMWo7rnDR4pXFJKTFqZcaLmKaQoIhDYYs5paNKBpdNpms18CJ64NcAYVggQ3Fri3jJEQirlkbojcbW8Dz3QSVi9GEaqn24j9wsQUjYmn1nyxq68FcC8", {domain: ".the-mesta.com"});
             // Request for adding comment
             var req = {
-                method: 'GET',
+                method: 'POST',
                 url: serverUrl + '/location/like/' + location_id,
                 headers: {
                     'Content-Type': 'application/json;',

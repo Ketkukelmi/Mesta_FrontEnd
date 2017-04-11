@@ -32,14 +32,11 @@ app.controller('sidebarCtrl', function (postService, $scope, $rootScope) {
         // Show/hide like
         currentUser = "TestMesta";
         var thumbsUp = $('#locationID_' + id).find('i.thumbs.up');
-        var thumbsUpPost = $('#locationPost').find('i.thumbs.up');
-        if ($scope.locations[id].likes.indexOf(currentUser) != -1) {
-            thumbsUp.addClass("outline");
-            thumbsUpPost.addClass("outline");
+        if ($scope.locations[id].likes.indexOf(currentUser) == -1) {
+            $scope.locations[id].likes.push(currentUser);
         }
         else {
-            thumbsUp.removeClass("outline");
-            thumbsUpPost.removeClass("outline");
+            $scope.locations[id].likes.splice($scope.locations[id].likes.indexOf(currentUser), 1);
         }
         console.log($scope.locations[id]);
         // Send the like/unlike to the server

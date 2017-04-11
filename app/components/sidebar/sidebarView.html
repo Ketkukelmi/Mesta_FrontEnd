@@ -26,7 +26,6 @@
     <div class="centered row">
         <!-- Search Result -->
         <div class="ui link cards">
-            {{location}}
             <div class="search-found-places">
                 <div class="ui card" ng-repeat="location in locations" id="locationID_{{location.id}}">
                     <div class="image" ng-click="togglePostView(location.id)">
@@ -46,7 +45,6 @@
                             <i class="thumbs up icon green" ng-class="{'outline': location.likes.indexOf('TestMesta') === -1}"
                                ng-click="addLike(location.id)" aria-hidden="true"></i>
                             {{location.likes.length}} people approve
-
                         </a>
                     </div>
                 </div>
