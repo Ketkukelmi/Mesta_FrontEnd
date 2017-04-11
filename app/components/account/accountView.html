@@ -1,7 +1,7 @@
 <div id="MyImage">
     <img class="theImage" src="LoginScreen.png"/>
 <div class="myButton">
-    <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" onlogin="fbAsyncInit()" data-auto-logout-link="false"></div>
-    <div id="fb-root"></div>
+    <div class="fb-login-button" ng-show="!signin" data-max-rows="1" data-size="medium" data-show-faces="false" onlogin="fbAsyncInit()" data-auto-logout-link="false"></div>
+    <h2 ng-show="signin">You're already logged in!</h2>
 </div>
 </div>
