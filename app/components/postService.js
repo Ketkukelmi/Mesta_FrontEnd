@@ -44,11 +44,9 @@ app.factory('postService', ['$http', '$q', '$cookies', function ($http, $q, $coo
         },
         addLocation: function (latitude, longitude, name, description, tags, categories) {
             // Credentials
-            var fbLoginID = "TestMesta";
-            var token = "iHjQMJc44QUXtN56U3GT2he55wN4mlwucgJ4xxPwpyjUQRRXDWSZcu9IdtXWYf7wPkQSEJYJfkIhEBj2FhGtGiJWg6ZPsRGhwzWNYcyopIZbbfaZbU56WxVwPzdagcBaaRZ5KJXaSUVDMWo7rnDR4pXFJKTFqZcaLmKaQoIhDYYs5paNKBpdNpms18CJ64NcAYVggQ3Fri3jJEQirlkbojcbW8Dz3QSVi9GEaqn24j9wsQUjYmn1nyxq68FcC8";
-            var tags = tags.split(',');;
-            $cookies.put("fbLoginID", "TestMesta");
-            $cookies.put("token", "iHjQMJc44QUXtN56U3GT2he55wN4mlwucgJ4xxPwpyjUQRRXDWSZcu9IdtXWYf7wPkQSEJYJfkIhEBj2FhGtGiJWg6ZPsRGhwzWNYcyopIZbbfaZbU56WxVwPzdagcBaaRZ5KJXaSUVDMWo7rnDR4pXFJKTFqZcaLmKaQoIhDYYs5paNKBpdNpms18CJ64NcAYVggQ3Fri3jJEQirlkbojcbW8Dz3QSVi9GEaqn24j9wsQUjYmn1nyxq68FcC8");
+            var tags = tags.split(',');
+            $cookies.put("fbLoginID", "TestMesta", {domain: ".the-mesta.com"});
+            $cookies.put("token", "iHjQMJc44QUXtN56U3GT2he55wN4mlwucgJ4xxPwpyjUQRRXDWSZcu9IdtXWYf7wPkQSEJYJfkIhEBj2FhGtGiJWg6ZPsRGhwzWNYcyopIZbbfaZbU56WxVwPzdagcBaaRZ5KJXaSUVDMWo7rnDR4pXFJKTFqZcaLmKaQoIhDYYs5paNKBpdNpms18CJ64NcAYVggQ3Fri3jJEQirlkbojcbW8Dz3QSVi9GEaqn24j9wsQUjYmn1nyxq68FcC8", {domain: ".the-mesta.com"});
             // Request for adding location
             var req = {
                 method: 'POST',
@@ -76,10 +74,8 @@ app.factory('postService', ['$http', '$q', '$cookies', function ($http, $q, $coo
         },
         addComment: function (location_id, newComment) {
             // Credentials
-            var fbLoginID = "TestMesta";
-            var token = "iHjQMJc44QUXtN56U3GT2he55wN4mlwucgJ4xxPwpyjUQRRXDWSZcu9IdtXWYf7wPkQSEJYJfkIhEBj2FhGtGiJWg6ZPsRGhwzWNYcyopIZbbfaZbU56WxVwPzdagcBaaRZ5KJXaSUVDMWo7rnDR4pXFJKTFqZcaLmKaQoIhDYYs5paNKBpdNpms18CJ64NcAYVggQ3Fri3jJEQirlkbojcbW8Dz3QSVi9GEaqn24j9wsQUjYmn1nyxq68FcC8";
-            $cookies.put("fbLoginID", "TestMesta");
-            $cookies.put("token", "iHjQMJc44QUXtN56U3GT2he55wN4mlwucgJ4xxPwpyjUQRRXDWSZcu9IdtXWYf7wPkQSEJYJfkIhEBj2FhGtGiJWg6ZPsRGhwzWNYcyopIZbbfaZbU56WxVwPzdagcBaaRZ5KJXaSUVDMWo7rnDR4pXFJKTFqZcaLmKaQoIhDYYs5paNKBpdNpms18CJ64NcAYVggQ3Fri3jJEQirlkbojcbW8Dz3QSVi9GEaqn24j9wsQUjYmn1nyxq68FcC8");
+            $cookies.put("fbLoginID", "TestMesta", {domain: ".the-mesta.com"});
+            $cookies.put("token", "iHjQMJc44QUXtN56U3GT2he55wN4mlwucgJ4xxPwpyjUQRRXDWSZcu9IdtXWYf7wPkQSEJYJfkIhEBj2FhGtGiJWg6ZPsRGhwzWNYcyopIZbbfaZbU56WxVwPzdagcBaaRZ5KJXaSUVDMWo7rnDR4pXFJKTFqZcaLmKaQoIhDYYs5paNKBpdNpms18CJ64NcAYVggQ3Fri3jJEQirlkbojcbW8Dz3QSVi9GEaqn24j9wsQUjYmn1nyxq68FcC8", {domain: ".the-mesta.com"});
             // Request for adding comment
             var req = {
                 method: 'POST',
@@ -93,6 +89,27 @@ app.factory('postService', ['$http', '$q', '$cookies', function ($http, $q, $coo
                     location_id: location_id,
                     newComment: newComment
                 }
+            };
+            // Send the crafted request for adding comment
+            $http(req).then(function succesCallback(response) {
+                resolve(response.data);
+            }, function errorCallback(response) {
+                console.log(response);
+            });
+        },
+        addLike: function (location_id) {
+            // Credentials
+            $cookies.put("fbLoginID", "TestMesta", {domain: ".the-mesta.com"});
+            $cookies.put("token", "iHjQMJc44QUXtN56U3GT2he55wN4mlwucgJ4xxPwpyjUQRRXDWSZcu9IdtXWYf7wPkQSEJYJfkIhEBj2FhGtGiJWg6ZPsRGhwzWNYcyopIZbbfaZbU56WxVwPzdagcBaaRZ5KJXaSUVDMWo7rnDR4pXFJKTFqZcaLmKaQoIhDYYs5paNKBpdNpms18CJ64NcAYVggQ3Fri3jJEQirlkbojcbW8Dz3QSVi9GEaqn24j9wsQUjYmn1nyxq68FcC8", {domain: ".the-mesta.com"});
+            // Request for adding comment
+            var req = {
+                method: 'GET',
+                url: serverUrl + '/location/like/' + location_id,
+                headers: {
+                    'Content-Type': 'application/json;',
+                    "Access-Control-Request-Credentials" : "true"
+                },
+                withCredentials: true
             };
             // Send the crafted request for adding comment
             $http(req).then(function succesCallback(response) {

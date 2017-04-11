@@ -42,3 +42,8 @@ post-view * {
     position: relative;
     top:10px;
 }
+
+/* Liking */
+.thumbs.up:hover {
+    font-size: 1.8em;
+}
