@@ -3,21 +3,21 @@
 }
 
 .theImage{
-    position: relative;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 7%;
+    position: absolute;
+    align-content: center;
+    top: 50%;
+    left: 50%;
+    margin-left: -200px;
+    margin-top: -200px;
     width: auto;
     height: auto;
     max-width: 400px;
-
 }
 
 .myButton{
     position: absolute;
     align-content: center;
     left: 50%;
-    top: 45%;
+    top: 50%;
     margin-left: -30px;
 }
