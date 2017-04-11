@@ -13,7 +13,9 @@ app.controller('accountCtrl', function ($scope, $rootScope, $window, accountServ
         FB.getLoginStatus(function(response) {
             accountService.statusChangeCallback(response);
             console.log(accountService.signedIn(response));
-            $scope.signin = accountService.signedIn(response);
+            $scope.$apply(function () {
+                $scope.signin = accountService.signedIn(response);
+            });
             $rootScope.FBObj = response;
         });
 
