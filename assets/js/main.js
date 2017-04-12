@@ -92,9 +92,9 @@ var moveSideHideButton = function () {
 /* ------------------------------------------------------------------------------------------------------------------ */
 
 $(function () {
-    //Initialize Dropdown(s)
+    // Initialize Dropdown(s)
     $('select.dropdown').dropdown();
-    //Initialize Tag Field(s)
+    // Initialize Tag Field(s)
     // Does not work without timeout - workaround (probably timing issues)
     setTimeout(function(){
         $('#input-tags').selectize({
@@ -107,7 +107,17 @@ $(function () {
                 }
             }
         });
-    }, 1000)
+    }, 1000);
+    // Initialize Swiper
+    var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+        slidesPerView: 1,
+        paginationClickable: true,
+        spaceBetween: 30,
+        loop: true
+    });
 });
 
 /* Showing account view (animation) */

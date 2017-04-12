@@ -11,7 +11,19 @@
     <!-- Image -->
     <div class="centered row">
         <div class="sixteen wide column">
-            <img class="ui centered image" src="http://semantic-ui.com/images/wireframe/image.png">
+            <!-- Swiper -->
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" ng-repeat="image in location.images">
+                        <img ng-src="{{image}}" style="width:100%;">
+                    </div>
+                </div>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination"></div>
+                <!-- Add Arrows -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
         </div>
     </div>
     <!-- Metadata & Social Functionality -->
@@ -28,8 +40,9 @@
                                     <p ng-if="location.tags.length > 0">Tags: <span ng-repeat="tag in location.tags"><a ng-click="findByTag(tag)">{{tag}}</a> &nbsp;</span></p>
                                 </div>
                                 <div class="extra">
-                                    <i class="thumbs up icon green" aria-hidden="true"></i>
-                                    {{location.likes}} Likes <span style="float: right">{{location.category}}</span>
+                                    <i class="thumbs up icon green" ng-class="{'outline': location.likes.indexOf('TestMesta') === -1}"
+                                       ng-click="addLike(location.id)"aria-hidden="true"></i>
+                                    {{location.likes.length}} people approve<span ng-if="location.likes.length != 1">s</span> <span style="float: right">{{location.category}}</span>
                                 </div>
                             </div>
                         </div>
@@ -38,51 +51,17 @@
                 <div class="ui secondary segment">
                     <div class="ui minimal comments">
                         <h3 class="ui dividing header">Comments</h3>
-                        <div class="comment">
-                            <a class="avatar">
-                                <img src="">
-                            </a>
-                            <div class="content">
-                                <a class="author">Vladimir Putin</a>
-                                <div class="metadata">
-                                    <span class="date">Today at 5:42PM</span>
-                                </div>
-                                <div class="text">
-                                    It will be our some day.
-                                </div>
-                                <div class="actions">
-                                    <a class="reply">Reply</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="comment">
-                            <a class="avatar">
-                                <img src="">
-                            </a>
-                            <div class="content">
-                                <a class="author">The Adolf</a>
-                                <div class="metadata">
-                                    <span class="date">5 days ago</span>
-                                </div>
-                                <div class="text">
-                                    Unsatisfied!
-                                </div>
-                                <div class="actions">
-                                    <a class="reply">Reply</a>
-                                </div>
-                            </div>
-                        </div>
                         <div class="comment" ng-repeat="comment in location.comments">
                             <a class="avatar">
                                 <img src="">
                             </a>
                             <div class="content">
-                                <a class="author">The Adolf</a>
+                                <a class="author">{{comment.facebookID}}</a>
                                 <div class="metadata">
-                                    <span class="date">5 days ago</span>
+                                    <span class="date">{{comment.date | date}}</span>
                                 </div>
                                 <div class="text">
-                                    {{comment}}
+                                    {{comment.comment}}
                                 </div>
                                 <div class="actions">
                                     <a class="reply">Reply</a>

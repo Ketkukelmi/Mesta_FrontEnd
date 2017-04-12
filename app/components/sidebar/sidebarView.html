@@ -26,13 +26,12 @@
     <div class="centered row">
         <!-- Search Result -->
         <div class="ui link cards">
-            {{location}}
             <div class="search-found-places">
-                <div class="ui card" ng-repeat="location in locations" ng-click="togglePostView(location.id)">
-                    <div class="image">
-                        <img src="tile-wide.png">
+                <div class="ui card" ng-repeat="location in locations" id="locationID_{{location.id}}">
+                    <div class="image" ng-click="togglePostView(location.id)">
+                        <img ng-src="{{location.images[0]}}">
                     </div>
-                    <div class="content">
+                    <div class="content" ng-click="togglePostView(location.id)">
                         <a class="header">{{location.name}}</a>
                         <div class="meta">
                             <span class="date">{{location.category}}</span>
@@ -43,8 +42,9 @@
                     </div>
                     <div class="extra content">
                         <a>
-                            <i class="thumbs up icon green" aria-hidden="true"></i>
-                            {{location.likes}} people approve
+                            <i class="thumbs up icon green" ng-class="{'outline': location.likes.indexOf('TestMesta') === -1}"
+                               ng-click="addLike(location.id)" aria-hidden="true"></i>
+                            {{location.likes.length}} people approve
                         </a>
                     </div>
                 </div>

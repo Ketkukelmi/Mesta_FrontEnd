@@ -40,7 +40,13 @@ add-view * {
 /* Back Button Positioning */
 .back.button {
     position: relative;
-    top:10px;
+    width: 100px;
+    height: 50px;
+    top: -13px;
+    left: -22px;
+    background: none;
+    color: #222222;
+
 }
 
 /* Customize tag selector */
