@@ -17,7 +17,7 @@ app.factory('mapService', function($rootScope) {
             mapTypeControlOptions: {
                 mapTypeIds: []
             },
-            mapTypeId: MapTypeId.ROADMAP
+            mapTypeId: google.maps.MapTypeId.ROADMAP
         });
         infoWindow = new google.maps.InfoWindow({map: map});
 
