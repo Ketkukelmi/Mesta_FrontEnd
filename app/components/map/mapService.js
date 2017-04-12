@@ -9,8 +9,14 @@ app.factory('mapService', function($rootScope) {
 
     function initMap(){
         map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: 65.008802, lng: 25.472814},
-            zoom: 15
+            center: {
+                lat: 65.008802, lng: 25.472814
+            },
+            zoom: 15,
+            mapTypeControlOptions: {
+                mapTypeIds: []
+            },
+            mapTypeId: MapTypeId.ROADMAP
         });
         infoWindow = new google.maps.InfoWindow({map: map});
 
