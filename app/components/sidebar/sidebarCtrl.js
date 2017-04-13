@@ -27,19 +27,4 @@ app.controller('sidebarCtrl', function (postService, $scope, $rootScope) {
         $rootScope.$broadcast('location_id', id);
         togglePostView();
     };
-
-    $rootScope.addLike = function (id) {
-        // Show/hide like
-        currentUser = "TestMesta";
-        var thumbsUp = $('#locationID_' + id).find('i.thumbs.up');
-        if ($scope.locations[id].likes.indexOf(currentUser) == -1) {
-            $scope.locations[id].likes.push(currentUser);
-        }
-        else {
-            $scope.locations[id].likes.splice($scope.locations[id].likes.indexOf(currentUser), 1);
-        }
-        console.log($scope.locations[id]);
-        // Send the like/unlike to the server
-        postService.addLike(id);
-    };
 });

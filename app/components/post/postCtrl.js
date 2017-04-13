@@ -10,7 +10,6 @@ app.controller('postCtrl', function ($scope, postService) {
         postService.getLocationById(location_id).then( function(location) {
             $scope.location = location;
             // Process tags received & attach to scope
-            $scope.tags = [];
             var prerocessedTags = $scope.location.tags;
             $scope.location.tags = [];
             prerocessedTags.forEach(function (prerocessedTag) {
