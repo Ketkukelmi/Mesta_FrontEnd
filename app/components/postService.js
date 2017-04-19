@@ -67,7 +67,7 @@ app.factory('postService', ['$http', '$q', '$cookies', function ($http, $q, $coo
             };
             // Send the crafted request for adding location
             $http(req).then(function succesCallback(response) {
-                resolve(response.data);
+                response.data
             }, function errorCallback(response) {
                 console.log(response);
             });
