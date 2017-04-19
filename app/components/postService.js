@@ -53,7 +53,7 @@ app.factory('postService', ['$http', '$q', '$cookies', function ($http, $q, $coo
                 url: serverUrl + '/location/save',
                 headers: {
                     'Content-Type': 'application/json;',
-                    "Access-Control-Request-Credentials" : "true"
+                    "Access-Control-Request-Credentials": "true"
                 },
                 withCredentials: true,
                 data: {
@@ -65,11 +65,13 @@ app.factory('postService', ['$http', '$q', '$cookies', function ($http, $q, $coo
                     category: categories
                 }
             };
-            // Send the crafted request for adding location
-            $http(req).then(function succesCallback(response) {
-                response.data
-            }, function errorCallback(response) {
-                console.log(response);
+            return $q(function (resolve, reject) {
+                // Send the crafted request for adding location
+                $http(req).then(function succesCallback(response) {
+                    resolve(response.data);
+                }, function errorCallback(response) {
+                    console.log(response);
+                });
             });
         },
         addComment: function (location_id, newComment) {
@@ -82,7 +84,7 @@ app.factory('postService', ['$http', '$q', '$cookies', function ($http, $q, $coo
                 url: serverUrl + '/location/comment/save',
                 headers: {
                     'Content-Type': 'application/json;',
-                    "Access-Control-Request-Credentials" : "true"
+                    "Access-Control-Request-Credentials": "true"
                 },
                 withCredentials: true,
                 data: {
@@ -91,11 +93,13 @@ app.factory('postService', ['$http', '$q', '$cookies', function ($http, $q, $coo
                     comment: newComment
                 }
             };
-            // Send the crafted request for adding comment
-            $http(req).then(function succesCallback(response) {
-                resolve(response.data);
-            }, function errorCallback(response) {
-                console.log(response);
+            return $q(function (resolve, reject) {
+                // Send the crafted request for adding comment
+                $http(req).then(function succesCallback(response) {
+                    resolve(response.data);
+                }, function errorCallback(response) {
+                    console.log(response);
+                });
             });
         },
         addLike: function (location_id) {
@@ -108,15 +112,17 @@ app.factory('postService', ['$http', '$q', '$cookies', function ($http, $q, $coo
                 url: serverUrl + '/location/like/' + location_id,
                 headers: {
                     'Content-Type': 'application/json;',
-                    "Access-Control-Request-Credentials" : "true"
+                    "Access-Control-Request-Credentials": "true"
                 },
                 withCredentials: true
             };
-            // Send the crafted request for adding comment
-            $http(req).then(function succesCallback(response) {
-                resolve(response.data);
-            }, function errorCallback(response) {
-                console.log(response);
+            return $q(function (resolve, reject) {
+                // Send the crafted request for adding comment
+                $http(req).then(function succesCallback(response) {
+                    resolve(response.data);
+                }, function errorCallback(response) {
+                    console.log(response);
+                });
             });
         }
     }
