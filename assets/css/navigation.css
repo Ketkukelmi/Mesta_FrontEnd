@@ -1,7 +1,7 @@
 /* Position Navigation */
 navigation-view {
-    position: absolute;
-    height: 60px;
+        position: absolute;
+        height: 20px;
 }
 
 navigation-view  * {
@@ -41,19 +41,17 @@ navigation-view  * {
 
 .loginbutton{
     display: inline-block;
-    border-radius: 2px;
-    background-color: white;
+    background-color: transparent;
     border: none;
     color: black;
     text-align: center;
     font-size: 20px;
-    padding: 10px;
+    padding: 12px;
     width: 100px;
     transition: all 0.5s;
     cursor: pointer;
     position: absolute;
     right: -1px;
-    bottom: 0px;
 }
 
 .loginbutton span {
@@ -79,4 +77,44 @@ navigation-view  * {
 .loginbutton:hover span:after {
     opacity: 1;
     right: 0;
+}
+
+.addbutton{
+    display: inline-block;
+    background-color: transparent;
+    border: none;
+    color: black;
+    text-align: center;
+    font-size: 20px;
+    padding: 12px;
+    width: 100px;
+    transition: all 0.5s;
+    cursor: pointer;
+    position: absolute;
+    left: -1px;
+}
+
+.addbutton span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.addbutton span:after {
+    content: '\2295';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    left: -20px;
+    transition: 0.5s;
+}
+
+.addbutton:hover span {
+    padding-left: 25px;
+}
+
+.addbutton:hover span:after {
+    opacity: 1;
+    left: 0;
 }

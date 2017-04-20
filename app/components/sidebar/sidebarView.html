@@ -1,7 +1,7 @@
-<div class="ui grid">
+<div class="ui grid segment" style="height: 115px; margin-top: -15px;border-radius: 0px;">
     <!-- Search Bar -->
     <div class="top-row centered row">
-        <div class="fourteen wide column">
+        <div class="fifthteen wide column">
             <div class="ui icon input search-margin" style="display:block; margin: 0 auto;">
                 <input type="text" placeholder="Search..." style="width: 100%">
                 <i class="inverted circular search link icon"></i>
@@ -9,20 +9,18 @@
         </div>
     </div>
     <!-- Search Type button group -->
-    <div class="centered row">
-        <div class="">
-            <div class="nine wide column">
+        <div class="centered row">
+            <div class="fifthteen wide column">
                 <div class="ui buttons" style="display:block; margin: 0 auto;">
-                    <button class="ui button ng-class:{active: searchType === 'popular'}" ng-click="toggleSearchType()">
+                    <button class="ui button ng-class:{active: searchType === 'popular'}" ng-click="toggleSearchType()" style="width: 50%;">
                         Popular
                     </button>
-                    <button class="ui button ng-class:{active: searchType === 'nearby'}" ng-click="toggleSearchType()">
+                    <button class="ui button ng-class:{active: searchType === 'nearby'}" ng-click="toggleSearchType()" style="width: 50%;">
                         Nearby
                     </button>
                 </div>
             </div>
         </div>
-    </div>
     <div class="centered row">
         <!-- Search Result -->
         <div class="ui link cards">

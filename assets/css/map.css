@@ -1,8 +1,8 @@
 /* Make map span to the full screen of the app. */
 #map {
     position: relative;
-    top: 75px;
-    height: calc(100% - 75px);
+    top: 45px;
+    height: calc(100% - 45px);
     width: 75vw;
     left: 25vw;
 }
