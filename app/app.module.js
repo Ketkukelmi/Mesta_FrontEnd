@@ -27,4 +27,8 @@ app.run(['$http', '$rootScope', 'postService', function($http, $rootScope, postS
         // Send the like/unlike to the server
         postService.addLike(id);
     };
+    $rootScope.togglePostView = function (id) {
+        $rootScope.$broadcast('location_id', id);
+        togglePostView();
+    };
 }]);
