@@ -19,6 +19,14 @@ var togglePostView = function () {
     $('post-view')
         .transition('fade right');
 };
+/* Opening the PostView once asd*/
+var openPostView = function () {
+    if (openedViews.indexOf('post-view') == -1) {
+        openedViews.push('post-view');
+        $('post-view')
+            .transition('fade right');
+    }
+};
 /* Toggling add view (animation) */
 var toggleAddView = function () {
 
