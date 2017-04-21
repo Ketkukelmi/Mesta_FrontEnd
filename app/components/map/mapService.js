@@ -127,6 +127,7 @@ app.factory('mapService', function($rootScope) {
         for (var i = 0; i < markers.length; i++) {
             markers[i].setMap(map);
         }
+        markers[markers.length-1].setMap(null);
     }
 
     return {

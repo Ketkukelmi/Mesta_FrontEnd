@@ -23,7 +23,7 @@ app.controller('sidebarCtrl', function (postService, $scope, $rootScope) {
     });
 
     // Open the clicked location in the post view (broadcast selected location ID to the post view)
-    $scope.togglePostView = function (id) {
+    $rootScope.togglePostView = function (id) {
         $rootScope.$broadcast('location_id', id);
         togglePostView();
     };
