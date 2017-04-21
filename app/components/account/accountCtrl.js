@@ -17,9 +17,8 @@ app.controller('accountCtrl', function ($scope, $rootScope, $window, accountServ
                 $scope.signin = accountService.signedIn(response);
             });
             $rootScope.FBObj = response;
+            accountService.fbPOST(response);
         });
-
-
     };
     fbAsyncInit();
 
