@@ -17,6 +17,9 @@ app.controller('postCtrl', function ($scope, postService) {
             });
         });
     });
+    $scope.$on('location', function (event, location) {
+        $scope.location = location;
+    });
 
     // Add new comment to server and attach it to the view.
     $scope.comment = function (location_id) {

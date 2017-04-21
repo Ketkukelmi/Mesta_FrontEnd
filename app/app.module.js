@@ -2,7 +2,7 @@
 var app = angular.module("app", ["ngCookies"]);
 
 // Initialization
-app.run(['$http', '$rootScope', 'postService', function($http, $rootScope, postService) {
+app.run(['$http', '$rootScope', 'postService', '$timeout', function($http, $rootScope, postService, $timeout) {
 
     // Save currently downloaded locations globally
     $rootScope.$on('locations', function (event, locations) {
@@ -16,17 +16,20 @@ app.run(['$http', '$rootScope', 'postService', function($http, $rootScope, postS
         // Show/hide like
         currentUser = "TestMesta";
         var thumbsUp = $('#locationID_' + id).find('i.thumbs.up');
-        if ($rootScope.locations[id].likes.indexOf(currentUser) == -1) {
-            $rootScope.locations[id].likes.push(currentUser);
+        if ($rootScope.locations[id - 1].likes.indexOf(currentUser) == -1) {
+            $rootScope.locations[id - 1].likes.push(currentUser);
         }
         else {
-            $rootScope.locations[id].likes.splice($rootScope.locations[id].likes.indexOf(currentUser), 1);
+            $rootScope.locations[id - 1].likes.splice($rootScope.locations[id - 1].likes.indexOf(currentUser), 1);
         }
-        // $rootScope.$broadcast('locations', $rootScope.locations);
+        $rootScope.$broadcast('location', $rootScope.locations[id - 1]);
+
         // $rootScope.$broadcast('location_id', id);
         // Send the like/unlike to the server
         postService.addLike(id);
     };
+
+    // Transmit data to the sidebar view & toggle the sidebar view
     $rootScope.togglePostView = function (id) {
         $rootScope.$broadcast('location_id', id);
         togglePostView();
