@@ -56,7 +56,7 @@ sidebar-view * {
 }
 /* Search Result  */
 .search-found-places {
-    height: 80vh;
+    height: 100%;
     overflow-x: hidden;
     overflow-y: scroll;
     margin: 0 auto;
