@@ -8,6 +8,8 @@ app.factory('mapService', function($rootScope) {
     var eventtemp;
     var serverUrl = "http://api.the-mesta.com";
 
+    var image = 'https://nmc.ae/site-images/bluemarker.png';
+
     function initMap(){
         map = new google.maps.Map(document.getElementById('map'), {
             center: {
@@ -29,7 +31,6 @@ app.factory('mapService', function($rootScope) {
                 placeMarker(event.latLng);
             }
         });
-
 
         function placeMarker(location) {
 
@@ -91,6 +92,17 @@ app.factory('mapService', function($rootScope) {
                 })(markers, result[i]["description"], infowindow));
 
 				markers.push(infowindow);
+
+                (function(i) {
+                    google.maps.event.addListener(markers[i], 'mouseover', function() {
+                        markers[i].setIcon(image);
+                    });
+
+                    google.maps.event.addListener(markers[i], 'mouseout', function() {
+                        markers[i].setIcon(null);
+                    });
+                })(i);
+
             }
             // Broadcast locations to all views (sideview uses it)
             $rootScope.$broadcast('locations', result);
@@ -116,8 +128,6 @@ app.factory('mapService', function($rootScope) {
             markers[i].setMap(map);
         }
     }
-
-
 
     return {
         initMapReturn: function(){
@@ -147,8 +157,6 @@ app.factory('mapService', function($rootScope) {
                 canAddMarker = true;
                 clearMarkers();
             }
-
-
         }
     }
 
