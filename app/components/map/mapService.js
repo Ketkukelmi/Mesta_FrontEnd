@@ -105,7 +105,7 @@ app.factory('mapService', function($rootScope) {
                         console.log("clicked a marker boiiii");
                         //$on('location_id', function (){
                         $rootScope.$broadcast('location_id', result[i].id);
-                        togglePostView();
+                        openPostView();
                     });
                 })(i);
 
