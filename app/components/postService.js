@@ -125,23 +125,6 @@ app.factory('postService', ['$http', '$q', '$cookies', function ($http, $q, $coo
                     console.log(response);
                 });
             });
-        },
-
-        /*getFBnameById: function (fbID) {
-            var req = {
-                method: 'GET',
-                url: fbURL + fbID,
-                headers: {
-                    'Content-Type': 'application/json;',
-                    'Access-Control-Allow-Origin': "*"
-                }
-            };
-            return $q(function (resolve, reject) {
-                // Send the crafted request for adding comment
-                $http(req).then(function (response) {
-                    resolve(response.name);
-                });
-            });
-        }*/
+        }
     }
 }]);

@@ -38,8 +38,4 @@ app.controller('postCtrl', function ($scope, postService) {
         // Delete from the textarea
         $scope.newComment = "";
     };
-
-    /*$scope.fbID = function (fbID) {
-        return postService.getFBnameById(fbID);
-    };*/
 });

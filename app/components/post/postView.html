@@ -56,7 +56,7 @@
                                 <img src="">
                             </a>
                             <div class="content">
-                                <a class="author">{{comment.facebookID}}</a>
+                                <a class="author">{{comment.facebookID | getFBname}}</a>
                                 <div class="metadata">
                                     <span class="date">{{comment.date | date}}</span>
                                 </div>
