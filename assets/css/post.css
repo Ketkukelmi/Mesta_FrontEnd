@@ -47,11 +47,6 @@ post-view * {
     height: 45px !important;
 }
 .back.button i {
-    padding-left: 0px !important;
+    padding-left: 3px !important;
     margin-left: 10px !important;
-}
-
-/* Liking */
-.thumbs.up:hover {
-    font-size: 1.8em;
 }
