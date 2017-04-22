@@ -1,5 +1,5 @@
 app.controller('accountCtrl', function ($scope, $rootScope, $window, accountService) {
-
+var bool;
     $window.fbAsyncInit = function()
     {
         FB.init({
@@ -18,6 +18,11 @@ app.controller('accountCtrl', function ($scope, $rootScope, $window, accountServ
             });
             $rootScope.FBObj = response;
             accountService.getFBlogin(response);
+            if(response != null)
+            {
+                bool = true;
+                $rootScope.$broadcast('signedIn', bool);
+            }
         });
     };
     fbAsyncInit();

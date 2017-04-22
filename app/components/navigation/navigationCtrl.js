@@ -11,4 +11,11 @@ var bool;
              $scope.user = bool;
          });
     });
+    $scope.signedIn = false;
+
+    $scope.$on('signedIn', function (event, signedIn) {
+            $scope.$apply(function () {
+                $scope.signedIn = signedIn;
+            })
+    });
 });
