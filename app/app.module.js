@@ -2,7 +2,7 @@
 var app = angular.module("app", ["ngCookies"]);
 
 // Initialization
-app.run(['$http', '$rootScope', 'postService',, function($http, $rootScope, postService) {
+app.run(['$http', '$rootScope', 'postService', function($http, $rootScope, postService) {
 
     // Save currently downloaded locations globally
     $rootScope.$on('locations', function (event, locations) {
