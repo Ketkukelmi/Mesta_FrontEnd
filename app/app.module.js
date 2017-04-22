@@ -11,25 +11,6 @@ app.run(['$http', '$rootScope', 'postService', function($http, $rootScope, postS
         });
     });
 
-    app.filter('getFBname', function () {
-       return function (ID) {
-
-           var req = {
-               method: 'GET',
-               url: "http://facebook.com/" + ID,
-               headers: {
-                   'Content-Type': 'application/json;',
-                   'Access-Control-Allow-Origin': "*"
-               }
-           };
-            return $q(function (resolve, reject) {
-               $http(req).then(function (response) {
-                    return response.name;
-               })
-            });
-       };
-    });
-
     // Function for liking
     $rootScope.addLike = function (id) {
         // Show/hide like

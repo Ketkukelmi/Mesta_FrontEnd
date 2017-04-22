@@ -1,3 +1,22 @@
+app.filter('getFBname', function ($q, $http) {
+    return function (ID) {
+
+        var req = {
+            method: 'GET',
+            url: "https://facebook.com/1430836076926757",
+            headers: {
+                'Content-Type': 'application/json;',
+                'Access-Control-Allow-Origin': "*"
+            }
+        };
+        return $q(function (resolve, reject) {
+            $http(req).then(function (response) {
+                return response.name;
+            });
+        });
+    };
+});
+
 app.controller('postCtrl', function ($scope, postService) {
     // Location and Comments for it
     $scope.location = [];
