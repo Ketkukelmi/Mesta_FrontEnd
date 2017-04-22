@@ -41,6 +41,14 @@ post-view * {
 .back.button {
     position: relative;
     top:10px;
+    width: 110px !important;
+    left: -30px !important;
+    border-radius: 0 !important;
+    height: 45px !important;
+}
+.back.button i {
+    padding-left: 0px !important;
+    margin-left: 10px !important;
 }
 
 /* Liking */
