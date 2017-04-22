@@ -53,7 +53,15 @@ navigation-view  * {
     position: absolute;
     right: -1px;
     outline: none;
+}
 
+@-moz-document url-prefix() {
+    .loginbutton{
+        margin-top: 12px;
+    }
+    .addbutton{
+        margin-top: 12px;
+    }
 }
 
 .loginbutton span {
