@@ -28,6 +28,7 @@ app.factory('accountService', ['$http', '$q', '$cookies', function($http, $q, $c
             var url = serverUrl + '/account/fblogin/' + response.authResponse.userID + '/' + response.authResponse.accessToken + '/';
             return $q(function (resolve, reject) {
                 $http.get(url).then(function (response) {
+                    console.log(response);
                     resolve(response.data);
                 });
             });
