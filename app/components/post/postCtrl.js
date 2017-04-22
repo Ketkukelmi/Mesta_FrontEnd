@@ -2,6 +2,7 @@ app.controller('postCtrl', function ($scope, postService) {
     // Location and Comments for it
     $scope.location = [];
     $scope.comments = [];
+    $scope.signedIn = false;
 
     // Fetch new ID whenever broadcasted and download location information based on that ID.
     $scope.$on('location_id', function (event, location_id) {
@@ -17,8 +18,15 @@ app.controller('postCtrl', function ($scope, postService) {
             });
         });
     });
+
+    // Fetches location if location is updated (e.g. liked by the user)
     $scope.$on('location', function (event, location) {
         $scope.location = location;
+    });
+
+    // Fetches the boolean when the user becomes signed in
+    $scope.$on('signedIn', function (event, signedIn) {
+        $scope.signedIn = signedIn;
     });
 
     // Add new comment to server and attach it to the view.

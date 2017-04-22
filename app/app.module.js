@@ -2,7 +2,7 @@
 var app = angular.module("app", ["ngCookies"]);
 
 // Initialization
-app.run(['$http', '$rootScope', 'postService', '$timeout', function($http, $rootScope, postService, $timeout) {
+app.run(['$http', '$rootScope', 'postService',, function($http, $rootScope, postService) {
 
     // Save currently downloaded locations globally
     $rootScope.$on('locations', function (event, locations) {
@@ -24,7 +24,6 @@ app.run(['$http', '$rootScope', 'postService', '$timeout', function($http, $root
         }
         $rootScope.$broadcast('location', $rootScope.locations[id - 1]);
 
-        // $rootScope.$broadcast('location_id', id);
         // Send the like/unlike to the server
         postService.addLike(id);
     };
