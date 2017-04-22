@@ -3,7 +3,6 @@ app.factory('accountService', ['$http', '$q', '$cookies', function($http, $q, $c
     return {
 
         statusChangeCallback: function (response) {
-            console.log('statusChangeCallback');
             console.log(response);
             if (response.status === 'connected')
             {
@@ -25,8 +24,15 @@ app.factory('accountService', ['$http', '$q', '$cookies', function($http, $q, $c
 
         getFBlogin: function (response) {
             // Set the API endpoint
-            var url = serverUrl + '/account/fblogin/' + response.authResponse.userID + '/' + response.authResponse.accessToken + '/';
-            return $q(function (resolve, reject) {
+            if(response.status === 'connected')
+            {
+                var url = serverUrl + '/account/fblogin/' + response.authResponse.userID + '/' + response.authResponse.accessToken + '/';
+            }
+            else
+            {
+                return;
+            }
+            return $q(function (resolve) {
                 $http.get(url).then(function (response) {
                     console.log(response);
                     resolve(response.data);
