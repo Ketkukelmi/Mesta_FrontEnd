@@ -43,7 +43,7 @@ app.factory('postService', ['$http', '$q', '$cookies', function ($http, $q, $coo
                 });
             });
         },
-        addLocation: function (latitude, longitude, name, description, tags, categories) {
+        addLocation: function (latitude, longitude, name, description, tags, categories, image) {
             // Credentials
             var tags = tags.split(',');
             $cookies.put("fbLoginID", "TestMesta", {domain: ".the-mesta.com"});
@@ -66,12 +66,29 @@ app.factory('postService', ['$http', '$q', '$cookies', function ($http, $q, $coo
                     category: categories
                 }
             };
+
             return $q(function (resolve, reject) {
                 // Send the crafted request for adding location
                 $http(req).then(function succesCallback(response) {
-                    resolve(response.data);
+                    var fd = new FormData();
+                    console.log(image);
+                    fd.append("file", image);
+                    fd.append("id", response.data.id);
+
+                    $http.post("http://i.the-mesta.com/upload", fd, {
+                        withCredentials: true,
+                        transformRequest: angular.identity,
+                        headers: {
+                            "Content-Type": undefined,
+                            "Access-Control-Request-Credentials":"true"
+                        }
+                    }).then(function succesCallback(response){
+                        resolve(response);
+                    }, function errorCallback(response){
+                        reject(response);
+                    });
                 }, function errorCallback(response) {
-                    console.log(response);
+                    reject(response);
                 });
             });
         },

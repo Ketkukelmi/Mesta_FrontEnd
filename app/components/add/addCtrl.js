@@ -5,10 +5,16 @@ app.controller('addCtrl', function ($scope, $rootScope, mapService, postService)
     $scope.description = "";
     $scope.tags = "";
     $scope.categories = "";
-    $scope.images;
+
+    $scope.submitFiles = function($files) {
+        angular.forEach($files, function (value, key) {
+            $scope.image = value;
+        });
+    }
 
     $scope.addLocation = function () {
-        postService.addLocation($scope.latitude, $scope.longitude, $scope.name, $scope.description, $scope.tags,$scope.categories, $scope.images);
+        console.log($scope.images);
+        postService.addLocation($scope.latitude, $scope.longitude, $scope.name, $scope.description, $scope.tags,$scope.categories, $scope.image);
     };
 
     $('map-view').on('click', function () {
@@ -19,3 +25,12 @@ app.controller('addCtrl', function ($scope, $rootScope, mapService, postService)
     });
 
 });
+
+app.directive("ngFiles", ["$parse", function ($parse) {
+    return function(scope, element, attrs) {
+        var onChange = $parse(attrs.ngFiles);
+        element.on("change", function (event) {
+            onChange(scope, { $files: event.target.files });
+        });
+    };
+} ]);
