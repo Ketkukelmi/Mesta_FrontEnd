@@ -1,4 +1,4 @@
-app.factory('postService', ['$http', '$q', '$cookies', function ($http, $q, $cookies) {
+app.factory('postService', ['$http', '$q', '$cookies', '$rootScope', function ($http, $q, $cookies, $rootScope) {
     serverUrl = "http://api.the-mesta.com";
     fbURL = "http://facebook.com/"
     return {
@@ -41,6 +41,14 @@ app.factory('postService', ['$http', '$q', '$cookies', function ($http, $q, $coo
                     // Attach found post to the response data sent to client
                     resolve(response.data);
                 });
+            });
+        },
+        searchLocationsByName: function(name) {
+            var url = (name == "" || name == undefined || name == null) ? serverUrl + '/location/all' : serverUrl + '/location/search/' + name;
+
+            $.getJSON(url, function(result) {
+                console.log(result);
+                $rootScope.$broadcast("locations", result);
             });
         },
         addLocation: function (latitude, longitude, name, description, tags, categories, image) {
