@@ -27,10 +27,10 @@
     <div class="ui link cards">
         <div class="search-found-places">
             <div class="ui card" ng-repeat="location in locations" id="locationID_{{location.id}}">
-                <div class="image" ng-click="togglePostView(location.id)">
+                <div class="image" ng-click="togglePostView(location)">
                     <img ng-src="{{location.images[0]}}">
                 </div>
-                <div class="content" ng-click="togglePostView(location.id)">
+                <div class="content" ng-click="togglePostView(location)">
                     <a class="header">{{location.name}}</a>
                     <div class="meta">
                         <span class="date">{{location.category}}</span>

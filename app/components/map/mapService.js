@@ -157,6 +157,13 @@ app.factory('mapService', function($rootScope) {
                 canAddMarker = true;
                 clearMarkers();
             }
+        },
+        goToLocation: function(lat, long){
+            var pos = {
+                    lat: lat,
+                    lng: long
+                };
+            map.setCenter(pos);
         }
     }
 

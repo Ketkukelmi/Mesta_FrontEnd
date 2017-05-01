@@ -29,8 +29,9 @@ app.run(['$http', '$rootScope', 'postService', function($http, $rootScope, postS
     };
 
     // Transmit data to the sidebar view & toggle the sidebar view
-    $rootScope.togglePostView = function (id) {
-        $rootScope.$broadcast('location_id', id);
+    $rootScope.togglePostView = function (location) {
+        $rootScope.$broadcast('location_id', location.id);
+        angular.element(document.getElementById("map")).scope().goToLocation(location.latitude, location.longitude);
         togglePostView();
     };
 }]);

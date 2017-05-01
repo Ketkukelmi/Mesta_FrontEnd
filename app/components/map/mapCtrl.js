@@ -12,4 +12,7 @@ app.controller('mapCtrl', function ($scope, mapService) {
         mapService.changeCanAddMarker();
         //console.log("changeCanAddMarker called");
     }
+    $scope.goToLocation = function(lat, long){
+        mapService.goToLocation(lat,long);
+    }
 });
