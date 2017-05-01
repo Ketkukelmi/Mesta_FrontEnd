@@ -15,6 +15,7 @@ app.controller('addCtrl', function ($scope, $rootScope, mapService, postService)
     $scope.addLocation = function () {
         console.log($scope.images);
         postService.addLocation($scope.latitude, $scope.longitude, $scope.name, $scope.description, $scope.tags,$scope.categories, $scope.image);
+        toggleAddView();
     };
 
     $('map-view').on('click', function () {

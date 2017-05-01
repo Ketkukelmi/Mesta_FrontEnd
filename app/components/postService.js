@@ -121,6 +121,7 @@ app.factory('postService', ['$http', '$q', '$cookies', function ($http, $q, $coo
             });
         },
         addLike: function (location_id) {
+            console.log("add like to location" + location_id);
             // Credentials
             $cookies.put("fbLoginID", "TestMesta", {domain: ".the-mesta.com"});
             $cookies.put("token", "iHjQMJc44QUXtN56U3GT2he55wN4mlwucgJ4xxPwpyjUQRRXDWSZcu9IdtXWYf7wPkQSEJYJfkIhEBj2FhGtGiJWg6ZPsRGhwzWNYcyopIZbbfaZbU56WxVwPzdagcBaaRZ5KJXaSUVDMWo7rnDR4pXFJKTFqZcaLmKaQoIhDYYs5paNKBpdNpms18CJ64NcAYVggQ3Fri3jJEQirlkbojcbW8Dz3QSVi9GEaqn24j9wsQUjYmn1nyxq68FcC8", {domain: ".the-mesta.com"});

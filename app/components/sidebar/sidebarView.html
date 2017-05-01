@@ -40,9 +40,9 @@
                     </div>
                 </div>
                 <div class="extra content">
-                    <a>
+                    <a ng-click="addLike(location.id)">
                         <i class="thumbs up icon green" ng-class="{'outline': location.likes.indexOf('TestMesta') === -1}"
-                           ng-click="addLike(location.id)" aria-hidden="true" style="min-height:24px"></i>
+                            aria-hidden="true" style="min-height:24px"></i>
                         {{location.likes.length}} people approve
                     </a>
                 </div>

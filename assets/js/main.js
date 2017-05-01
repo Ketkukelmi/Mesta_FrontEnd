@@ -7,6 +7,8 @@ var openedViews = ['sidebar-view'];
 // Keep track of current hide/show button position
 var button_position = "right";
 
+var selectize;
+
 /* Toggling post view (animation) */
 var togglePostView = function () {
     // Remove/Add post view from/to array of opened views
@@ -31,11 +33,7 @@ var openPostView = function () {
 var toggleAddView = function () {
 
     var scope = angular.element(document.getElementById("map")).scope();
-    scope.$apply(function () {
-        scope.changeCanAddMarker();
-    });
-
-
+    scope.changeCanAddMarker();
 
     // Remove/Add add view from/to array of opened views
     if (button_position == "right") {
@@ -44,6 +42,7 @@ var toggleAddView = function () {
         }
         else {
             openedViews.splice(openedViews.indexOf('add-view'), 1);
+            clearInputFields();
         }
         // Show/Hide the view
         $('add-view').transition('fade right');
@@ -56,6 +55,20 @@ var toggleAddView = function () {
         toggleSideViews();
     }
 };
+
+var clearInputFields = function(){
+    var scope = angular.element(document.getElementById("addForm")).scope();
+    scope.latitude = 0;
+    scope.longitude = 0;
+    scope.name = "";
+    scope.description = "";
+    scope.tags = null;
+    scope.categories = "";
+    scope.image = null;
+    document.getElementById("imgPreview").src = "http://semantic-ui.com/images/wireframe/image.png";
+    document.getElementById("files").value = "";
+    selectize[0].selectize.clear();
+}
 
 var toggleSideViews = function () {
     // Show/hide the views
@@ -105,7 +118,7 @@ $(function () {
     // Initialize Tag Field(s)
     // Does not work without timeout - workaround (probably timing issues)
     setTimeout(function(){
-        $('#input-tags').selectize({
+        selectize = $('#input-tags').selectize({
             delimiter: ',',
             persist: false,
             create: function(input) {

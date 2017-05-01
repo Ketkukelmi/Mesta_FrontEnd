@@ -1,7 +1,6 @@
 app.factory('mapService', function($rootScope) {
     var markers = [];
     var map;
-    var infoWindow;
     var newLat = 0;
     var newLong = 0;
     var canAddMarker = false;
@@ -21,7 +20,6 @@ app.factory('mapService', function($rootScope) {
             },
             mapTypeId: google.maps.MapTypeId.ROADMAP
         });
-        infoWindow = new google.maps.InfoWindow({map: map});
 
         google.maps.event.addListener(map, 'click', function(event) {
             eventtemp = event;
@@ -60,15 +58,13 @@ app.factory('mapService', function($rootScope) {
                     lng: position.coords.longitude
                 };
 
-                infoWindow.setPosition(pos);
-                infoWindow.setContent('User location');
                 map.setCenter(pos);
             }, function() {
-                handleLocationError(true, infoWindow, map.getCenter());
+                handleLocationError(true, map.getCenter());
             });
         } else {
             // Browser doesn't support Geolocation
-            handleLocationError(false, infoWindow, map.getCenter());
+            handleLocationError(false, map.getCenter());
         }
 
 
@@ -114,11 +110,8 @@ app.factory('mapService', function($rootScope) {
             $rootScope.$broadcast('locations', result);
         })
     };
-    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(browserHasGeolocation ?
-            'Error: The Geolocation service failed.' :
-            'Error: Your browser doesn\'t support geolocation.');
+    function handleLocationError(browserHasGeolocation, pos) {
+        console.log("Geolocation is not supported by browser");
     };
 
     function clearMarkers() {
