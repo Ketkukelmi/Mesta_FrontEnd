@@ -100,7 +100,7 @@ app.factory('mapService', function($rootScope) {
                     google.maps.event.addListener(markers[i], 'click', function () {
                         console.log("clicked a marker boiiii");
                         //$on('location_id', function (){
-                        $rootScope.$broadcast('location_id', result[i].id);
+                        $rootScope.$broadcast('location_id', result[i]);
                         openPostView();
                     });
                 })(i);

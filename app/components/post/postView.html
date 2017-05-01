@@ -40,9 +40,9 @@
                                     <p ng-if="location.tags.length > 0">Tags: <span ng-repeat="tag in location.tags"><a ng-click="findByTag(tag)">{{tag}}</a> &nbsp;</span></p>
                                 </div>
                                 <div class="extra">
-                                    <a><i class="thumbs up icon green" ng-class="{'outline': location.likes.indexOf('TestMesta') === -1}"
-                                          ng-click="addLike(location.id)"aria-hidden="true"></i></a>
-                                    {{location.likes.length}} people approve<span ng-if="location.likes.length != 1">s</span> <span style="float: right">{{location.category}}</span>
+                                    <a ng-click="addLike(location)"><i class="thumbs up icon green" ng-class="{'outline': location.likes.indexOf('TestMesta') === -1}"
+                                          aria-hidden="true"></i> {{location.likes.length}} people approve<span ng-if="location.likes.length != 1">s</span></a>
+                                     <span style="float: right">{{location.category}}</span>
                                 </div>
                             </div>
                         </div>
