@@ -50,7 +50,9 @@ app.controller('postCtrl', ["$scope","postService", function ($scope, postServic
         // Push to the view
         //$scope.location.comments.push($scope.newComment);
         // Send to the server
-        postService.addComment(location_id, $scope.newComment, $scope.location.comments);
+        if($scope.newComment != ""){
+            postService.addComment(location_id, $scope.newComment, $scope.location.comments);
+        }
         // Delete from the textarea
         $scope.newComment = "";
     };

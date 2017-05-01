@@ -56,7 +56,7 @@
                                 <img src="">
                             </a>
                             <div class="content">
-                                <a class="author">{{comment.facebookID | getFBname}}</a>
+                                <a class="author">TestMesta</a>
                                 <div class="metadata">
                                     <span class="date">{{comment.date | date}}</span>
                                 </div>
@@ -70,9 +70,9 @@
                         </div>
                         <form class="ui reply form" ng-if="signedIn">
                             <div class="field">
-                                <textarea ng-model="newComment"></textarea>
+                                <textarea ng-model="$parent.newComment"></textarea>
                             </div>
-                            <div class="ui blue labeled submit icon button" ng-click="comment(location_id)">
+                            <div class="ui blue labeled submit icon button" ng-click="comment(location)">
                                 <i class="icon edit"></i> Add Reply
                             </div>
                         </form>
