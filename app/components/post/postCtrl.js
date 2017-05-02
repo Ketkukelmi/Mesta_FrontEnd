@@ -30,7 +30,10 @@ app.controller('postCtrl', ['$scope', 'postService', function ($scope, postServi
         var prerocessedTags = $scope.location.tags;
         $scope.location.tags = [];
         prerocessedTags.forEach(function (prerocessedTag) {
-            $scope.location.tags.push('#' + prerocessedTag);
+            if(prerocessedTag.indexOf("#") == -1)
+                $scope.location.tags.push('#' + prerocessedTag);
+            else
+                $scope.location.tags.push( prerocessedTag);
         });
     });
 
