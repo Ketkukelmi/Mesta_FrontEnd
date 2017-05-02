@@ -14,11 +14,20 @@
         <!-- Place favicon.ico in the root directory -->
 
         <!-- CSS styles reset, same baseline styling among all browsers -->
+        <!-- build:css -->
         <link rel="stylesheet" href="assets/css/normalize.css">
         <link rel="stylesheet" href="assets/css/main.css">
+        <!-- CSS sources -->
+        <link rel="stylesheet" href="assets/css/account.css">
+        <link rel="stylesheet" href="assets/css/map.css">
+        <link rel="stylesheet" href="assets/css/sidebar.css">
+        <link rel="stylesheet" href="assets/css/post.css">
+        <link rel="stylesheet" href="assets/css/add.css">
+        <link rel="stylesheet" href="assets/css/navigation.css">
+        <!-- endbuild -->
 
         <!-- JS Support for older browsers -->
-        <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 
         <!-- JQuery -->
         <script
@@ -37,17 +46,14 @@
         <script src="https://use.fontawesome.com/d55099ee94.js"></script>
 
         <!-- AngularJS Javascript Framework (requesting, receiving and processing data dynamically) -->
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script>
-        <script src="assets/js/vendor/angular-cookies.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-cookies.min.js"></script>
 
         <!-- Facebook Login-->
         <script src="//connect.facebook.net/en_US/all.js"></script>
 
         <!-- Google maps API script -->
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAS2iAe0iJ_Tt0-8upPh_vAcWyNeYD4uT0" async defer></script>
-
-        <!-- AngularJS scripts -->
-        <script src="app/app.module.js"></script>
 
         <!-- Selectize (Tag Input) -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/js/standalone/selectize.min.js"></script>
@@ -57,6 +63,10 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/css/swiper.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/js/swiper.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/js/swiper.jquery.min.js"></script>
+
+        <!-- build:js -->
+        <!-- AngularJS scripts -->
+        <script src="app/app.module.js"></script>
 
         <!-- Add New Location sources -->
         <script src="app/components/add/addDirective.js"></script>
@@ -87,14 +97,11 @@
         <script src="app/components/account/accountDirective.js"></script>
         <script src="app/components/account/accountCtrl.js"></script>
 
-
-        <!-- CSS sources -->
-        <link rel="stylesheet" href="assets/css/account.css">
-        <link rel="stylesheet" href="assets/css/map.css">
-        <link rel="stylesheet" href="assets/css/sidebar.css">
-        <link rel="stylesheet" href="assets/css/post.css">
-        <link rel="stylesheet" href="assets/css/add.css">
-        <link rel="stylesheet" href="assets/css/navigation.css">
+        <!-- Vanilla JS + JQuery site specific code -->
+        <script src="assets/js/plugins.js"></script>
+        <script src="assets/js/initialize.js"></script>
+        <script src="assets/js/views.js"></script>
+        <!-- endbuild -->
 
     </head>
     <body ng-app="app">
@@ -111,10 +118,6 @@
         <post-view ng-controller="postCtrl" class="transition hidden"></post-view>
         <!-- Add View is hidden by default -->
         <navigation-view ng-controller="navigationCtrl"></navigation-view>
-
-
-        <script src="assets/js/plugins.js"></script>
-        <script src="assets/js/main.js"></script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>

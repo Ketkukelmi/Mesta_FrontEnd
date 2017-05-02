@@ -1,4 +1,4 @@
-app.filter('getFBname', function ($q, $http) {
+app.filter('getFBname', ['$q', '$http',function ($q, $http) {
     return function (ID) {
 
         var req = {
@@ -15,26 +15,25 @@ app.filter('getFBname', function ($q, $http) {
             });
         });
     };
-});
-
-app.controller('postCtrl', function ($scope, postService) {
+}]);
+app.controller('postCtrl', ['$scope', 'postService', function ($scope, postService) {
     // Location and Comments for it
-    $scope.location = [];
+    $scope.location;
     $scope.comments = [];
     $scope.signedIn = false;
 
     // Fetch new ID whenever broadcasted and download location information based on that ID.
     $scope.$on('location_id', function (event, location_id) {
-        $scope.location_id = location_id;
+        $scope.location = location_id;
         // Download & Save
-        postService.getLocationById(location_id).then( function(location) {
-            $scope.location = location;
-            // Process tags received & attach to scope
-            var prerocessedTags = $scope.location.tags;
-            $scope.location.tags = [];
-            prerocessedTags.forEach(function (prerocessedTag) {
+        // Process tags received & attach to scope
+        var prerocessedTags = $scope.location.tags;
+        $scope.location.tags = [];
+        prerocessedTags.forEach(function (prerocessedTag) {
+            if(prerocessedTag.indexOf("#") == -1)
                 $scope.location.tags.push('#' + prerocessedTag);
-            });
+            else
+                $scope.location.tags.push( prerocessedTag);
         });
     });
 
@@ -51,10 +50,12 @@ app.controller('postCtrl', function ($scope, postService) {
     // Add new comment to server and attach it to the view.
     $scope.comment = function (location_id) {
         // Push to the view
-        $scope.location.comments.push($scope.newComment);
+        //$scope.location.comments.push($scope.newComment);
         // Send to the server
-        postService.addComment(location_id, $scope.newComment);
+        if($scope.newComment != ""){
+            postService.addComment(location_id, $scope.newComment, $scope.location.comments);
+        }
         // Delete from the textarea
         $scope.newComment = "";
     };
-});
+}]);

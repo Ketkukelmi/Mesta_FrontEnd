@@ -1,6 +1,6 @@
-app.factory('postService', ['$http', '$q', '$cookies', function ($http, $q, $cookies) {
+app.factory('postService', ['$http', '$q', '$cookies', '$rootScope', function ($http, $q, $cookies, $rootScope) {
     serverUrl = "http://api.the-mesta.com";
-    fbURL = "http://facebook.com/"
+    fbURL = "http://facebook.com/";
     return {
         getAllLocations: function () {
             // Set the API endpoint
@@ -43,7 +43,15 @@ app.factory('postService', ['$http', '$q', '$cookies', function ($http, $q, $coo
                 });
             });
         },
-        addLocation: function (latitude, longitude, name, description, tags, categories) {
+        searchLocationsByName: function(name) {
+            var url = (name == "" || name == undefined || name == null) ? serverUrl + '/location/all' : serverUrl + '/location/search/' + name;
+
+            $.getJSON(url, function(result) {
+                console.log(result);
+                $rootScope.$broadcast("locations", result);
+            });
+        },
+        addLocation: function (latitude, longitude, name, description, tags, categories, image) {
             // Credentials
             var tags = tags.split(',');
             $cookies.put("fbLoginID", "TestMesta", {domain: ".the-mesta.com"});
@@ -66,20 +74,44 @@ app.factory('postService', ['$http', '$q', '$cookies', function ($http, $q, $coo
                     category: categories
                 }
             };
+
             return $q(function (resolve, reject) {
                 // Send the crafted request for adding location
                 $http(req).then(function succesCallback(response) {
-                    resolve(response.data);
+                    var fd = new FormData();
+                    console.log(image);
+                    fd.append("file", image);
+                    fd.append("id", response.data.id);
+
+                    $http.post("http://i.the-mesta.com/upload", fd, {
+                        withCredentials: true,
+                        transformRequest: angular.identity,
+                        headers: {
+                            "Content-Type": undefined,
+                            "Access-Control-Request-Credentials":"true"
+                        }
+                    }).then(function succesCallback(response){
+                        resolve(response);
+                    }, function errorCallback(response){
+                        reject(response);
+                    });
                 }, function errorCallback(response) {
-                    console.log(response);
+                    reject(response);
                 });
             });
         },
-        addComment: function (location_id, newComment) {
+        addComment: function (location, newComment, field) {
             // Credentials
             $cookies.put("fbLoginID", "TestMesta", {domain: ".the-mesta.com"});
             $cookies.put("token", "iHjQMJc44QUXtN56U3GT2he55wN4mlwucgJ4xxPwpyjUQRRXDWSZcu9IdtXWYf7wPkQSEJYJfkIhEBj2FhGtGiJWg6ZPsRGhwzWNYcyopIZbbfaZbU56WxVwPzdagcBaaRZ5KJXaSUVDMWo7rnDR4pXFJKTFqZcaLmKaQoIhDYYs5paNKBpdNpms18CJ64NcAYVggQ3Fri3jJEQirlkbojcbW8Dz3QSVi9GEaqn24j9wsQUjYmn1nyxq68FcC8", {domain: ".the-mesta.com"});
             // Request for adding comment
+
+            var commentObject = {
+                    locationID: location.id,
+                    date: Date.now(),
+                    comment: newComment
+            };
+            console.log(commentObject);
             var req = {
                 method: 'POST',
                 url: serverUrl + '/location/comment/save',
@@ -88,15 +120,12 @@ app.factory('postService', ['$http', '$q', '$cookies', function ($http, $q, $coo
                     "Access-Control-Request-Credentials": "true"
                 },
                 withCredentials: true,
-                data: {
-                    locationID: location_id,
-                    date: Date.now(),
-                    comment: newComment
-                }
+                data: commentObject
             };
             return $q(function (resolve, reject) {
                 // Send the crafted request for adding comment
                 $http(req).then(function succesCallback(response) {
+                    field.push(commentObject);
                     resolve(response.data);
                 }, function errorCallback(response) {
                     console.log(response);
@@ -104,6 +133,7 @@ app.factory('postService', ['$http', '$q', '$cookies', function ($http, $q, $coo
             });
         },
         addLike: function (location_id) {
+            console.log("add like to location" + location_id);
             // Credentials
             $cookies.put("fbLoginID", "TestMesta", {domain: ".the-mesta.com"});
             $cookies.put("token", "iHjQMJc44QUXtN56U3GT2he55wN4mlwucgJ4xxPwpyjUQRRXDWSZcu9IdtXWYf7wPkQSEJYJfkIhEBj2FhGtGiJWg6ZPsRGhwzWNYcyopIZbbfaZbU56WxVwPzdagcBaaRZ5KJXaSUVDMWo7rnDR4pXFJKTFqZcaLmKaQoIhDYYs5paNKBpdNpms18CJ64NcAYVggQ3Fri3jJEQirlkbojcbW8Dz3QSVi9GEaqn24j9wsQUjYmn1nyxq68FcC8", {domain: ".the-mesta.com"});

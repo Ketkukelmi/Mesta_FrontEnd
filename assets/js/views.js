@@ -1,11 +1,13 @@
 /* ------------------------------------------------------------------------------------------------------------------ */
-/* Snippet for controlling side views on smaller screens -------------------------------------------------------------*/
+/* View Control ------------------------------------------------------------------------------------------------------*/
 /* ------------------------------------------------------------------------------------------------------------------ */
 
 // Keeps track of views that were opened (when we hide them, but not close (on smaller screens)
 var openedViews = ['sidebar-view'];
 // Keep track of current hide/show button position
 var button_position = "right";
+
+var selectize;
 
 /* Toggling post view (animation) */
 var togglePostView = function () {
@@ -27,15 +29,17 @@ var openPostView = function () {
             .transition('fade right');
     }
 };
+/* Showing account view (animation) */
+var toggleAccountView = function () {
+    $('account-view')
+        .modal('show')
+    ;
+};
 /* Toggling add view (animation) */
 var toggleAddView = function () {
 
     var scope = angular.element(document.getElementById("map")).scope();
-    scope.$apply(function () {
-        scope.changeCanAddMarker();
-    });
-
-
+    scope.changeCanAddMarker();
 
     // Remove/Add add view from/to array of opened views
     if (button_position == "right") {
@@ -44,6 +48,7 @@ var toggleAddView = function () {
         }
         else {
             openedViews.splice(openedViews.indexOf('add-view'), 1);
+            clearInputFields();
         }
         // Show/Hide the view
         $('add-view').transition('fade right');
@@ -56,6 +61,20 @@ var toggleAddView = function () {
         toggleSideViews();
     }
 };
+
+var clearInputFields = function(){
+    var scope = angular.element(document.getElementById("addForm")).scope();
+    scope.latitude = 0;
+    scope.longitude = 0;
+    scope.name = "";
+    scope.description = "";
+    scope.tags = null;
+    scope.categories = "";
+    scope.image = null;
+    document.getElementById("imgPreview").src = "http://semantic-ui.com/images/wireframe/image.png";
+    document.getElementById("files").value = "";
+    //selectize[0].selectize.clear();
+}
 
 var toggleSideViews = function () {
     // Show/hide the views
@@ -93,44 +112,4 @@ var moveSideHideButton = function () {
             button_position = "right";
             break;
     }
-};
-
-/* ------------------------------------------------------------------------------------------------------------------ */
-/* ------------------------------------------------------------------------------------------------------------------ */
-/* ------------------------------------------------------------------------------------------------------------------ */
-
-$(function () {
-    // Initialize Dropdown(s)
-    $('select.dropdown').dropdown();
-    // Initialize Tag Field(s)
-    // Does not work without timeout - workaround (probably timing issues)
-    setTimeout(function(){
-        $('#input-tags').selectize({
-            delimiter: ',',
-            persist: false,
-            create: function(input) {
-                return {
-                    value: input,
-                    text: input
-                }
-            }
-        });
-    }, 1000);
-    // Initialize Swiper
-    var swiper = new Swiper('.swiper-container', {
-        pagination: '.swiper-pagination',
-        nextButton: '.swiper-button-next',
-        prevButton: '.swiper-button-prev',
-        slidesPerView: 1,
-        paginationClickable: true,
-        spaceBetween: 30,
-        loop: true
-    });
-});
-
-/* Showing account view (animation) */
-var showAccountView = function () {
-    $('account-view')
-        .modal('show')
-    ;
 };
