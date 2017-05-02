@@ -26,7 +26,7 @@ gulp.task('scripts', function() {
     gulp.src(['app/**/*.js', 'assets/**/*.js'])
         .pipe(regexpReplace(/app\/components\/.*.\//g, 'app/views/'))
         .pipe(flatten())
-        //.pipe(uglify())
+        .pipe(uglify())
         .pipe(concat('app.bundle.min.js'))
         .pipe(gulp.dest('out/app'));
 });
@@ -54,7 +54,7 @@ gulp.task('root', function() {
             'js': 'app/app.bundle.min.js'
         }))
         .pipe(htmlify())
-        //.pipe(htmlmin({collapseWhitespace: true, removeComments: true, minifyJS: true}))
+        .pipe(htmlmin({collapseWhitespace: true, removeComments: true, minifyJS: true}))
         .pipe(gulp.dest('out'));
     // Get views
     gulp.src('app/components/*/*.html')
