@@ -55,6 +55,14 @@ navigation-view  * {
     outline: none;
 }
 
+@-moz-document url-prefix() {
+    .loginbutton{
+        margin-top: 12px;
+    }
+    .addbutton{
+        margin-top: 12px;
+    }
+}
 
 .loginbutton span {
     cursor: pointer;
@@ -89,7 +97,7 @@ navigation-view  * {
     text-align: center;
     font-size: 20px;
     padding: 12px;
-    width: 100px;
+    width: 80px;
     transition: all 0.5s;
     cursor: pointer;
     position: absolute;

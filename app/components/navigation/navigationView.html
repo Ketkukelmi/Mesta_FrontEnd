@@ -1,13 +1,13 @@
 <div class="ui grid">
     <div class="computer only row">
-        <div class="ui huge menu" style="width: 100%; height: 0%; top: -16px;">
-            <div class="left menu" ng-if = "signedIn === true">
-                <a class="item" onclick="toggleAddView()" style="width: 100px;">
+        <div class="ui segment" style="width: 100%; height: 0%; top: -16px;">
+            <div ng-if = "signedIn === true">
+                <a class="item" onclick="toggleAddView()" style="width: 80px;">
                     <button class="addbutton"><span>Add</span></button>
                 </a>
             </div>
-            <div class="left menu" ng-if ="signedIn === false">
-                <a class="item" onclick="showAccountView()" style="width: 100px;">
+            <div ng-if ="signedIn === false">
+                <a class="item" onclick="showAccountView()" style="width: 80px;">
                     <button class="addbutton"><span>Add</span></button>
                 </a>
             </div>
