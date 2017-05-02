@@ -14,7 +14,12 @@ app.controller('addCtrl', ['$scope', '$rootScope', 'mapService', 'postService', 
 
     $scope.addLocation = function () {
         console.log($scope.images);
-        postService.addLocation($scope.latitude, $scope.longitude, $scope.name, $scope.description, $scope.tags,$scope.categories, $scope.image);
+        if($scope.latitude != 0 && $scope.longitude != 0 && $scope.name != "" && $scope.categories != ""){
+            postService.addLocation($scope.latitude, $scope.longitude, $scope.name, $scope.description, $scope.tags,$scope.categories, $scope.image);
+            toggleAddView();
+        }else{
+            alert("Please fill in all the required fields! (Name and catergory)");
+        }  
     };
 
     $('map-view').on('click', function () {

@@ -1,7 +1,6 @@
 app.factory('mapService', ['$rootScope', function($rootScope) {
     var markers = [];
     var map;
-    var infoWindow;
     var newLat = 0;
     var newLong = 0;
     var canAddMarker = false;
@@ -21,7 +20,6 @@ app.factory('mapService', ['$rootScope', function($rootScope) {
             },
             mapTypeId: google.maps.MapTypeId.ROADMAP
         });
-        infoWindow = new google.maps.InfoWindow({map: map});
 
         google.maps.event.addListener(map, 'click', function(event) {
             eventtemp = event;
@@ -50,9 +48,8 @@ app.factory('mapService', ['$rootScope', function($rootScope) {
         initLocation();
 
     };
+
     function initLocation(){
-
-
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
                 var pos = {
@@ -60,80 +57,68 @@ app.factory('mapService', ['$rootScope', function($rootScope) {
                     lng: position.coords.longitude
                 };
 
-                infoWindow.setPosition(pos);
-                infoWindow.setContent('User location');
                 map.setCenter(pos);
             }, function() {
-                handleLocationError(true, infoWindow, map.getCenter());
+                handleLocationError(true, map.getCenter());
             });
         } else {
             // Browser doesn't support Geolocation
-            handleLocationError(false, infoWindow, map.getCenter());
+            handleLocationError(false, map.getCenter());
         }
+    };
 
+    function showLocationMarkers(locations) {
+        deleteMarkers();
 
-        $.getJSON(serverUrl + "/location/all", function(result) {
-            for (i = 0; i < result.length; i++) {
-                var location = new google.maps.LatLng(result[i]["latitude"], result[i]["longitude"]);
-                markers[i] = new google.maps.Marker({
-                    map: map,
-                    title: result[i]["name"],
-                    position: location
+        for (i = 0; i < locations.length; i++) {
+            var location = new google.maps.LatLng(locations[i]["latitude"], locations[i]["longitude"]);
+            var marker = new google.maps.Marker({
+                map: map,
+                title: locations[i]["name"],
+                position: location
+            });
+
+            markers[i] = marker;
+
+            (function(i) {
+                google.maps.event.addListener(markers[i], 'mouseover', function() {
+                    markers[i].setIcon(image);
                 });
 
-				var infowindow = new google.maps.InfoWindow();
+                google.maps.event.addListener(markers[i], 'mouseout', function() {
+                    markers[i].setIcon(null);
+                });
 
-                google.maps.event.addListener(markers, 'click', (function(markers, content, infowindow) {
-                    return function() {
-						hideInfoWindows();
-                        infowindow.setContent(content);
-                        infowindow.open(map, marker);
-                    };
-                })(markers, result[i]["description"], infowindow));
+                google.maps.event.addListener(markers[i], 'click', function () {
+                    //$on('location_id', function (){
+                    $rootScope.$broadcast('location_id', locations[i]);
+                    openPostView();
+                });
+            })(i);
+        }
+    }
 
-				markers.push(infowindow);
-
-                (function(i) {
-                    google.maps.event.addListener(markers[i], 'mouseover', function() {
-                        markers[i].setIcon(image);
-                    });
-
-                    google.maps.event.addListener(markers[i], 'mouseout', function() {
-                        markers[i].setIcon(null);
-                    });
-                    google.maps.event.addListener(markers[i], 'click', function () {
-                        console.log("clicked a marker boiiii");
-                        //$on('location_id', function (){
-                        $rootScope.$broadcast('location_id', result[i].id);
-                        openPostView();
-                    });
-                })(i);
-
-            }
-            // Broadcast locations to all views (sideview uses it)
-            $rootScope.$broadcast('locations', result);
-        })
-    };
-    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(browserHasGeolocation ?
-            'Error: The Geolocation service failed.' :
-            'Error: Your browser doesn\'t support geolocation.');
+    function handleLocationError(browserHasGeolocation, pos) {
+        console.log("Geolocation is not supported by browser");
     };
 
     function clearMarkers() {
         setMapOnAll(null);
     }
 
-    // Shows any markers currently in the array.
     function showMarkers() {
         setMapOnAll(map);
     }
+
+    function deleteMarkers() {
+        clearMarkers();
+        markers = [];
+    }
+
     function setMapOnAll(map) {
         for (var i = 0; i < markers.length; i++) {
             markers[i].setMap(map);
         }
-        markers[markers.length-1].setMap(null);
     }
 
     return {
@@ -164,6 +149,16 @@ app.factory('mapService', ['$rootScope', function($rootScope) {
                 canAddMarker = true;
                 clearMarkers();
             }
+        },
+        goToLocation: function(lat, long){
+            var pos = {
+                    lat: lat,
+                    lng: long
+                };
+            map.setCenter(pos);
+        },
+        setLocations: function(locations) {
+            showLocationMarkers(locations);
         }
     }
 

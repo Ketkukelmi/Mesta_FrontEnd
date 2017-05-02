@@ -12,25 +12,26 @@ app.run(['$http', '$rootScope', 'postService', function($http, $rootScope, postS
     });
 
     // Function for liking
-    $rootScope.addLike = function (id) {
+    $rootScope.addLike = function (location) {
         // Show/hide like
         currentUser = "TestMesta";
-        var thumbsUp = $('#locationID_' + id).find('i.thumbs.up');
-        if ($rootScope.locations[id - 1].likes.indexOf(currentUser) == -1) {
-            $rootScope.locations[id - 1].likes.push(currentUser);
+        var thumbsUp = $('#locationID_' + location.id).find('i.thumbs.up');
+        if ($rootScope.locations[$rootScope.locations.indexOf(location)].likes.indexOf(currentUser) == -1) {
+            $rootScope.locations[$rootScope.locations.indexOf(location)].likes.push(currentUser);
         }
         else {
-            $rootScope.locations[id - 1].likes.splice($rootScope.locations[id - 1].likes.indexOf(currentUser), 1);
+            $rootScope.locations[$rootScope.locations.indexOf(location)].likes.splice($rootScope.locations[$rootScope.locations.indexOf(location)].likes.indexOf(currentUser), 1);
         }
-        $rootScope.$broadcast('location', $rootScope.locations[id - 1]);
+        $rootScope.$broadcast('location', $rootScope.locations[$rootScope.locations.indexOf(location)]);
 
         // Send the like/unlike to the server
-        postService.addLike(id);
+        postService.addLike(location.id);
     };
 
     // Transmit data to the sidebar view & toggle the sidebar view
-    $rootScope.togglePostView = function (id) {
-        $rootScope.$broadcast('location_id', id);
+    $rootScope.togglePostView = function (location) {
+        $rootScope.$broadcast('location_id', location);
+        angular.element(document.getElementById("map")).scope().goToLocation(location.latitude, location.longitude);
         togglePostView();
     };
 }]);
