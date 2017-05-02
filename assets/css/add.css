@@ -38,14 +38,20 @@ add-view * {
 }
 
 /* Back Button Positioning */
-.back.button {
-    position: relative;
-    width: 100px;
-    height: 50px;
-    top: -1px;
-    left: -25px;
-    background: none;
-    color: #222222;
+.backButton {
+    display: inline-block;
+    background-color: transparent;
+    border: none;
+    color: black;
+    text-align: center;
+    font-size: 20px;
+    padding: 12px;
+    width: 80px;
+    transition: all 0.5s;
+    cursor: pointer;
+    position: absolute;
+    right: -1px;
+    outline: none;
 
 }
 
