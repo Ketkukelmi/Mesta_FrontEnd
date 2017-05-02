@@ -1,4 +1,4 @@
-app.controller('navigationCtrl', function ($scope, accountService) {
+app.controller('navigationCtrl', [ '$scope', 'accountService', function ($scope, accountService) {
 var bool;
 
      FB.getLoginStatus(function(response) {
@@ -18,4 +18,4 @@ var bool;
                 $scope.signedIn = signedIn;
             })
     });
-});
+}]);

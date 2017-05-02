@@ -1,6 +1,6 @@
 app.factory('postService', ['$http', '$q', '$cookies', function ($http, $q, $cookies) {
     serverUrl = "http://api.the-mesta.com";
-    fbURL = "http://facebook.com/"
+    fbURL = "http://facebook.com/";
     return {
         getAllLocations: function () {
             // Set the API endpoint

@@ -1,4 +1,4 @@
-app.controller('mapCtrl', function ($scope, mapService) {
+app.controller('mapCtrl', ['$scope', 'mapService', function ($scope, mapService) {
     $scope.mapInitialized = false;
 
     $scope.initMap = function () {
@@ -12,4 +12,4 @@ app.controller('mapCtrl', function ($scope, mapService) {
         mapService.changeCanAddMarker();
         //console.log("changeCanAddMarker called");
     }
-});
+}]);

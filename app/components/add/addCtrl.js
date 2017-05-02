@@ -1,4 +1,4 @@
-app.controller('addCtrl', function ($scope, $rootScope, mapService, postService) {
+app.controller('addCtrl', ['$scope', '$rootScope', 'mapService', 'postService', function ($scope, $rootScope, mapService, postService) {
     $scope.latitude = 0;
     $scope.longitude = 0;
     $scope.name = "";
@@ -24,7 +24,7 @@ app.controller('addCtrl', function ($scope, $rootScope, mapService, postService)
         });
     });
 
-});
+}]);
 
 app.directive("ngFiles", ["$parse", function ($parse) {
     return function(scope, element, attrs) {

@@ -1,5 +1,5 @@
 /* ------------------------------------------------------------------------------------------------------------------ */
-/* Snippet for controlling side views on smaller screens -------------------------------------------------------------*/
+/* View Control ------------------------------------------------------------------------------------------------------*/
 /* ------------------------------------------------------------------------------------------------------------------ */
 
 // Keeps track of views that were opened (when we hide them, but not close (on smaller screens)
@@ -26,6 +26,12 @@ var openPostView = function () {
         $('post-view')
             .transition('fade right');
     }
+};
+/* Showing account view (animation) */
+var toggleAccountView = function () {
+    $('account-view')
+        .modal('show')
+    ;
 };
 /* Toggling add view (animation) */
 var toggleAddView = function () {
@@ -71,7 +77,6 @@ var toggleSideViews = function () {
     // Move the button
     moveSideHideButton();
 };
-
 /* Function for moving hide/show button on smaller screens */
 var moveSideHideButton = function () {
     if ($('#showHideSidebarButton').hasClass('visible')) {
@@ -93,44 +98,46 @@ var moveSideHideButton = function () {
             button_position = "right";
             break;
     }
-};
-
-/* ------------------------------------------------------------------------------------------------------------------ */
-/* ------------------------------------------------------------------------------------------------------------------ */
-/* ------------------------------------------------------------------------------------------------------------------ */
-
-$(function () {
-    // Initialize Dropdown(s)
-    $('select.dropdown').dropdown();
-    // Initialize Tag Field(s)
-    // Does not work without timeout - workaround (probably timing issues)
-    setTimeout(function(){
-        $('#input-tags').selectize({
-            delimiter: ',',
-            persist: false,
-            create: function(input) {
-                return {
-                    value: input,
-                    text: input
-                }
-            }
-        });
-    }, 1000);
-    // Initialize Swiper
-    var swiper = new Swiper('.swiper-container', {
-        pagination: '.swiper-pagination',
-        nextButton: '.swiper-button-next',
-        prevButton: '.swiper-button-prev',
-        slidesPerView: 1,
-        paginationClickable: true,
-        spaceBetween: 30,
-        loop: true
-    });
-});
-
-/* Showing account view (animation) */
-var showAccountView = function () {
-    $('account-view')
-        .modal('show')
-    ;
+};/* Function for moving hide/show button on smaller screens */
+var moveSideHideButton = function () {
+    if ($('#showHideSidebarButton').hasClass('visible')) {
+        $('#showHideSidebarButton').addClass('side_hidden');
+        $('#showHideSidebarButton').removeClass('visible');
+        $('#showHideSidebarButton i.left.icon').removeClass('left').addClass('right');
+    }
+    else {
+        $('#showHideSidebarButton').addClass('visible');
+        $('#showHideSidebarButton').removeClass('side_hidden');
+        $('#showHideSidebarButton i.right.icon').removeClass('right').addClass('left');
+    }
+    // Keep track of current button position - change the record
+    switch (button_position) {
+        case "right":
+            button_position = "left";
+            break;
+        case "left":
+            button_position = "right";
+            break;
+    }
+};/* Function for moving hide/show button on smaller screens */
+var moveSideHideButton = function () {
+    if ($('#showHideSidebarButton').hasClass('visible')) {
+        $('#showHideSidebarButton').addClass('side_hidden');
+        $('#showHideSidebarButton').removeClass('visible');
+        $('#showHideSidebarButton i.left.icon').removeClass('left').addClass('right');
+    }
+    else {
+        $('#showHideSidebarButton').addClass('visible');
+        $('#showHideSidebarButton').removeClass('side_hidden');
+        $('#showHideSidebarButton i.right.icon').removeClass('right').addClass('left');
+    }
+    // Keep track of current button position - change the record
+    switch (button_position) {
+        case "right":
+            button_position = "left";
+            break;
+        case "left":
+            button_position = "right";
+            break;
+    }
 };

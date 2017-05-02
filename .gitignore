@@ -1,1 +1,5 @@
 .idea/
+out/
+.editorconfig
+.gitattributes
+node_modules/

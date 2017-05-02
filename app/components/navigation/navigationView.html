@@ -7,12 +7,12 @@
                 </a>
             </div>
             <div ng-if ="signedIn === false">
-                <a class="item" onclick="showAccountView()" style="width: 80px;">
+                <a class="item" onclick="toggleAccountView()" style="width: 80px;">
                     <button class="addbutton"><span>Add</span></button>
                 </a>
             </div>
             <div class="right menu">
-                <a class="item" onclick="showAccountView()" style="width: 100px;">
+                <a class="item" onclick="toggleAccountView()" style="width: 100px;">
                     <button class="loginbutton"><span>Login</span></button>
                 </a>
             </div>
@@ -20,7 +20,7 @@
     </div>
     <div class="mobile tablet only row">
         <div class="ui vertical buttons secondaryMenu">
-            <button class="circular ui icon massive blue button" onclick="showAccountView()">
+            <button class="circular ui icon massive blue button" onclick="toggleAccountView()">
                 <i class="icon sign in"></i>
             </button>
             <br>
@@ -30,7 +30,7 @@
                 </button>
             </div>
             <div ng-if = "signedIn === false">
-                <button class="circular ui icon massive green button" onclick="showAccountView()">
+                <button class="circular ui icon massive green button" onclick="toggleAccountView()">
                     <i class="icon plus"></i>
                 </button>
             </div>

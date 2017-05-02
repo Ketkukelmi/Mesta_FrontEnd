@@ -1,4 +1,4 @@
-app.controller('accountCtrl', function ($scope, $rootScope, $window, accountService) {
+app.controller('accountCtrl', ['$scope', '$rootScope', '$window', 'accountService', function ($scope, $rootScope, $window, accountService) {
 var bool;
     $window.fbAsyncInit = function()
     {
@@ -33,6 +33,6 @@ var bool;
         js.src = "//connect.facebook.net/en_US/sdk.js";
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
-});
+}]);
 
 

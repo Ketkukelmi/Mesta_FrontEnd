@@ -1,4 +1,4 @@
-app.filter('getFBname', function ($q, $http) {
+app.filter('getFBname', ['$q', '$http',function ($q, $http) {
     return function (ID) {
 
         var req = {
@@ -15,9 +15,9 @@ app.filter('getFBname', function ($q, $http) {
             });
         });
     };
-});
+}]);
 
-app.controller('postCtrl', function ($scope, postService) {
+app.controller('postCtrl', ['$scope', 'postService', function ($scope, postService) {
     // Location and Comments for it
     $scope.location = [];
     $scope.comments = [];
@@ -57,4 +57,4 @@ app.controller('postCtrl', function ($scope, postService) {
         // Delete from the textarea
         $scope.newComment = "";
     };
-});
+}]);

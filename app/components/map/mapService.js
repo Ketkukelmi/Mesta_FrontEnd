@@ -1,4 +1,4 @@
-app.factory('mapService', function($rootScope) {
+app.factory('mapService', ['$rootScope', function($rootScope) {
     var markers = [];
     var map;
     var infoWindow;
@@ -167,4 +167,4 @@ app.factory('mapService', function($rootScope) {
         }
     }
 
-});
+}]);

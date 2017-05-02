@@ -1,4 +1,4 @@
-app.controller('sidebarCtrl', function (postService, $scope, $rootScope) {
+app.controller('sidebarCtrl', ['postService', '$scope', '$rootScope', function (postService, $scope, $rootScope) {
     $scope.searchType = "popular";
 
     // Toggle between search modes
@@ -23,4 +23,4 @@ app.controller('sidebarCtrl', function (postService, $scope, $rootScope) {
     });
 
     // Open the clicked location in the post view (broadcast selected location ID to the post view)
-});
+}]);
