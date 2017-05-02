@@ -1,4 +1,4 @@
-app.factory('accountService', ['$http', '$q', '$cookies', function($http, $q, $cookies) {
+app.factory('accountService', ['$http', '$q', '$cookies', '$rootScope', function($http, $q, $cookies, $rootScope) {
     var serverUrl = "http://api.the-mesta.com";
     return {
 
@@ -23,17 +23,35 @@ app.factory('accountService', ['$http', '$q', '$cookies', function($http, $q, $c
         },
 
         getFBlogin: function (response) {
-            // Set the API endpoint
+
             if(response.status === 'connected')
             {
-                var url = serverUrl + '/account/fblogin/' + response.authResponse.userID + '/' + response.authResponse.accessToken + '/';
+                // Set the API endpoint
+                var account = $rootScope.FBObj;
+                $cookies.put("fbLoginID", account.authResponse.userID, {domain: ".the-mesta.com"});
+                $cookies.put("AccessToken", account.authResponse.accessToken, {domain: ".the-mesta.com"});
+
+                // Request for logging in
+                var req = {
+                    method: 'POST',
+                    url: serverUrl + '/account/fblogin',
+                    headers: {
+                        'Content-Type': 'application/json;',
+                        "Access-Control-Request-Credentials": "true"
+                    },
+                    withCredentials: true,
+                    data: {
+                        fbLoginID: account.authResponse.userID,
+                        AccessToken: account.authResponse.accessToken
+                    }
+                };
             }
             else
             {
                 return;
             }
             return $q(function (resolve) {
-                $http.get(url).then(function (response) {
+                $http(req).then(function (response) {
                     console.log(response);
                     resolve(response.data);
                 });

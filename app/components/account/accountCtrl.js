@@ -1,4 +1,4 @@
-app.controller('accountCtrl', ['$scope', '$rootScope', '$window', 'accountService', function ($scope, $rootScope, $window, accountService) {
+app.controller('accountCtrl', ['$scope', '$rootScope', '$window', 'accountService', '$cookies', function ($scope, $rootScope, $window, accountService, $cookies) {
 var bool;
     $window.fbAsyncInit = function()
     {
@@ -22,6 +22,7 @@ var bool;
                 bool = true;
                 $rootScope.$broadcast('signedIn', bool);
             }
+            console.log($cookies)
         });
     };
     fbAsyncInit();

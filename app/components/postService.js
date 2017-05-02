@@ -1,4 +1,4 @@
-app.factory('postService', ['$http', '$q', '$cookies', '$rootScope', function ($http, $q, $cookies, $rootScope) {
+app.factory('postService', ['$http', '$q', '$rootScope', function ($http, $q, $rootScope) {
     serverUrl = "http://api.the-mesta.com";
     fbURL = "http://facebook.com/";
     return {
@@ -22,7 +22,6 @@ app.factory('postService', ['$http', '$q', '$cookies', '$rootScope', function ($
                 });
             });
         },
-        //TODO: Ask for in API endpoints requests
         getPopularLocations: function (longitude, latitude, offset) {
             // Set the API endpoint
             var url = serverUrl + '/location/popular/' + latitude + '/' + longitude + '/' + offset;
@@ -53,9 +52,8 @@ app.factory('postService', ['$http', '$q', '$cookies', '$rootScope', function ($
         },
         addLocation: function (latitude, longitude, name, description, tags, categories, image) {
             // Credentials
+            var account = $rootScope.FBObj;
             var tags = tags.split(',');
-            $cookies.put("fbLoginID", "TestMesta", {domain: ".the-mesta.com"});
-            $cookies.put("token", "iHjQMJc44QUXtN56U3GT2he55wN4mlwucgJ4xxPwpyjUQRRXDWSZcu9IdtXWYf7wPkQSEJYJfkIhEBj2FhGtGiJWg6ZPsRGhwzWNYcyopIZbbfaZbU56WxVwPzdagcBaaRZ5KJXaSUVDMWo7rnDR4pXFJKTFqZcaLmKaQoIhDYYs5paNKBpdNpms18CJ64NcAYVggQ3Fri3jJEQirlkbojcbW8Dz3QSVi9GEaqn24j9wsQUjYmn1nyxq68FcC8", {domain: ".the-mesta.com"});
             // Request for adding location
             var req = {
                 method: 'POST',
@@ -101,9 +99,7 @@ app.factory('postService', ['$http', '$q', '$cookies', '$rootScope', function ($
             });
         },
         addComment: function (location, newComment, field) {
-            // Credentials
-            $cookies.put("fbLoginID", "TestMesta", {domain: ".the-mesta.com"});
-            $cookies.put("token", "iHjQMJc44QUXtN56U3GT2he55wN4mlwucgJ4xxPwpyjUQRRXDWSZcu9IdtXWYf7wPkQSEJYJfkIhEBj2FhGtGiJWg6ZPsRGhwzWNYcyopIZbbfaZbU56WxVwPzdagcBaaRZ5KJXaSUVDMWo7rnDR4pXFJKTFqZcaLmKaQoIhDYYs5paNKBpdNpms18CJ64NcAYVggQ3Fri3jJEQirlkbojcbW8Dz3QSVi9GEaqn24j9wsQUjYmn1nyxq68FcC8", {domain: ".the-mesta.com"});
+            var account = $rootScope.FBObj;
             // Request for adding comment
 
             var commentObject = {
@@ -133,10 +129,8 @@ app.factory('postService', ['$http', '$q', '$cookies', '$rootScope', function ($
             });
         },
         addLike: function (location_id) {
+            var account = $rootScope.FBObj;
             console.log("add like to location" + location_id);
-            // Credentials
-            $cookies.put("fbLoginID", "TestMesta", {domain: ".the-mesta.com"});
-            $cookies.put("token", "iHjQMJc44QUXtN56U3GT2he55wN4mlwucgJ4xxPwpyjUQRRXDWSZcu9IdtXWYf7wPkQSEJYJfkIhEBj2FhGtGiJWg6ZPsRGhwzWNYcyopIZbbfaZbU56WxVwPzdagcBaaRZ5KJXaSUVDMWo7rnDR4pXFJKTFqZcaLmKaQoIhDYYs5paNKBpdNpms18CJ64NcAYVggQ3Fri3jJEQirlkbojcbW8Dz3QSVi9GEaqn24j9wsQUjYmn1nyxq68FcC8", {domain: ".the-mesta.com"});
             // Request for adding comment
             var req = {
                 method: 'POST',
