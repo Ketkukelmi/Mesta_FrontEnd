@@ -73,7 +73,7 @@ var clearInputFields = function(){
     scope.image = null;
     document.getElementById("imgPreview").src = "http://semantic-ui.com/images/wireframe/image.png";
     document.getElementById("files").value = "";
-    selectize[0].selectize.clear();
+    //selectize[0].selectize.clear();
 }
 
 var toggleSideViews = function () {
@@ -90,49 +90,7 @@ var toggleSideViews = function () {
     // Move the button
     moveSideHideButton();
 };
-/* Function for moving hide/show button on smaller screens */
-var moveSideHideButton = function () {
-    if ($('#showHideSidebarButton').hasClass('visible')) {
-        $('#showHideSidebarButton').addClass('side_hidden');
-        $('#showHideSidebarButton').removeClass('visible');
-        $('#showHideSidebarButton i.left.icon').removeClass('left').addClass('right');
-    }
-    else {
-        $('#showHideSidebarButton').addClass('visible');
-        $('#showHideSidebarButton').removeClass('side_hidden');
-        $('#showHideSidebarButton i.right.icon').removeClass('right').addClass('left');
-    }
-    // Keep track of current button position - change the record
-    switch (button_position) {
-        case "right":
-            button_position = "left";
-            break;
-        case "left":
-            button_position = "right";
-            break;
-    }
-};/* Function for moving hide/show button on smaller screens */
-var moveSideHideButton = function () {
-    if ($('#showHideSidebarButton').hasClass('visible')) {
-        $('#showHideSidebarButton').addClass('side_hidden');
-        $('#showHideSidebarButton').removeClass('visible');
-        $('#showHideSidebarButton i.left.icon').removeClass('left').addClass('right');
-    }
-    else {
-        $('#showHideSidebarButton').addClass('visible');
-        $('#showHideSidebarButton').removeClass('side_hidden');
-        $('#showHideSidebarButton i.right.icon').removeClass('right').addClass('left');
-    }
-    // Keep track of current button position - change the record
-    switch (button_position) {
-        case "right":
-            button_position = "left";
-            break;
-        case "left":
-            button_position = "right";
-            break;
-    }
-};
+
 /* Function for moving hide/show button on smaller screens */
 var moveSideHideButton = function () {
     if ($('#showHideSidebarButton').hasClass('visible')) {
