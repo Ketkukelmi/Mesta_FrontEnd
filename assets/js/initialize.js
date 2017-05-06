@@ -25,4 +25,7 @@ $(function () {
         spaceBetween: 30,
         loop: true
     });
+    // Initialize scrollbars
+    var container = document.getElementById('container');
+    Ps.initialize(container);
 });

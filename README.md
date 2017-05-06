@@ -4,7 +4,9 @@ Mesta Web Application is built with Gulp.
 
 See __gulpfile.js__ in the root folder to review/change build configuration.
 The result of the built is located in the *out* folder.
+
 ##Folder Structure
+
 ```
 index.html
 assets/
