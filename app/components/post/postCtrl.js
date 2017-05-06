@@ -11,6 +11,7 @@ app.filter('getFBname', ['$q', '$http',function ($q, $http) {
         };
         return $q(function (resolve, reject) {
             $http(req).then(function (response) {
+                console.log(response.data);
                 resolve(response.name);
             });
         });
