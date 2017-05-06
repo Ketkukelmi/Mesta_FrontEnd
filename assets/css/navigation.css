@@ -51,18 +51,11 @@ navigation-view  * {
     transition: all 0.5s;
     cursor: pointer;
     position: absolute;
-    right: -1px;
+    right: 10px;
     outline: none;
 }
 
-@-moz-document url-prefix() {
-    .loginbutton{
-        margin-top: 12px;
-    }
-    .addbutton{
-        margin-top: 12px;
-    }
-}
+
 
 .loginbutton span {
     cursor: pointer;
@@ -101,7 +94,7 @@ navigation-view  * {
     transition: all 0.5s;
     cursor: pointer;
     position: absolute;
-    left: -1px;
+    left: 10px;
     outline: none;
 }
 
