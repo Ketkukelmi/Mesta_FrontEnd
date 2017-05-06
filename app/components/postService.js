@@ -47,7 +47,23 @@ app.factory('postService', ['$http', '$q', '$rootScope', function ($http, $q, $r
 
             $.getJSON(url, function(result) {
                 console.log(result);
-                $rootScope.$broadcast("locations", result);
+                
+                function arrUnique(arr) {
+                    var cleaned = [];
+                    arr.forEach(function(itm) {
+                        var unique = true;
+                        cleaned.forEach(function(itm2) {
+                            if (angular.equals(itm,itm2)) unique = false;
+                        });
+                        if (unique)  cleaned.push(itm);
+                    });
+                    return cleaned;
+                }
+                
+                var resultWithoutDuplicates  = arrUnique(result);
+                console.log(resultWithoutDuplicates);
+                
+                $rootScope.$broadcast("locations", resultWithoutDuplicates); 
             });
         },
         addLocation: function (latitude, longitude, name, description, tags, categories, image) {
