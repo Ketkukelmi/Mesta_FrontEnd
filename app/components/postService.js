@@ -46,7 +46,6 @@ app.factory('postService', ['$http', '$q', '$rootScope', function ($http, $q, $r
             var url = (name == "" || name == undefined || name == null) ? serverUrl + '/location/all' : serverUrl + '/location/search/' + name;
 
             $.getJSON(url, function(result) {
-                console.log(result);
                 
                 function arrUnique(arr) {
                     var cleaned = [];
@@ -61,7 +60,7 @@ app.factory('postService', ['$http', '$q', '$rootScope', function ($http, $q, $r
                 }
                 
                 var resultWithoutDuplicates  = arrUnique(result);
-                console.log(resultWithoutDuplicates);
+
                 
                 $rootScope.$broadcast("locations", resultWithoutDuplicates); 
             });
