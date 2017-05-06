@@ -1,4 +1,4 @@
-app.filter('getFBname', ['$q', '$http',function ($q, $http) {
+app.filter('getFBName', ['$q', '$http',function ($q, $http) {
     return function (ID) {
 
         var req = {
@@ -11,8 +11,8 @@ app.filter('getFBname', ['$q', '$http',function ($q, $http) {
         };
         return $q(function (resolve, reject) {
             $http(req).then(function (response) {
-                console.log(response.data);
-                resolve(response.name);
+                console.log(response.data.name);
+                return resolve(response.data.name);
             });
         });
     };
