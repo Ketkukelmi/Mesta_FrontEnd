@@ -50,7 +50,24 @@ add-view * {
     transition: all 0.5s;
     cursor: pointer;
     position: absolute;
-    right: -1px;
+    left: -1px;
+    outline: none;
+
+}
+
+/* text Positioning */
+.newLocText {
+    display: inline-block;
+    background-color: transparent;
+    border: none;
+    color: black;
+    text-align: center;
+    padding: 12px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: pointer;
+    position: absolute;
+    right: -5px;
     outline: none;
 
 }
