@@ -22,11 +22,12 @@
             </div>
         </div>
 </div>
+<script src='dist/js/perfect-scrollbar.js'></script>
 <div class="centered row" style="height: calc(100% - 120px); overflow-y: scroll; overflow-x: hidden; overflow: -moz-scrollbars-vertical">
     <!-- Search Result -->
     <div class="ui link cards">
         <md-content class="search-found-places">
-            <md-content class="ui card" ng-repeat="location in locations" id="locationID_{{location.id}}">
+            <md-content class="ui card" ng-repeat="location in locations" id="locationID_{{location.id}} ">
                 <md-content class="image" ng-click="togglePostView(location)">
                     <img ng-src="{{location.images[0]}}">
                 </md-content>

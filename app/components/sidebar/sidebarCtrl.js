@@ -28,6 +28,9 @@ app.controller('sidebarCtrl', ['postService', '$scope', '$rootScope', '$timeout'
 
     updateSearch();
 
+    var container = document.getElementById('container');
+    Ps.initialize(container);
+
     // Initialize locations array (from location/all will be stored here)
     $scope.locations = [];
 
