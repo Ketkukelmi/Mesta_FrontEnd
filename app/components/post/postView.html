@@ -52,10 +52,10 @@
                         <h3 class="ui dividing header">Comments</h3>
                         <div class="comment" ng-repeat="comment in location.comments">
                             <a class="avatar">
-                                <img src="">
+                                <img ng-src="https://graph.facebook.com/{{comment.facebookID}}/picture">
                             </a>
                             <div class="content">
-                                <a class="author">TestMesta</a>
+                                <a class="author">{{1430836076926757 | getFBName}}</a>
                                 <div class="metadata">
                                     <span class="date">{{comment.date | date}}</span>
                                 </div>

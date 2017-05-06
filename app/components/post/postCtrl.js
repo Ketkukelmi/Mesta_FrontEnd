@@ -3,7 +3,7 @@ app.filter('getFBname', ['$q', '$http',function ($q, $http) {
 
         var req = {
             method: 'GET',
-            url: "https://graph.facebook.com/1430836076926757",
+            url: "https://graph.facebook.com/"+ID+"?access_token=1648610375442724|457b6d1b4d0d23b7d489277ca599dd7d",
             headers: {
                 'Content-Type': 'application/json;',
                 'Access-Control-Allow-Origin': "*"
