@@ -68,13 +68,13 @@
                                 </div>
                             </div>
                         </div>
-                        <form class="ui reply form" ng-if="signedIn">
+                        <form name="comment" class="ui reply form" ng-if="signedIn" novalidate>
                             <div class="field">
-                                <textarea ng-model="$parent.newComment"></textarea>
+                                <textarea ng-model="$parent.newComment" required></textarea>
                             </div>
-                            <div class="ui blue labeled submit icon button" ng-click="comment(location)">
+                            <button ng-disabled="comment.$invalid" class="ui blue labeled submit icon button" ng-click="comment(location)">
                                 <i class="icon edit"></i> Add Reply
-                            </div>
+                            </button>
                         </form>
                     </div>
                 </div>
