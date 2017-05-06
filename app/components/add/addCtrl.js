@@ -10,7 +10,7 @@ app.controller('addCtrl', ['$scope', '$rootScope', 'mapService', 'postService', 
         angular.forEach($files, function (value, key) {
             $scope.image = value;
         });
-    }
+    };
 
     $scope.addLocation = function () {
         console.log($scope.images);
@@ -19,7 +19,7 @@ app.controller('addCtrl', ['$scope', '$rootScope', 'mapService', 'postService', 
             toggleAddView();
         }else{
             alert("Please fill in all the required fields! (Name and catergory)");
-        }  
+        }
     };
 
     $('map-view').on('click', function () {

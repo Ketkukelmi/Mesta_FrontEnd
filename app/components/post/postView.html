@@ -67,11 +67,11 @@
                                 </div>
                             </div>
                         </div>
-                        <form name="comment" class="ui reply form" ng-if="signedIn" novalidate>
+                        <form name="commentForm" class="ui reply form" ng-if="signedIn" novalidate>
                             <div class="field">
                                 <textarea ng-model="$parent.newComment" required></textarea>
                             </div>
-                            <button ng-disabled="comment.$invalid" class="ui blue labeled submit icon button" ng-click="comment(location)">
+                            <button ng-disabled="commentForm.$invalid" class="ui blue labeled submit icon button" ng-click="comment(location)">
                                 <i class="icon edit"></i> Add Reply
                             </button>
                         </form>

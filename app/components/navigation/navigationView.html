@@ -12,9 +12,10 @@
                 </a>
             </div>
             <div class="right menu">
-                <a class="item" onclick="toggleAccountView()" style="width: 100px;">
+                <a ng-hide="signedIn" class="item" onclick="toggleAccountView()" style="width: 100px;">
                     <button class="loginbutton"><span>Login</span></button>
                 </a>
+                <a ng-show="signedIn" class="item" style="width: 100px;"><span class="loginbutton">{{FBObj.authResponse.userID | getFBName}}</span></a>
             </div>
         </div>
     </div>
