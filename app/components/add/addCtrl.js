@@ -1,6 +1,6 @@
 app.controller('addCtrl', ['$scope', '$rootScope', 'mapService', 'postService', function ($scope, $rootScope, mapService, postService) {
-    $scope.latitude = 0;
-    $scope.longitude = 0;
+    $scope.latitude = "";
+    $scope.longitude = "";
     $scope.name = "";
     $scope.description = "";
     $scope.tags = "";

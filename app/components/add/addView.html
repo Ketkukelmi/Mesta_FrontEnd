@@ -10,7 +10,7 @@
     <!-- Add Form -->
     <div class="centered row">
         <div class="fifteen wide column">
-            <form id="addForm" class="ui form" novalidate>
+            <form id="addForm" name="addForm" class="ui form" novalidate>
                 <div class="centered row">
                     <div class="fourteen wide column">
                         <h2 class="ui header">New Location</h2>
@@ -19,7 +19,7 @@
                 <div class="centered row">
                     <div class="seven wide column">
                         <img id="imgPreview" class="ui centered image" src="http://semantic-ui.com/images/wireframe/image.png">
-                        <input id="files" ng-files="submitFiles($files)" type="file" name="file" accept="image/png"/>
+                        <input id="files" ng-files="submitFiles($files)" type="file" name="file" accept="image/png" required />
                     </div>
                 </div>
                 <div class="field">
@@ -33,11 +33,13 @@
                 <div class="ui fields">
                     <div class="field">
                         <label>Longitude</label>
-                        <span ng-bind="longitude"></span>
+                        <span ng-bind="longitude"></span><span ng-show="longitude.length == 0">0</span>
+                        <input type="hidden" ng-bind="longitude" id="longitude" name="longitude" ng-model="longitude" required>
                     </div>
                     <div class="field">
                         <label>Latitude</label>
-                        <span ng-bind="latitude"></span>
+                        <span ng-bind="latitude"></span><span ng-show="latitude.length == 0">0</span>
+                        <input type="hidden" ng-bind="latitude" name="latitude" id="latitude" ng-model="latitude" required>
                     </div>
                 </div>
                 <div class="field">
@@ -46,7 +48,7 @@
                 </div>
                 <div class="field">
                     <label>Categories</label>
-                    <select name="categories" class="ui dropdown" ng-model="categories">
+                    <select name="categories" class="ui dropdown" ng-model="categories" required>
                         <option value="Nature">Nature</option>
                         <option value="Urban">Urban</option>
                         <option value="Technology">View</option>
@@ -55,7 +57,8 @@
                         <option value="View">View</option>
                     </select>
                 </div>
-                <button ng-disabled="addForm.$invalid" type="button"  class="ui button" ng-click="addLocation()"  role="button">Add</button>
+                <button ng-disabled="addForm.$invalid" type="button"
+                        class="ui right floated button" ng-click="addLocation()"  role="button">Add</button>
             </form>
         </div>
     </div>
