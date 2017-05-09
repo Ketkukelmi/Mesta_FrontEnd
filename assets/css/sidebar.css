@@ -19,7 +19,7 @@ sidebar-view * {
 @media screen and (min-width: 1600px) {
     sidebar-view {
         width: 19vw;
-        height: 106vh;
+        height: 107vh;
     }
 }
 
@@ -33,13 +33,13 @@ sidebar-view * {
 @media screen and (max-width: 992px) {
     sidebar-view {
         width: 40vw;
-        height: 108vh;
+        height: 107vh;
     }
 }
 @media screen and (max-width: 768px) {
     sidebar-view {
         width: 80vw;
-        height: 109vh;
+        height: 110vh;
     }
 }
 
