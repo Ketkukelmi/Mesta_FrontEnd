@@ -20,6 +20,10 @@ app.controller('sidebarCtrl', ['postService', '$scope', '$rootScope', '$timeout'
         }
     }
 
+    $scope.toggleAccountView = function () {
+        toggleAccountView();
+    };
+
     // Fetches the boolean when the user becomes signed in
     $scope.$on('signedIn', function (event, signedIn) {
         $scope.signedIn = signedIn;
