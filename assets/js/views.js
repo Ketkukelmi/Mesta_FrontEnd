@@ -71,7 +71,7 @@ var clearInputFields = function(){
     scope.tags = null;
     scope.categories = "";
     scope.image = null;
-    document.getElementById("imgPreview").src = "http://semantic-ui.com/images/wireframe/image.png";
+    document.getElementById("imgPreview").src = "http://i.the-mesta.com/0";
     document.getElementById("files").value = "";
     //selectize[0].selectize.clear();
 }
