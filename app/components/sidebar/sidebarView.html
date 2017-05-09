@@ -1,4 +1,4 @@
-<div class="ui grid segment" style="height: 115px; margin-top: -15px;border-radius: 0px;">
+<div class="ui grid segment" style="height: 73px; margin-top: -15px;border-radius: 0px;">
     <!-- Search Bar -->
     <div class="top-row centered row">
         <div class="fifthteen wide column">
@@ -9,18 +9,6 @@
         </div>
     </div>
     <!-- Search Type button group -->
-        <div class="centered row">
-            <div class="fifthteen wide column">
-                <div class="ui buttons" style="display:block; margin: 0 auto;">
-                    <button class="ui button ng-class:{active: searchType === 'popular'}" ng-click="toggleSearchType()" style="width: 50%;">
-                        Popular
-                    </button>
-                    <button class="ui button ng-class:{active: searchType === 'nearby'}" ng-click="toggleSearchType()" style="width: 50%;">
-                        Nearby
-                    </button>
-                </div>
-            </div>
-        </div>
 </div>
 <div class="centered row" style="height: calc(100% - 120px); overflow-y: scroll; overflow-x: hidden; overflow: -moz-scrollbars-vertical">
     <!-- Search Result -->
@@ -40,7 +28,12 @@
                     </md-content>
                 </md-content>
                 <md-content class="extra content">
-                    <a ng-click="addLike(location, FBId)">
+                    <a ng-show="singedIn" ng-click="addLike(location, FBId)">
+                        <i class="thumbs up icon green" ng-class="{'outline': location.likes.indexOf(FBId) === -1}"
+                            aria-hidden="true" style="min-height:24px"></i>
+                        {{location.likes.length}} people approve
+                    </a>
+                    <a ng-hide="singedIn">
                         <i class="thumbs up icon green" ng-class="{'outline': location.likes.indexOf(FBId) === -1}"
                             aria-hidden="true" style="min-height:24px"></i>
                         {{location.likes.length}} people approve
