@@ -11,6 +11,14 @@ app.controller('sidebarCtrl', ['postService', '$scope', '$rootScope', '$timeout'
         }
     };
 
+    $scope.getFirstOrDefaultImage = function(location) {
+        if (location.images.length > 0) {
+            return location.images[0];
+        } else {
+            return "http://i.the-mesta.com/0";
+        }
+    }
+
     var changed = false;
 
     $scope.$watch('searchValue', function() {
@@ -34,6 +42,7 @@ app.controller('sidebarCtrl', ['postService', '$scope', '$rootScope', '$timeout'
 
     // Get the locations from the service
     $scope.$on('locations', function (event, locations) {
+        console.log(locations.length);
         $scope.locations = locations;
     });
 

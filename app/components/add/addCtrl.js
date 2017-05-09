@@ -13,9 +13,12 @@ app.controller('addCtrl', ['$scope', '$rootScope', 'mapService', 'postService', 
     };
 
     $scope.addLocation = function () {
-        console.log($scope.images);
         if($scope.latitude != 0 && $scope.longitude != 0 && $scope.name != "" && $scope.categories != ""){
-            postService.addLocation($scope.latitude, $scope.longitude, $scope.name, $scope.description, $scope.tags,$scope.categories, $scope.image);
+            postService.addLocation($scope.latitude, $scope.longitude, $scope.name, $scope.description, $scope.tags,$scope.categories, $scope.image).then(function(result) {
+                postService.getAllLocations().then(function(result) {
+                    $rootScope.$broadcast("locations", result);
+                });
+            });
             toggleAddView();
         }else{
             alert("Please fill in all the required fields! (Name and catergory)");
@@ -23,10 +26,8 @@ app.controller('addCtrl', ['$scope', '$rootScope', 'mapService', 'postService', 
     };
 
     $('map-view').on('click', function () {
-        $scope.$apply(function () {
-            $scope.latitude = mapService.returnLan();
-            $scope.longitude = mapService.returnLng();
-        });
+        $scope.latitude = mapService.returnLan();
+        $scope.longitude = mapService.returnLng();
     });
 
 }]);

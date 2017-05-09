@@ -2,7 +2,8 @@
 sidebar-view {
     overflow-x: hidden;
     overflow-y: auto;
-    height: 100vh;
+    margin-bottom: 0 auto !important;
+    height: 106vh;
     width: 25vw;
     left: 0;
     top: 0;
@@ -18,23 +19,27 @@ sidebar-view * {
 @media screen and (min-width: 1600px) {
     sidebar-view {
         width: 19vw;
+        height: 106vh;
     }
 }
 
 @media screen and (max-width: 1280px) {
     sidebar-view {
         width: 35vw;
+        height: 107vh;
     }
 }
 
 @media screen and (max-width: 992px) {
     sidebar-view {
         width: 40vw;
+        height: 108vh;
     }
 }
 @media screen and (max-width: 768px) {
     sidebar-view {
         width: 80vw;
+        height: 109vh;
     }
 }
 
@@ -43,9 +48,8 @@ sidebar-view * {
 /* Search Bar */
 .top-row {
     margin-top:1px;
-    height: 55px;
+    height: 10px;
 }
-
 .search-margin {
     margin: 8px auto 6px auto !important;
 }

@@ -47,7 +47,7 @@ navigation-view  * {
     text-align: center;
     font-size: 20px;
     padding: 12px;
-    width: 100px;
+    width: auto;
     transition: all 0.5s;
     cursor: pointer;
     position: absolute;
@@ -122,3 +122,5 @@ navigation-view  * {
     opacity: 1;
     left: 0;
 }
+
+
