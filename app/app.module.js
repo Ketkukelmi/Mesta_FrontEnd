@@ -6,9 +6,7 @@ app.run(['$http', '$rootScope', 'postService', function($http, $rootScope, postS
 
     // Save currently downloaded locations globally
     $rootScope.$on('locations', function (event, locations) {
-        $rootScope.$apply(function () {
-            $rootScope.locations = locations;
-        });
+        $rootScope.locations = locations;
     });
 
     // Function for liking

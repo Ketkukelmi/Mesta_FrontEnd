@@ -9,6 +9,7 @@ post-view {
     background: white;
     position: fixed;
     z-index: 100 !important;
+    margin-bottom: 0 auto !important;
 }
 post-view * {
     z-index: 100 !important;

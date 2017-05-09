@@ -92,6 +92,7 @@ app.factory('mapService', ['$rootScope', function($rootScope) {
                 google.maps.event.addListener(markers[i], 'click', function () {
                     //$on('location_id', function (){
                     $rootScope.$broadcast('location_id', locations[i]);
+
                     openPostView();
                 });
             })(i);
@@ -142,7 +143,7 @@ app.factory('mapService', ['$rootScope', function($rootScope) {
             {
                 clearMarkers();
                 canAddMarker = false;
-                showMarkers()
+                showMarkers();
             }
             else
             {

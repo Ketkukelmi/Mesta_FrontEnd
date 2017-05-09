@@ -8,7 +8,6 @@
             </div>
         </div>
     </div>
-    <!-- Search Type button group -->
 </div>
 <div class="centered row" style="height: calc(100% - 120px); overflow-y: scroll; overflow-x: hidden; overflow: -moz-scrollbars-vertical">
     <!-- Search Result -->
@@ -16,7 +15,7 @@
         <md-content class="search-found-places">
             <md-content class="ui card" ng-repeat="location in locations" id="locationID_{{location.id}} ">
                 <md-content class="image" ng-click="togglePostView(location)">
-                    <img ng-src="{{location.images[0]}}">
+                    <img ng-src="{{getFirstOrDefaultImage(location)}}">
                 </md-content>
                 <md-content class="content" ng-click="togglePostView(location)">
                     <a class="header">{{location.name}}</a>
@@ -28,12 +27,12 @@
                     </md-content>
                 </md-content>
                 <md-content class="extra content">
-                    <a ng-show="singedIn" ng-click="addLike(location, FBId)">
+                    <a ng-hide="singedIn" ng-click="signedIn === true ? addLike(location, FBId) : toggleAccountView()">
                         <i class="thumbs up icon green" ng-class="{'outline': location.likes.indexOf(FBId) === -1}"
                             aria-hidden="true" style="min-height:24px"></i>
                         {{location.likes.length}} people approve
                     </a>
-                    <a ng-hide="singedIn">
+                    <a ng-show="singedIn">
                         <i class="thumbs up icon green" ng-class="{'outline': location.likes.indexOf(FBId) === -1}"
                             aria-hidden="true" style="min-height:24px"></i>
                         {{location.likes.length}} people approve

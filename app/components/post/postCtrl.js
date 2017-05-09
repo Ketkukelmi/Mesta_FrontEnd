@@ -1,4 +1,4 @@
-app.controller('postCtrl', ['$scope', 'postService', function ($scope, postService) {
+app.controller('postCtrl', ['$scope', 'postService', 'accountService', function ($scope, postService) {
     // Location and Comments for it
     $scope.location;
     $scope.signedIn = false;
@@ -24,6 +24,19 @@ app.controller('postCtrl', ['$scope', 'postService', function ($scope, postServi
     $scope.$on('signedIn', function (event, signedIn) {
         $scope.signedIn = signedIn;
     });
+
+    //Scope the accountView
+    $scope.toggleAccountView = function () {
+        toggleAccountView();
+    };
+
+    $scope.getFirstOrDefaultImage = function() {
+        if ($scope.location != undefined && $scope.location.images.length > 0) {
+            return $scope.location.images[0];
+        } else {
+            return "http://i.the-mesta.com/0";
+        }
+    }
 
     // Add new comment to server and attach it to the view.
     $scope.comment = function (location) {

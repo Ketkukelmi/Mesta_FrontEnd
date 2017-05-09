@@ -1,5 +1,6 @@
 app.controller('sidebarCtrl', ['postService', '$scope', '$rootScope', '$timeout', function (postService, $scope, $rootScope, $timeout) {
     $scope.searchType = "popular";
+    $scope.signedIn = false;
 
     // Toggle between search modes
     $scope.toggleSearchType = function () {
@@ -10,6 +11,23 @@ app.controller('sidebarCtrl', ['postService', '$scope', '$rootScope', '$timeout'
             $scope.searchType = "popular";
         }
     };
+
+    $scope.getFirstOrDefaultImage = function(location) {
+        if (location.images.length > 0) {
+            return location.images[0];
+        } else {
+            return "http://i.the-mesta.com/0";
+        }
+    }
+
+    $scope.toggleAccountView = function () {
+        toggleAccountView();
+    };
+
+    // Fetches the boolean when the user becomes signed in
+    $scope.$on('signedIn', function (event, signedIn) {
+        $scope.signedIn = signedIn;
+    });
 
     var changed = false;
 
@@ -34,6 +52,7 @@ app.controller('sidebarCtrl', ['postService', '$scope', '$rootScope', '$timeout'
 
     // Get the locations from the service
     $scope.$on('locations', function (event, locations) {
+        console.log(locations.length);
         $scope.locations = locations;
     });
 

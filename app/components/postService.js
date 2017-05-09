@@ -90,23 +90,27 @@ app.factory('postService', ['$http', '$q', '$rootScope', '$cookies', function ($
             return $q(function (resolve, reject) {
                 // Send the crafted request for adding location
                 $http(req).then(function succesCallback(response) {
-                    var fd = new FormData();
-                    console.log(image);
-                    fd.append("file", image);
-                    fd.append("id", response.data.id);
+                    if (image != null || image != undefined) {
+                        var fd = new FormData();
 
-                    $http.post("http://i.the-mesta.com/upload", fd, {
-                        withCredentials: true,
-                        transformRequest: angular.identity,
-                        headers: {
-                            "Content-Type": undefined,
-                            "Access-Control-Request-Credentials":"true"
-                        }
-                    }).then(function succesCallback(response){
+                        fd.append("file", image);
+                        fd.append("id", response.data.id);
+
+                        $http.post("http://i.the-mesta.com/upload", fd, {
+                            withCredentials: true,
+                            transformRequest: angular.identity,
+                            headers: {
+                                "Content-Type": undefined,
+                                "Access-Control-Request-Credentials":"true"
+                            }
+                        }).then(function succesCallback(response){
+                            resolve(response);
+                        }, function errorCallback(response){
+                            reject(response);
+                        });
+                    } else {
                         resolve(response);
-                    }, function errorCallback(response){
-                        reject(response);
-                    });
+                    }
                 }, function errorCallback(response) {
                     reject(response);
                 });

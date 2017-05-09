@@ -13,8 +13,8 @@
             <!-- Swiper -->
             <div class="swiper-container">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide" ng-repeat="image in location.images">
-                        <img ng-src="{{image}}" style="width:100%;">
+                    <div class="swiper-slide">
+                        <img ng-src="{{getFirstOrDefaultImage()}}" style="width:100%;">
                     </div>
                 </div>
                 <!-- Add Pagination -->
@@ -39,18 +39,17 @@
                                     <p ng-if="location.tags.length > 0">Tags: <span ng-repeat="tag in location.tags"><a ng-click="findByTag(tag)">{{tag}}</a> &nbsp;</span></p>
                                 </div>
                                 <div class="extra">
-                                    <a ng-click="addLike(location, FBId)">
+                                    <a ng-click="signedIn === true ? addLike(location, FBId) : toggleAccountView()">
                                         <i class="thumbs up icon green" ng-class="{'outline': location.likes.indexOf(FBId) === -1}" aria-hidden="true"></i>
                                         {{location.likes.length}} people approve
-                                        <span ng-if="location.likes.length != 1">s</span>
                                     </a>
-                                      <span style="float: right">{{location.category}}</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="ui secondary segment">
+                                    <span style="float: right">{{location.category}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui secondary segment">
                     <div class="ui minimal comments">
                         <h3 class="ui dividing header">Comments</h3>
                         <div class="comment" ng-repeat="comment in location.comments">
@@ -74,7 +73,7 @@
                     <button ng-hide="signedIn" class="ui blue labeled submit icon button" onclick="toggleAccountView()">
                         <i class="icon edit"></i> Add Reply
                     </button>
-                    <button ng-disabled="!newComment" class="ui blue labeled submit icon button" ng-click="comment(location)">
+                    <button ng-show="signedIn" ng-disabled="!newComment" class="ui blue labeled submit icon button" ng-click="comment(location)">
                         <i class="icon edit"></i> Add Reply
                     </button>
                 </div>
