@@ -94,7 +94,6 @@ app.factory('mapService', ['$rootScope', function($rootScope) {
                     $rootScope.$broadcast('location_id', locations[i]);
 
                     openPostView();
-                    togglePostView();
                 });
             })(i);
         }
