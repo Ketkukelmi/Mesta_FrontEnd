@@ -92,7 +92,9 @@ app.factory('mapService', ['$rootScope', function($rootScope) {
                 google.maps.event.addListener(markers[i], 'click', function () {
                     //$on('location_id', function (){
                     $rootScope.$broadcast('location_id', locations[i]);
+
                     openPostView();
+                    togglePostView();
                 });
             })(i);
         }
