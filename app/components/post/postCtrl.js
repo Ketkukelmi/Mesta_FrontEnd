@@ -25,6 +25,11 @@ app.controller('postCtrl', ['$scope', 'postService', 'accountService', function 
         $scope.signedIn = signedIn;
     });
 
+    //Scope the accountView
+    $scope.toggleAccountView = function () {
+        toggleAccountView();
+    };
+
     // Add new comment to server and attach it to the view.
     $scope.comment = function (location) {
         // Push to the view

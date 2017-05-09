@@ -14,7 +14,7 @@
             <div class="swiper-container">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide" ng-repeat="image in location.images">
-                        <img ng-src="{{image}}" style="width:100%;">
+                        <img ng-src="{{getFirstOrDefaultImage()}}" style="width:100%;">
                     </div>
                 </div>
                 <!-- Add Pagination -->
