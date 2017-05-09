@@ -39,6 +39,22 @@ navigation-view  * {
     }
 }
 
+.mestaText{
+    display: inline-block;
+    background-color: transparent;
+    border: none;
+    color: black;
+    text-align: center;
+    font-size: 20px;
+    padding: 5px;
+    width: 150px;
+    left: 43%;
+    transition: all 0.5s;
+    cursor: pointer;
+    position: absolute;
+    outline: none;
+}
+
 .loginbutton{
     display: inline-block;
     background-color: transparent;
