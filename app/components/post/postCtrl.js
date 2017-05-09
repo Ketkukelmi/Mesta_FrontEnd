@@ -31,13 +31,13 @@ app.controller('postCtrl', ['$scope', 'postService', 'accountService', function 
     };
 
     $scope.getFirstOrDefaultImage = function() {
-        if ($scope.location.images.length > 0) {
+        if ($scope.locations != null && $scope.location.images.length > 0) {
             return $scope.location.images[0];
         } else {
             return "http://i.the-mesta.com/0";
         }
     }
-    
+
     // Add new comment to server and attach it to the view.
     $scope.comment = function (location) {
         // Push to the view
