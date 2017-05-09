@@ -16,7 +16,6 @@ sidebar-view * {
     z-index: 10 !important;
 }
 
-
 @media screen and (min-width: 1600px) {
     sidebar-view {
         width: 19vw;
