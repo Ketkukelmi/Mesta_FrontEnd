@@ -39,7 +39,7 @@
                                     <p ng-if="location.tags.length > 0">Tags: <span ng-repeat="tag in location.tags"><a ng-click="findByTag(tag)">{{tag}}</a> &nbsp;</span></p>
                                 </div>
                                 <div class="extra">
-                                    <a ng-click="accountService.signedIn() === true ? addLike(location, FBId) : toggleAccountView()">
+                                    <a ng-click="signedIn === true ? addLike(location, FBId) : toggleAccountView()">
                                         <i class="thumbs up icon green" ng-class="{'outline': location.likes.indexOf(FBId) === -1}" aria-hidden="true"></i>
                                         {{location.likes.length}} people approve
                                         <span ng-if="location.likes.length != 1">s</span>

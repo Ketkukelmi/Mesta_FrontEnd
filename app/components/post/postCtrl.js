@@ -1,4 +1,4 @@
-app.controller('postCtrl', ['$scope', 'postService', function ($scope, postService) {
+app.controller('postCtrl', ['$scope', 'postService', 'accountService', function ($scope, postService) {
     // Location and Comments for it
     $scope.location;
     $scope.signedIn = false;
