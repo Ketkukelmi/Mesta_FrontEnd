@@ -3,7 +3,7 @@ sidebar-view {
     overflow-x: hidden;
     overflow-y: auto;
     margin-bottom: 0 auto !important;
-    height: 106vh;
+    height: 108vh;
     width: 25vw;
     left: 0;
     top: 0;
@@ -19,21 +19,21 @@ sidebar-view * {
 @media screen and (min-width: 1600px) {
     sidebar-view {
         width: 19vw;
-        height: 106vh;
+        height: 109vh;
     }
 }
 
 @media screen and (max-width: 1280px) {
     sidebar-view {
         width: 35vw;
-        height: 107vh;
+        height: 110vh;
     }
 }
 
 @media screen and (max-width: 992px) {
     sidebar-view {
         width: 40vw;
-        height: 108vh;
+        height: 110vh;
     }
 }
 @media screen and (max-width: 768px) {
@@ -56,7 +56,7 @@ sidebar-view * {
 /* Search Type button group */
 .search-type {
     height: 50px;
-    margin-bottom:10px;
+    margin-bottom:20px;
 }
 /* Search Result  */
 .search-found-places {

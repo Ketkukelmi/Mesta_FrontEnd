@@ -2,15 +2,15 @@
 post-view {
     overflow-x: hidden;
     overflow-y: scroll;
-    height: 99.8vh;
+    height: 100%;
     width: 25vw;
     left: 0;
     top: 0;
     background: white;
     position: fixed;
     z-index: 100 !important;
-    margin-bottom: 0 auto !important;
 }
+
 post-view * {
     z-index: 100 !important;
 }
