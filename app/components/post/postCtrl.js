@@ -37,7 +37,7 @@ app.controller('postCtrl', ['$scope', 'postService', 'accountService', function 
             return "http://i.the-mesta.com/0";
         }
     }
-
+    
     // Add new comment to server and attach it to the view.
     $scope.comment = function (location) {
         // Push to the view
