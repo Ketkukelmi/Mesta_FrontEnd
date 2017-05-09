@@ -31,7 +31,7 @@ app.controller('postCtrl', ['$scope', 'postService', 'accountService', function 
     };
 
     $scope.getFirstOrDefaultImage = function() {
-        if ($scope.locations != null && $scope.location.images.length > 0) {
+        if ($scope.location != undefined && $scope.location.images.length > 0) {
             return $scope.location.images[0];
         } else {
             return "http://i.the-mesta.com/0";
