@@ -10,7 +10,7 @@
     <!-- Add Form -->
     <div class="centered row">
         <div class="fifteen wide column">
-            <form id="addForm" class="ui form">
+            <form id="addForm" class="ui form" novalidate>
                 <div class="centered row">
                     <div class="fourteen wide column">
                         <h2 class="ui header">New Location</h2>
@@ -24,11 +24,11 @@
                 </div>
                 <div class="field">
                     <label>Location name</label>
-                    <input type="text" name="name" ng-model="name">
+                    <input type="text" name="name" ng-model="name" required>
                 </div>
                 <div class="field">
                     <label>Tell us what is there!</label>
-                    <textarea type="text" name="description" ng-model="description"></textarea>
+                    <textarea type="text" name="description" ng-model="description" required></textarea>
                 </div>
                 <div class="ui fields">
                     <div class="field">
@@ -55,7 +55,7 @@
                         <option value="View">View</option>
                     </select>
                 </div>
-                <button type="button" class="ui button" ng-click="addLocation()" role="button">Add</button>
+                <button ng-disabled="addForm.$invalid" type="button"  class="ui button" ng-click="addLocation()"  role="button">Add</button>
             </form>
         </div>
     </div>

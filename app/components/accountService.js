@@ -3,7 +3,6 @@ app.factory('accountService', ['$http', '$q', '$cookies', '$rootScope', function
     return {
 
         statusChangeCallback: function (response) {
-            console.log(response);
             if (response.status === 'connected')
             {
                 console.log('Welcome!  Fetching your information.... ');
@@ -14,22 +13,16 @@ app.factory('accountService', ['$http', '$q', '$cookies', '$rootScope', function
         },
 
         signedIn: function (response) {
-            if(response.status === 'connected'){
-                return true;
-            }
-            else{
-                return false;
-            }
+            return (response.status === 'connected');
         },
 
         getFBlogin: function (response) {
+            if (response.status === 'connected') {
+                $rootScope.$broadcast("setFBObj", response);
 
-            if(response.status === 'connected')
-            {
                 // Set the API endpoint
-                var account = $rootScope.FBObj;
-                $cookies.put("fbLoginID", account.authResponse.userID, {domain: ".the-mesta.com"});
-                $cookies.put("AccessToken", account.authResponse.accessToken, {domain: ".the-mesta.com"});
+                $cookies.put("fbLoginID", response.authResponse.userID, {domain: ".the-mesta.com"});
+                $cookies.put("AccessToken", response.authResponse.accessToken, {domain: ".the-mesta.com"});
 
                 // Request for logging in
                 var req = {
@@ -41,21 +34,22 @@ app.factory('accountService', ['$http', '$q', '$cookies', '$rootScope', function
                     },
                     withCredentials: true,
                     data: {
-                        fbLoginID: account.authResponse.userID,
-                        AccessToken: account.authResponse.accessToken
+                        fbLoginID: response.authResponse.userID,
+                        AccessToken: response.authResponse.accessToken
                     }
                 };
+
+                return $q(function (resolve, reject) {
+                    $http(req).then(function (response) {
+                        $rootScope.$broadcast('signedIn', true);
+                        resolve(response.data);
+                    });
+                });
             }
             else
             {
-                return;
+                return null;
             }
-            return $q(function (resolve) {
-                $http(req).then(function (response) {
-                    console.log(response);
-                    resolve(response.data);
-                });
-            });
         }
-    }}]);
-
+    }
+}]);

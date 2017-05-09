@@ -1,4 +1,4 @@
-app.factory('postService', ['$http', '$q', '$rootScope', function ($http, $q, $rootScope) {
+app.factory('postService', ['$http', '$q', '$rootScope', '$cookies', function ($http, $q, $rootScope, $cookies) {
     serverUrl = "http://api.the-mesta.com";
     fbURL = "http://facebook.com/";
     return {
@@ -46,7 +46,7 @@ app.factory('postService', ['$http', '$q', '$rootScope', function ($http, $q, $r
             var url = (name == "" || name == undefined || name == null) ? serverUrl + '/location/all' : serverUrl + '/location/search/' + name;
 
             $.getJSON(url, function(result) {
-                
+
                 function arrUnique(arr) {
                     var cleaned = [];
                     arr.forEach(function(itm) {
@@ -67,7 +67,6 @@ app.factory('postService', ['$http', '$q', '$rootScope', function ($http, $q, $r
         },
         addLocation: function (latitude, longitude, name, description, tags, categories, image) {
             // Credentials
-            var account = $rootScope.FBObj;
             var tags = tags.split(',');
             // Request for adding location
             var req = {
@@ -114,15 +113,13 @@ app.factory('postService', ['$http', '$q', '$rootScope', function ($http, $q, $r
             });
         },
         addComment: function (location, newComment, field) {
-            var account = $rootScope.FBObj;
             // Request for adding comment
-
             var commentObject = {
-                    locationID: location.id,
-                    date: Date.now(),
-                    comment: newComment
+                locationID: location.id,
+                date: Date.now(),
+                comment: newComment
             };
-            console.log(commentObject);
+            
             var req = {
                 method: 'POST',
                 url: serverUrl + '/location/comment/save',
@@ -136,6 +133,7 @@ app.factory('postService', ['$http', '$q', '$rootScope', function ($http, $q, $r
             return $q(function (resolve, reject) {
                 // Send the crafted request for adding comment
                 $http(req).then(function succesCallback(response) {
+                    commentObject.facebookID = $cookies.get("fbLoginID");
                     field.push(commentObject);
                     resolve(response.data);
                 }, function errorCallback(response) {
@@ -144,8 +142,6 @@ app.factory('postService', ['$http', '$q', '$rootScope', function ($http, $q, $r
             });
         },
         addLike: function (location_id) {
-            var account = $rootScope.FBObj;
-            console.log("add like to location" + location_id);
             // Request for adding comment
             var req = {
                 method: 'POST',
@@ -164,6 +160,24 @@ app.factory('postService', ['$http', '$q', '$rootScope', function ($http, $q, $r
                     console.log(response);
                 });
             });
+        },
+        getFBName: function(ID) {
+            if (ID != undefined || ID != null) {
+                var req = {
+                    method: 'GET',
+                    url: "https://graph.facebook.com/"+ID+"?access_token=1648610375442724|457b6d1b4d0d23b7d489277ca599dd7d",
+                    headers: {
+                        'Content-Type': 'application/json;',
+                        'Access-Control-Allow-Origin': "*"
+                    }
+                };
+
+                return $q(function(resolve, reject) {
+                    $http(req).then(function successCallback(response) {
+                        resolve(response.data);
+                    });
+                });
+            }
         }
     }
 }]);

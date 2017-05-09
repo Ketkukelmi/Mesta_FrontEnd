@@ -22,7 +22,6 @@
             </div>
         </div>
 </div>
-<script src='dist/js/perfect-scrollbar.js'></script>
 <div class="centered row" style="height: calc(100% - 120px); overflow-y: scroll; overflow-x: hidden; overflow: -moz-scrollbars-vertical">
     <!-- Search Result -->
     <div class="ui link cards">
@@ -41,8 +40,8 @@
                     </md-content>
                 </md-content>
                 <md-content class="extra content">
-                    <a ng-click="addLike(location)">
-                        <i class="thumbs up icon green" ng-class="{'outline': location.likes.indexOf('TestMesta') === -1}"
+                    <a ng-click="addLike(location, FBId)">
+                        <i class="thumbs up icon green" ng-class="{'outline': location.likes.indexOf(FBId) === -1}"
                             aria-hidden="true" style="min-height:24px"></i>
                         {{location.likes.length}} people approve
                     </a>

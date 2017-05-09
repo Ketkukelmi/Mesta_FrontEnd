@@ -1,26 +1,6 @@
-app.filter('getFBName', ['$q', '$http',function ($q, $http) {
-    return function (ID) {
-
-        var req = {
-            method: 'GET',
-            url: "https://graph.facebook.com/"+ID+"?access_token=1648610375442724|457b6d1b4d0d23b7d489277ca599dd7d",
-            headers: {
-                'Content-Type': 'application/json;',
-                'Access-Control-Allow-Origin': "*"
-            }
-        };
-        return $q(function (resolve, reject) {
-            $http(req).then(function (response) {
-                console.log(response.data.name);
-                return resolve(response.data.name);
-            });
-        });
-    };
-}]);
 app.controller('postCtrl', ['$scope', 'postService', function ($scope, postService) {
     // Location and Comments for it
     $scope.location;
-    $scope.comments = [];
     $scope.signedIn = false;
 
     // Fetch new ID whenever broadcasted and download location information based on that ID.
@@ -36,11 +16,8 @@ app.controller('postCtrl', ['$scope', 'postService', function ($scope, postServi
             else
                 $scope.location.tags.push( prerocessedTag);
         });
-    });
 
-    // Fetches location if location is updated (e.g. liked by the user)
-    $scope.$on('location', function (event, location) {
-        $scope.location = location;
+        updateComments();
     });
 
     // Fetches the boolean when the user becomes signed in
@@ -49,14 +26,34 @@ app.controller('postCtrl', ['$scope', 'postService', function ($scope, postServi
     });
 
     // Add new comment to server and attach it to the view.
-    $scope.comment = function (location_id) {
+    $scope.comment = function (location) {
         // Push to the view
         //$scope.location.comments.push($scope.newComment);
         // Send to the server
-        if($scope.newComment != ""){
-            postService.addComment(location_id, $scope.newComment, $scope.location.comments);
+        if($scope.newComment != "" || $scope.newComment != null || $scope.newComment != undefined){
+            postService.addComment(location, $scope.newComment, $scope.location.comments).then(function(result) {
+                if (result == "SUCCES") {
+                    updateComments();
+                } else if (result == "TOKEN_NOT_VALID") {
+                    alert("Stop trying to hack bitch");
+                }
+            });
         }
         // Delete from the textarea
         $scope.newComment = "";
     };
+
+    function updateComments() {
+        $scope.location.comments.forEach(function(comment) {
+            postService.getFBName(comment.facebookID).then(function(result) {
+                comment.name = result.name;
+            }).catch(function(error) {
+                console.log(error);
+            });
+        });
+    }
+
+    $scope.$on('setFBObj', function (event, FBobject) {
+        $scope.FBId = FBobject.authResponse.userID;
+    });
 }]);

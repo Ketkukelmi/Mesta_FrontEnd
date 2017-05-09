@@ -12,15 +12,14 @@ app.run(['$http', '$rootScope', 'postService', function($http, $rootScope, postS
     });
 
     // Function for liking
-    $rootScope.addLike = function (location) {
+    $rootScope.addLike = function (location, fbId) {
         // Show/hide like
-        currentUser = "TestMesta";
         var thumbsUp = $('#locationID_' + location.id).find('i.thumbs.up');
-        if ($rootScope.locations[$rootScope.locations.indexOf(location)].likes.indexOf(currentUser) == -1) {
-            $rootScope.locations[$rootScope.locations.indexOf(location)].likes.push(currentUser);
+        if ($rootScope.locations[$rootScope.locations.indexOf(location)].likes.indexOf(fbId) == -1) {
+            $rootScope.locations[$rootScope.locations.indexOf(location)].likes.push(fbId);
         }
         else {
-            $rootScope.locations[$rootScope.locations.indexOf(location)].likes.splice($rootScope.locations[$rootScope.locations.indexOf(location)].likes.indexOf(currentUser), 1);
+            $rootScope.locations[$rootScope.locations.indexOf(location)].likes.splice($rootScope.locations[$rootScope.locations.indexOf(location)].likes.indexOf(fbId), 1);
         }
         $rootScope.$broadcast('location', $rootScope.locations[$rootScope.locations.indexOf(location)]);
 

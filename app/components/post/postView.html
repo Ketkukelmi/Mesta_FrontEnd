@@ -39,15 +39,15 @@
                                     <p ng-if="location.tags.length > 0">Tags: <span ng-repeat="tag in location.tags"><a ng-click="findByTag(tag)">{{tag}}</a> &nbsp;</span></p>
                                 </div>
                                 <div class="extra">
-                                    <a ng-click="addLike(location)"><i class="thumbs up icon green" ng-class="{'outline': location.likes.indexOf('TestMesta') === -1}"
-                                          aria-hidden="true"></i> {{location.likes.length}} people approve<span ng-if="location.likes.length != 1">s</span></a>
-                                     <span style="float: right">{{location.category}}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="ui secondary segment">
+                                    <a ng-click="addLike(location, FBId)"><i class="thumbs up icon green" ng-class="{'outline': location.likes.indexOf(FBId) === -1}"
+                                      aria-hidden="true"></i> {{location.likes.length}} people approve<span ng-if="location.likes.length != 1">s</span></a>
+                                      <span style="float: right">{{location.category}}</span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="ui secondary segment">
                     <div class="ui minimal comments">
                         <h3 class="ui dividing header">Comments</h3>
                         <div class="comment" ng-repeat="comment in location.comments">
@@ -55,7 +55,7 @@
                                 <img ng-src="https://graph.facebook.com/{{comment.facebookID}}/picture">
                             </a>
                             <div class="content">
-                                <a class="author">{{1430836076926757 | getFBName}}</a>
+                                <a class="author">{{comment.name}}</a>
                                 <div class="metadata">
                                     <span class="date">{{comment.date | date}}</span>
                                 </div>
@@ -67,15 +67,16 @@
                                 </div>
                             </div>
                         </div>
-                        <form name="commentForm" class="ui reply form" ng-if="signedIn" novalidate>
-                            <div class="field">
-                                <textarea ng-model="$parent.newComment" required></textarea>
-                            </div>
-                            <button ng-disabled="commentForm.$invalid" class="ui blue labeled submit icon button" ng-click="comment(location)">
-                                <i class="icon edit"></i> Add Reply
-                            </button>
-                        </form>
+                        <div class="field">
+                            <textarea ng-model="newComment" required rows="8" style="width:100%;"></textarea>
+                        </div>
                     </div>
+                    <button ng-hide="signedIn" class="ui blue labeled submit icon button" onclick="toggleAccountView()">
+                        <i class="icon edit"></i> Add Reply
+                    </button>
+                    <button ng-disabled="!newComment" class="ui blue labeled submit icon button" ng-click="comment(location)">
+                        <i class="icon edit"></i> Add Reply
+                    </button>
                 </div>
             </div>
         </div>

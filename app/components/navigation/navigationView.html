@@ -1,12 +1,12 @@
 <div class="ui grid">
     <div class="computer only row">
         <div class="ui top-row segment" style="width: 100%; height: 61px; top: -16px;">
-            <div ng-if ="signedIn === false">
+            <div ng-hide="signedIn">
                 <a class="item" onclick="toggleAccountView()" style="width: 80px;">
                     <button class="addbutton"><span>Add</span></button>
                 </a>
             </div>
-            <div ng-if = "signedIn === true">
+            <div ng-show="signedIn">
                 <a class="item" onclick="toggleAddView()" style="width: 80px;">
                     <button class="addbutton"><span>Add</span></button>
                 </a>
@@ -15,13 +15,15 @@
                 <a ng-hide="signedIn" class="item" onclick="toggleAccountView()" style="width: 100px;">
                     <button class="loginbutton"><span>Login</span></button>
                 </a>
-                <a ng-show="signedIn" class="item" style="width: 100px;"><span class="loginbutton">{{FBObj.authResponse.userID | getFBName}}</span></a>
+                <a ng-show="signedIn" class="item" style="width: 100px;">
+                    <span class="loginbutton">{{FBName}}</span>
+                </a>
             </div>
         </div>
     </div>
     <div class="mobile tablet only row">
         <div class="ui vertical buttons secondaryMenu">
-            <button class="circular ui icon massive blue button" onclick="showAccountView()">
+            <button class="circular ui icon massive blue button" onclick="toggleAccountView()">
                 <i class="icon sign in"></i>
             </button>
             <br>

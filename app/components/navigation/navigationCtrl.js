@@ -1,21 +1,16 @@
-app.controller('navigationCtrl', [ '$scope', 'accountService', function ($scope, accountService) {
-var bool;
-
-     FB.getLoginStatus(function(response) {
-        // This will be called when the roundtrip to Facebook has completed
-        console.log(accountService.signedIn(response) + " navictrl");
-        bool = accountService.signedIn(response);
-        console.log("boolean", bool );
-
-         $scope.$apply(function () {
-             $scope.user = bool;
-         });
-    });
+app.controller('navigationCtrl', [ '$scope', 'accountService', 'postService', function ($scope, accountService, postService) {
     $scope.signedIn = false;
 
     $scope.$on('signedIn', function (event, signedIn) {
-            $scope.$apply(function () {
-                $scope.signedIn = signedIn;
-            })
+        $scope.signedIn = signedIn;
     });
+
+    $scope.$on('setFBObj', function (event, FBobject) {
+        postService.getFBName(FBobject.authResponse.userID).then(function(result) {
+            $scope.FBName = result.name;
+        }).catch(function(error) {
+            console.log("Error when retrieving facebook name");
+        });
+    });
+
 }]);

@@ -28,8 +28,6 @@ app.controller('sidebarCtrl', ['postService', '$scope', '$rootScope', '$timeout'
 
     updateSearch();
 
-    var container = document.getElementById('container');
-    Ps.initialize(container);
 
     // Initialize locations array (from location/all will be stored here)
     $scope.locations = [];
@@ -37,6 +35,10 @@ app.controller('sidebarCtrl', ['postService', '$scope', '$rootScope', '$timeout'
     // Get the locations from the service
     $scope.$on('locations', function (event, locations) {
         $scope.locations = locations;
+    });
+
+    $scope.$on('setFBObj', function (event, FBobject) {
+        $scope.FBId = FBobject.authResponse.userID;
     });
 
     // Open the clicked location in the post view (broadcast selected location ID to the post view)
