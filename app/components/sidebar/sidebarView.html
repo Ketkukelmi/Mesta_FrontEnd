@@ -27,7 +27,7 @@
                     </md-content>
                 </md-content>
                 <md-content class="extra content">
-                    <a ng-hide="singedIn" ng-click="addLike(location, FBId)">
+                    <a ng-hide="singedIn" ng-click="signedIn === true ? addLike(location, FBId) : toggleAccountView()">
                         <i class="thumbs up icon green" ng-class="{'outline': location.likes.indexOf(FBId) === -1}"
                             aria-hidden="true" style="min-height:24px"></i>
                         {{location.likes.length}} people approve

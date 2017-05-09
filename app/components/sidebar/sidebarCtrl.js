@@ -1,5 +1,6 @@
 app.controller('sidebarCtrl', ['postService', '$scope', '$rootScope', '$timeout', function (postService, $scope, $rootScope, $timeout) {
     $scope.searchType = "popular";
+    $scope.signedIn = false;
 
     // Toggle between search modes
     $scope.toggleSearchType = function () {
@@ -18,6 +19,11 @@ app.controller('sidebarCtrl', ['postService', '$scope', '$rootScope', '$timeout'
             return "http://i.the-mesta.com/0";
         }
     }
+
+    // Fetches the boolean when the user becomes signed in
+    $scope.$on('signedIn', function (event, signedIn) {
+        $scope.signedIn = signedIn;
+    });
 
     var changed = false;
 
